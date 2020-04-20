@@ -1,8 +1,8 @@
 import React from 'react';
-import Main from './Main.jsx';
-import SidebarLeft from '../Global/SidebarLeft.jsx';
-import SidebarRight from '../Global/SidebarRight.jsx';
-import Footer from '../Global/Footer.jsx';
+import Main from '../Main/Main.jsx';
+import SidebarLeft from '../../Sidebars/SidebarLeft/SidebarLeft.jsx';
+import SidebarRight from '../../Sidebars/SidebarRight/SidebarRight.jsx';
+import Footer from '../../Global/Footer/Footer.jsx';
 
 const HomeDashboard = props => {
     return(

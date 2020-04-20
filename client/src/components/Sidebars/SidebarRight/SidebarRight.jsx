@@ -3,6 +3,7 @@ import React from 'react';
 const SidebarRight = props => {
     return(
         <div className="sidebar-right">
+            <div className="sidebar-module">
             <h1 className="sidebar-header">Sidebar Right</h1>
             <div className="sidebar-content">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis porta leo. Vivamus quis mauris vel quam tristique egestas ut non tortor. Cras lectus mi, blandit id finibus id, viverra eu lorem. Nullam ornare finibus fringilla. Nullam metus sapien, tincidunt eget magna eget, venenatis euismod erat. Sed vel nulla facilisis, molestie augue sit amet, maximus orci. Nunc non lacus nisi. Donec enim metus, accumsan ut ornare vel, feugiat ac purus. Morbi posuere, velit malesuada rutrum iaculis, nulla mi bibendum mi, gravida tristique justo enim eu ex. Praesent a nunc in lacus pulvinar rhoncus. Quisque ornare nisi id maximus dapibus. Pellentesque vestibulum sapien et felis egestas congue. Nullam laoreet egestas ex, a convallis elit maximus ut.
@@ -30,6 +31,7 @@ Phasellus ullamcorper id dui a lacinia. Ut ac ligula ut sem iaculis gravida. Aen
 Quisque metus orci, interdum eget ultrices et, commodo eget nisl. Fusce cursus justo consectetur mattis sollicitudin. Praesent placerat elementum augue, a interdum quam egestas vitae. Suspendisse sit amet pretium metus, ut fermentum ipsum. Maecenas aliquam eget sem vitae porttitor. Aenean feugiat metus eu enim tincidunt condimentum. Fusce sed odio magna. Proin est orci, eleifend sed nibh vitae, facilisis commodo elit. Sed id pretium velit. Duis accumsan tortor augue, in condimentum est blandit et. Nullam bibendum sem velit, vel malesuada diam iaculis quis. Vivamus porttitor dictum ante, quis aliquam libero feugiat id.</p>
 
             </div>
+        </div>
         </div>
     )
 };

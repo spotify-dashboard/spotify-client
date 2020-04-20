@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 * {
     font-family: 'Montserrat', sans-serif;
@@ -7,13 +7,13 @@
 .flex {
     display: flex;
     flex-direction: row;
-}
+} */
 
-.navbar {
+/* .navbar {
     width: 100%;
     padding: 10px 0px;
     border-bottom: 1px solid black;
-}
+} */
 
 footer {
     z-index: 9999;
@@ -36,7 +36,7 @@ footer {
 
 .sidebar-content {
     height: 87%;
-    overflow: scroll;
+    overflow: scroll !important;
 }
 
 .sidebar-left {
@@ -56,6 +56,8 @@ footer {
 
 .sidebar-module {
     padding: 2px 4px 0px 4px;
+    overflow: scroll;
+    height: 100%;
 }
 
 .home-dashboard {
@@ -63,4 +65,5 @@ footer {
     position: relative;
     left: 18%;
     z-index: 1;
+    margin-bottom: 100px;
 }
