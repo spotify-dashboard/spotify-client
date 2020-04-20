@@ -1,11 +1,13 @@
 import React from 'react';
+import styles from './sidebarleft.module.scss';
+import sharedStyles from '../sidebars.shared.scss';
 
 const SidebarLeft = props => {
     return(
-        <div className="sidebar-left">
-            <div className="sidebar-module">
-            <h1 className="sidebar-header">Sidebar Left</h1>
-            <div className="sidebar-content">
+        <div className={styles.sidebarLeft}>
+            <div className={sharedStyles.sidebarModule}>
+            <h1 className={sharedStyles.sidebarHeader}>Sidebar Left</h1>
+            <div className={sharedStyles.sidebarContent}>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis porta leo. Vivamus quis mauris vel quam tristique egestas ut non tortor. Cras lectus mi, blandit id finibus id, viverra eu lorem. Nullam ornare finibus fringilla. Nullam metus sapien, tincidunt eget magna eget, venenatis euismod erat. Sed vel nulla facilisis, molestie augue sit amet, maximus orci. Nunc non lacus nisi. Donec enim metus, accumsan ut ornare vel, feugiat ac purus. Morbi posuere, velit malesuada rutrum iaculis, nulla mi bibendum mi, gravida tristique justo enim eu ex. Praesent a nunc in lacus pulvinar rhoncus. Quisque ornare nisi id maximus dapibus. Pellentesque vestibulum sapien et felis egestas congue. Nullam laoreet egestas ex, a convallis elit maximus ut.
 
 Maecenas non maximus enim. Nunc tempus pretium sem, non tempus lectus fringilla id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam lacinia nisi ut pretium suscipit. Duis euismod enim non dolor malesuada, sed eleifend sem vulputate. Nulla tincidunt sed neque non porttitor. In consequat ex est, tempor tempus risus mollis nec. Vestibulum vitae tristique massa. Phasellus condimentum nulla massa. Mauris fermentum sapien massa, id malesuada lectus dapibus at. Vestibulum vitae tellus sit amet felis placerat fringilla vitae eget velit. Ut blandit neque velit, id elementum ex consequat at. Vivamus interdum turpis eu vehicula pharetra. Nulla sed tortor risus. Aliquam vitae iaculis urna.

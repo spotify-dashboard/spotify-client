@@ -1,8 +1,10 @@
 import React from 'react';
+import styles from './sidebarright.module.scss';
+import sharedStyles from '../sidebars.shared.scss';
 
 const SidebarRight = props => {
     return(
-        <div className="sidebar-right">
+        <div className={styles.sidebarRight}>
             <div className="sidebar-module">
             <h1 className="sidebar-header">Sidebar Right</h1>
             <div className="sidebar-content">
