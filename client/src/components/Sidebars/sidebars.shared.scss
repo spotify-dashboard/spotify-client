@@ -1,16 +1,8 @@
 @import '../../_variables.scss';
 
 .sidebarContent {
-    height: 87%;
-    overflow: scroll !important;
-}
-
-.sidebarHeader {
-
-}
-
-.sidebarModule {
-    padding: 2px 4px 0px 4px;
-    overflow: scroll !important;
+    // height: 87%;
     height: 100%;
+    margin-bottom: 80px;
+    overflow: scroll !important;
 }

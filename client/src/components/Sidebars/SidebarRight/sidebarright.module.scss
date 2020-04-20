@@ -3,10 +3,19 @@
 .sidebarRight {
     width: 18%;
     border: 1px solid black;
-    height: 90%;
+    height: 91%;
     position: fixed;
     left: 81.5%;
     z-index: 1;
     background-color: $sidebarBlack;
     overflow: scroll !important;
+}
+
+.sidebarHeader {
+    
+}
+
+.sidebarModule {
+    overflow: scroll !important;
+    padding: 2px 15px;
 }
