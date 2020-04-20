@@ -1,7 +1,10 @@
+@import '../../../variables';
+
 .sidebarLeft {
     width: 18%;
     border: 1px solid black;
     height: 90%;
     position: fixed;
     z-index: 1;
+    background-color: $sidebarBlack;
 }
