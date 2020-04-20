@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import './variables';
 
 // All
 
 * {
     font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+html {
+    background-color: $sidebarBlack;
 }
 
 // ==== Helpers
@@ -12,3 +18,4 @@
     display: flex;
     flex-direction: row;
 }
+

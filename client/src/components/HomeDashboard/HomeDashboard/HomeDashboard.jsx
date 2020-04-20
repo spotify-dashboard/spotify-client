@@ -6,11 +6,11 @@ import Footer from '../../Global/Footer/Footer.jsx';
 
 const HomeDashboard = props => {
     return(
-        <div className="main-dashboard">
+        <div className="homeDashboard">
             <div className="flex">
-                <SidebarLeft className="left-sidebar"/>
+                <SidebarLeft/>
                 <Main />
-                <SidebarRight className="right-sidebar" />
+                <SidebarRight />
             </div>
             <Footer />
         </div>

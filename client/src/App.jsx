@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import styles from './global.styles.scss';
+import styles from './global_styles.scss';
 
 import HomeDashboard from './components/HomeDashboard/HomeDashboard/HomeDashboard.jsx';
 
