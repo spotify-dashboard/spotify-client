@@ -1,11 +1,1 @@
-.main-module {
-    padding: 5px 10px;
-}
-
-.home-dashboard {
-    width: 64%;
-    position: relative;
-    left: 18%;
-    z-index: 1;
-    margin-bottom: 100px;
-}
+/* Moved styles to modular scss */
