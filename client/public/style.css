@@ -8,3 +8,59 @@
     display: flex;
     flex-direction: row;
 }
+
+.navbar {
+    width: 100%;
+    padding: 10px 0px;
+    border-bottom: 1px solid black;
+}
+
+footer {
+    z-index: 9999;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid black;
+    z-index: 9999;
+}
+
+.sidebar-left, .sidebar-right {
+    width: 18%;
+    border: 1px solid black;
+    height: 90%;
+}
+
+.sidebar-content {
+    height: 87%;
+    overflow: scroll;
+}
+
+.sidebar-left {
+    position: fixed;
+    z-index: 1;
+}
+
+.sidebar-right {
+    position: fixed;
+    left: 81.5%;
+    z-index: 1;
+}
+
+.main-module {
+    padding: 5px 10px;
+}
+
+.sidebar-module {
+    padding: 2px 4px 0px 4px;
+}
+
+.home-dashboard {
+    width: 64%;
+    position: relative;
+    left: 18%;
+    z-index: 1;
+}

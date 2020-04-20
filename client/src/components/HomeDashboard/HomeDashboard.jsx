@@ -1,16 +1,16 @@
 import React from 'react';
 import Main from './Main.jsx';
-import Sidebar from '../Global/Sidebar.jsx';
-import Navbar from '../Global/Navbar.jsx';
+import SidebarLeft from '../Global/SidebarLeft.jsx';
+import SidebarRight from '../Global/SidebarRight.jsx';
 import Footer from '../Global/Footer.jsx';
 
 const HomeDashboard = props => {
     return(
         <div className="main-dashboard">
-            <Navbar />
             <div className="flex">
-                <Sidebar />
+                <SidebarLeft className="left-sidebar"/>
                 <Main />
+                <SidebarRight className="right-sidebar" />
             </div>
             <Footer />
         </div>
