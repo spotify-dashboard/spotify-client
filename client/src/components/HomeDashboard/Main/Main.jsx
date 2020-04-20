@@ -1,11 +1,13 @@
 import React from 'react';
 import Navbar from '../../Global/Navbar/Navbar.jsx';
+import Banner from '../../Global/Banner/Banner.jsx';
 import styles from './main.module.scss';
 
 const Main = props => {
     return(
         <div className={styles.mainSection}>
             <div className={styles.mainModule}>
+                <Banner />
                 <Navbar />
                 <h1>Main Section</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis porta leo. Vivamus quis mauris vel quam tristique egestas ut non tortor. Cras lectus mi, blandit id finibus id, viverra eu lorem. Nullam ornare finibus fringilla. Nullam metus sapien, tincidunt eget magna eget, venenatis euismod erat. Sed vel nulla facilisis, molestie augue sit amet, maximus orci. Nunc non lacus nisi. Donec enim metus, accumsan ut ornare vel, feugiat ac purus. Morbi posuere, velit malesuada rutrum iaculis, nulla mi bibendum mi, gravida tristique justo enim eu ex. Praesent a nunc in lacus pulvinar rhoncus. Quisque ornare nisi id maximus dapibus. Pellentesque vestibulum sapien et felis egestas congue. Nullam laoreet egestas ex, a convallis elit maximus ut.
