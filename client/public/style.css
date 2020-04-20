@@ -1,33 +1,5 @@
-.sidebar-left, .sidebar-right {
-    width: 18%;
-    border: 1px solid black;
-    height: 90%;
-}
-
-.sidebar-content {
-    height: 87%;
-    overflow: scroll !important;
-}
-
-.sidebar-left {
-    position: fixed;
-    z-index: 1;
-}
-
-.sidebar-right {
-    position: fixed;
-    left: 81.5%;
-    z-index: 1;
-}
-
 .main-module {
     padding: 5px 10px;
-}
-
-.sidebar-module {
-    padding: 2px 4px 0px 4px;
-    overflow: scroll;
-    height: 100%;
 }
 
 .home-dashboard {
