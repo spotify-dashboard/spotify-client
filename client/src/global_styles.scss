@@ -6,6 +6,7 @@
 * {
     font-family: 'Montserrat', sans-serif;
     color: white;
+    
 }
 
 html {
@@ -19,3 +20,18 @@ html {
     flex-direction: row;
 }
 
+::-webkit-scrollbar {
+        width: 15px;
+        height: 15px;
+    }
+    ::-webkit-scrollbar-track-piece  {
+        background-color: $htmlBlack;
+    }
+    ::-webkit-scrollbar-thumb:vertical {
+        height: 30px;
+        background-color: $greenAccent;
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
