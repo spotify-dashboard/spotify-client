@@ -5,8 +5,8 @@ import sharedStyles from '../sidebars.shared.scss';
 const SidebarRight = props => {
     return(
         <div className={styles.sidebarRight}>
-            <div className={sharedStyles.sidebarModule}>
-            <h1 className={sharedStyles.sidebarHeader}>Sidebar Right</h1>
+            <div className="sidebarModule">
+            <h1 className={styles.header}>Sidebar Right</h1>
             <div className={sharedStyles.sidebarContent}>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis porta leo. Vivamus quis mauris vel quam tristique egestas ut non tortor. Cras lectus mi, blandit id finibus id, viverra eu lorem. Nullam ornare finibus fringilla. Nullam metus sapien, tincidunt eget magna eget, venenatis euismod erat. Sed vel nulla facilisis, molestie augue sit amet, maximus orci. Nunc non lacus nisi. Donec enim metus, accumsan ut ornare vel, feugiat ac purus. Morbi posuere, velit malesuada rutrum iaculis, nulla mi bibendum mi, gravida tristique justo enim eu ex. Praesent a nunc in lacus pulvinar rhoncus. Quisque ornare nisi id maximus dapibus. Pellentesque vestibulum sapien et felis egestas congue. Nullam laoreet egestas ex, a convallis elit maximus ut.
 

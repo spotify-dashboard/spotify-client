@@ -1,7 +1,15 @@
+@import '../../../variables';
+
 .sidebarLeft {
     width: 18%;
     border: 1px solid black;
-    height: 90%;
+    height: 91%;
     position: fixed;
     z-index: 1;
+    background-color: $sidebarBlack;
+    overflow: scroll !important;
+}
+
+.sidebarHeader {
+    
 }
