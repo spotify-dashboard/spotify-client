@@ -20,18 +20,43 @@ html {
     flex-direction: row;
 }
 
+// ==== Page/component section templates
+
+// sidebar padding, scrolling
+.sidebarModule {
+    overflow: scroll !important;
+    padding: 2px 15px;
+}
+
+// Main section display, placement, formatting, etc
+.mainSection {
+    width: 64%;
+    position: relative;
+    left: 18%;
+    // z-index: 1;
+    margin-bottom: 80px;
+    background-color: $darkGrey;
+}
+
+// padding for main section
+.mainModule {
+    padding: 5px 30px;
+}
+
+
+// ==== scrollbar design
 ::-webkit-scrollbar {
-        width: 15px;
-        height: 15px;
-    }
-    ::-webkit-scrollbar-track-piece  {
-        background-color: $htmlBlack;
-    }
-    ::-webkit-scrollbar-thumb:vertical {
-        height: 30px;
-        background-color: $greenAccent;
-        border-radius: 10px;
-    }
-    ::-webkit-scrollbar-corner {
-        background-color: transparent;
-    }
+    width: 15px;
+    height: 15px;
+}
+::-webkit-scrollbar-track-piece  {
+    background-color: $htmlBlack;
+}
+::-webkit-scrollbar-thumb:vertical {
+    height: 30px;
+    background-color: $greenAccent;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
