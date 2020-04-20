@@ -1,4 +1,7 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+import HomeDashboard from './components/HomeDashboard/HomeDashboard.jsx';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -16,9 +19,11 @@ export default class App extends React.Component {
     render() {
 
         return (
-            <div>
-                <h1>test</h1>
-            </div>
+            <Router>
+                <Route path="/">
+                    <HomeDashboard />
+                </Route>
+            </Router>
         );
     };
 };
