@@ -1,4 +1,4 @@
-import { FETCH_PROFILE, UPDATE_ERROR } from '../actions/types.js';
+import { actions } from '../actions/types.js';
 
 const initialState = {
     profile: [],
@@ -7,12 +7,17 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch(action.type) {
-        case FETCH_PROFILE:
+        case actions.profile.FETCH_PROFILE:
             return {
                 ...state,
-                items: action.payload
+                profile: action.payload
+            }
+        case actions.error.UPDATE_ERROR:
+            return {
+                ...state,
+                error: action.payload
             }
         default:
             return state;
     }
-}
+};
