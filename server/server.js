@@ -1,23 +1,15 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+
 const path = require('path');
 
 require('dotenv').config();
 
 //routes
 const loginRouter = require('./routes/login.js');
-
-const SpotifyWebApi = require('spotify-web-api-node');
-
-// credentials are optional
-let spotifyApi = new SpotifyWebApi({
-  clientId: process.env.MY_CLIENT_ID,
-  clientSecret: process.env.MY_CLIENT_SECRET,
-  redirectUri: 'http://localhost:8080/callback'
-});
-
-spotifyApi.setAccessToken();
+const profileRouter = require('./routes/profile.js');
 
 //app and port
 const app = express();
@@ -27,9 +19,11 @@ const PORT = process.env.PORT || 8080;
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 
 //routes
-app.use('/api/login', loginRouter);
+app.use('/login', loginRouter);
+app.use('/api/profile', profileRouter);
 
 // ==== serve static files
 app.use(express.static(path.join(__dirname, '../client/public')));
