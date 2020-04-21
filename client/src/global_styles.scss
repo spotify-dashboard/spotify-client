@@ -20,6 +20,14 @@ html {
     flex-direction: row;
 }
 
+.flex-vertical-align {
+    align-items: center;
+}
+
+.flex-spread {
+    justify-content: space-between;
+}
+
 // ==== Page/component section templates
 
 // sidebar padding, scrolling

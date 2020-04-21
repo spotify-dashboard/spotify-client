@@ -9,7 +9,7 @@ const HomeDashboard = props => {
         <div className="homeDashboard">
             <div className="flex">
                 <SidebarLeft/>
-                <Main />
+                <Main profile={props.profile} />
                 <SidebarRight />
             </div>
             <Footer />

@@ -5,7 +5,12 @@ const Navbar = props => {
 
     return(
         <nav className={styles.navbar}>
-            <h1>Navbar</h1>
+            <ul className={styles.navList}>
+                <li className={styles.navItem}>Overview</li>
+                <li className={styles.navItem}>Dashboard</li>
+                <li className={styles.navItem}>Song Recommendations</li>
+                <li className={styles.navItem}>Playlists</li>
+            </ul>
         </nav>
     )
 };
