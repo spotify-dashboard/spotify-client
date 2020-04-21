@@ -12,6 +12,7 @@
 html, body {
     background-color: $sidebarBlack;
     height: 100%;
+    overflow: hidden;
 }
 
 // ==== Helpers
@@ -42,6 +43,8 @@ html, body {
     width: 64%;
     position: relative;
     left: 18%;
+    height: 92vh;
+    overflow: scroll;
     // z-index: 1;
     margin-bottom: 80px;
     background-color: $darkGrey;
