@@ -10,7 +10,9 @@ const Main = props => {
     return(
         <div className="mainSection">
             <div className="mainModule">
-                <Banner profile={props.profile} />
+                <Banner 
+                // profile={props.profile} 
+                />
                 <Navbar />
                 <div className={styles.chartList}>
                     <Chart />

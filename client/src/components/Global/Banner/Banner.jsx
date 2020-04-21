@@ -6,7 +6,7 @@ const Banner = props => {
 
     return (
         <div className={styles.banner}>
-        
+        <Login />
         {props.profile &&
             <div className="flex flex-vertical-align flex-spread">
                 <div className="flex flex-vertical-align">
