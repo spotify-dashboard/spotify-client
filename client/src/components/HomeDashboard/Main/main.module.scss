@@ -1,16 +1,7 @@
 @import '../../../variables';
 
-.mainSection {
-    width: 64%;
-    position: relative;
-    left: 18%;
-    height: 100vh;
-    overflow: scroll;
-    // z-index: 1;
-    margin-bottom: 80px;
-    background-color: $darkGrey;
-}
-
-.mainModule {
-    padding: 5px 30px;
+.chartList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
