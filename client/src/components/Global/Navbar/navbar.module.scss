@@ -5,3 +5,18 @@
     padding: 10px 0px;
     border-bottom: 1px solid $lightGrey;
 }
+
+.navList {
+    display: flex;
+    list-style: none;
+}
+
+.navItem {
+    color: $textGrey;
+    margin: 0px 10px;
+}
+
+.navItem:hover {
+    border-bottom: 2px solid $greenAccent;
+    color: $textWhite;
+}
