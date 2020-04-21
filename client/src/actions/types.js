@@ -1,0 +1,2 @@
+export const FETCH_PROFILE = 'FETCH_PROFILE';
+export const UPDATE_ERROR = 'UPDATE_ERROR';
