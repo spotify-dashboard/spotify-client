@@ -17,9 +17,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "querystring": "^0.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.1.2",
