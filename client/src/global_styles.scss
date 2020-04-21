@@ -9,8 +9,9 @@
     
 }
 
-html {
+html, body {
     background-color: $sidebarBlack;
+    height: 100%;
 }
 
 // ==== Helpers
