@@ -5,11 +5,10 @@ module.exports = {
         tracks: {
             get: (req, res) => {
                 login.credentials.getMySavedTracks({
-                    limit : 2,
+                    limit : 20,
                     offset: 1
                 })
                 .then(data => {
-                    console.log(data);
                     res.status(200).json(data);
                 })
                 .catch(err => {
