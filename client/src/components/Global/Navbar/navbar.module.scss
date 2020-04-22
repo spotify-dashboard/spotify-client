@@ -16,9 +16,14 @@
     margin: 0px 10px;
     text-transform: uppercase;
     cursor: pointer;
+    text-decoration: none !important;
 }
 
 .navItem:hover {
     border-bottom: 2px solid $greenAccent;
     color: $textWhite;
+}
+
+.link {
+    text-decoration: none !important;
 }
