@@ -6,9 +6,13 @@ export const actions = {
     },
     //user's music library
     music_library: {
-        FETCH_LIBRARY: 'FETCH_LIBRARY',
+        tracks: {
+            FETCH_LIBRARY: 'FETCH_LIBRARY',
+        }
     },
-    
+    pageChange: {
+        PAGE_CHANGE: 'PAGE_CHANGE'
+    },
     //error handling
     error: {
         UPDATE_ERROR: 'UPDATE_ERROR'
