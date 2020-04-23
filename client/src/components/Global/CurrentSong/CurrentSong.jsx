@@ -27,11 +27,15 @@ const CurrentSong = props => {
             {props.currentSong.item === undefined &&
                 <p className="textGrey">No track playing.</p>
             }
-            {props.currentSong.item !== undefined && props.currentSong.is_playing &&
+            {props.currentSong.item !== undefined &&
             <div>
                 <h4 className="textGrey remove-bottom-margin">{props.currentSong.item.name}</h4>
                 <div className="flex flex-vertical-align">
-                    <img className={styles.currentAlbumImg} src={props.currentSong.item.album.images[0].url}/>
+                    <img 
+                        alt={props.currentSong.item.album.name} 
+                        src={props.currentSong.item.album.images[0].url} 
+                        className={styles.currentAlbumImg}
+                    />
                     <div>
                         <p className="textGrey">{props.currentSong.item.artists[0].name}</p>
                         <p className="textGrey">{props.currentSong.item.album.name}</p>
