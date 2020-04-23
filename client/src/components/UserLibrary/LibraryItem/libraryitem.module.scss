@@ -1,0 +1,39 @@
+@import '../../../variables';
+
+.trackItemContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    border-bottom: 1px solid $lightGrey
+}
+
+.trackItemContainer:hover {
+    background-color: $lightGrey;
+}
+
+.trackDataItem {
+    font-size: 12px;
+    color: $textGrey;
+}
+
+.trackTitle {
+    width: 45%;
+}
+
+.trackArtist {
+    width: 15%;
+}
+
+.trackAlbum {
+    width: 20%;
+    overflow: hidden;
+}
+
+.trackDate {
+    width: 15%;
+}
+
+.trackTime {
+    width: 5%;
+}
