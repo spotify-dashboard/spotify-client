@@ -5,7 +5,9 @@ import LibraryItem from '../LibraryItem/LibraryItem.jsx';
 import Login from '../../Login/Login.jsx';
 
 const LibraryList = props => {
-    if (props.music_library_tracks !== undefined && props.music_library_tracks.body !== undefined) {
+    console.log(props)
+    if (props.favorite_tracks !== undefined) {
+        
         return (
             <div>
                 <div className={styles.columnHeaders}>
@@ -15,10 +17,11 @@ const LibraryList = props => {
                     <p className={styles.columnItem, styles.columnDate}>Date Added</p>
                     <p className={styles.columnItem, styles.columnTime}>Time</p>
                 </div>
-                {props.music_library_tracks.body.items.map(track => {
+                {props.favorite_tracks.map(track => {
+                    console.log(track)
                     return (
                         <LibraryItem
-                            key={props.music_library_tracks.body.items.indexOf(track)} 
+                            key={props.favorite_tracks.indexOf(track)} 
                             track={track} 
                         />
                     )
@@ -36,7 +39,7 @@ const LibraryList = props => {
 };
 
 const mapStateToProps = state => {
-    return { music_library_tracks: state.getMusicLibraryTracks.music_library_tracks, state: state };
+    return { favorite_tracks: state.getMusicLibraryTracks.music_library_tracks };
 };
 
 export default connect(mapStateToProps)(LibraryList);
