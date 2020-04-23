@@ -10,7 +10,7 @@ require('dotenv').config();
 //routes
 const loginRouter = require('./routes/login.js');
 const profileRouter = require('./routes/profile.js');
-const likedSongsRouter = require('./routes/likedSongs.js');
+const likedSongsRouter = require('./routes/userLikedSongs.js');
 const currentSongRouter = require('./routes/currentSong.js');
 const newReleasesRouter = require('./routes/newReleases.js');
 
