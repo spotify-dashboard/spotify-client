@@ -11,6 +11,7 @@ require('dotenv').config();
 const loginRouter = require('./routes/login.js');
 const profileRouter = require('./routes/profile.js');
 const musicLibraryRouter = require('./routes/music_library.js');
+const currentSongRouter = require('./routes/currentSong.js');
 
 //app and port
 const app = express();
@@ -26,6 +27,7 @@ app.use(cookieParser());
 app.use('/login', loginRouter);
 app.use('/api/profile', profileRouter);
 app.use('/api/user-library', musicLibraryRouter);
+app.use('/api/current-song', currentSongRouter);
 
 // ==== serve static files
 app.use(express.static(path.join(__dirname, '../client/public')));
