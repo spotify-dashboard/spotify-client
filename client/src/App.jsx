@@ -15,6 +15,7 @@ import { connect } from 'react-redux'; // connect to store
 import { fetchProfile } from './actions/profileActions.js';
 import { fetchMusicLibraryTracks } from './actions/musicLibraryActions.js';
 import { pageChange } from './actions/pageChangeActions.js';
+import { fetchCurrentSong } from './actions/currentSongActions.js';
 
 
 
@@ -28,6 +29,9 @@ class App extends React.Component {
 
             //get user's music library tracks
             this.props.fetchMusicLibraryTracks();
+
+            // get current song that user is playing on Spotify
+            this.props.fetchCurrentSong();
 
             //page change
             this.props.pageChange('/');
@@ -62,6 +66,7 @@ const mapDispatchToProps = {
     fetchProfile, 
     fetchMusicLibraryTracks,
     pageChange,
-}
+    fetchCurrentSong
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
