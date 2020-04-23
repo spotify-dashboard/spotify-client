@@ -5,7 +5,7 @@ import { connect } from 'react-redux'; // connect to store
 import { pageChange } from '../../../actions/pageChangeActions.js';
 
 const MainNav = props => {
-    console.log('mainNav', props)
+    
     if (props.navItems !== undefined) {
         return (
             <nav className={styles.navbar}>

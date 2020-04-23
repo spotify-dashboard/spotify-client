@@ -12,7 +12,6 @@ import PopularityView from '../../../Views/Popularity/PopularityView.jsx';
 import MoodView from '../../../Views/Mood/MoodView.jsx';
 
 const HomeDashboard = props => {
-    console.log('home props', props)
     return(
         <div className={styles.homeDashboard}>
             <div className="flex">

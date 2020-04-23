@@ -1,13 +1,13 @@
 import { actions } from './types.js';
 import Axios from 'axios';
 
-export function fetchMusicLibraryTracks() {
+export function fetchCurrentSong() {
     return function(dispatch) {
-        Axios.get('/api/user-library/tracks')
+        Axios.get('/api/current-song/')
                 .then(response => {
-                    
+                    console.log(response);
                     dispatch({
-                        type: actions.music_library.tracks.FETCH_LIBRARY,
+                        type: actions.currentSong.CURRENT_SONG,
                         payload: response.data
                     });
                 })
