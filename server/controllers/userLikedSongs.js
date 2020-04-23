@@ -1,3 +1,4 @@
+const Axios = require('axios');
 const login = require('../controllers/login.js');
 
 module.exports = {
@@ -5,54 +6,45 @@ module.exports = {
         tracks: {
             get: (req, res) => {
 
-                let offset = 1;
-                let dataArr = [];
+                const getLikedSongData = async () => {
 
-                const getTracks = login.credentials.getMySavedTracks({
-                    limit : 20,
-                    offset: offset
-                })
-                .then(data => {
-
-                    const getData = () => {
-                        while (data.body.total > offset) {
-                            
-                            //run api calls until song count ends
-                            login.credentials.getMySavedTracks({
-                                limit : 50,
+                
+                    let maxIterations = 30;
+                    let offset = 1;
+                    let dataArr = [];
+                    
+                    while (maxIterations > offset) {
+                        const getTracks = await Axios.get('https://api.spotify.com/v1/me/tracks', {
+                            headers: {
+                                "Authorization": 'Bearer ' + login.credentials._credentials.accessToken
+                            },
+                            params: {
+                                limit: 10,
                                 offset: offset
-                            })
-                            .then(results => {
-                                dataArr.push(results.body.items);
-                                // console.log(dataArr)
-                            })
-                            .catch(error => {
-                                console.log(error);
-                            });
-                            
-                            // increment
-                            offset += 50;
-                        };
+                            }
+                        })
+                        .then(results => {
+                            //set max iterations to the total in the res obj
+                            maxIterations = results.data.total - 10;
+                            //push to arr
+                            dataArr.push(results.data.items);
+                        })
+                        .catch(error => {
+                            console.log('error getting music favorites', error);
+                            return res.status(400).json(error);
+                        });
 
+                        //increment
+                        offset += 10;
                     }
-                    
-                    
-                    getData();
-                    console.log('data arr after func', dataArr)
-                    // res.status(200).json(data);
-                })
-                .catch(err => {
-                    console.log(err)
-                    // res.status(400).json(err);
-                });
 
-                // Promise.all(getTracks)
-                //     .then(results => {
-                //         console.log('final data', dataArr)
-                //     })
-                //     .catch(err => {
-                //         console.log(err)
-                //     })
+                    //flatten and serve
+                    let flattenedArr = dataArr.flat(Infinity)
+                    res.status(200).json(flattenedArr)
+                };
+
+                getLikedSongData();
+
             }
         }
     }
