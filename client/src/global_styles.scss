@@ -30,6 +30,21 @@ html, body {
     justify-content: space-between;
 }
 
+.link {
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+.small-margin-sides {
+    margin: 0px 5px;
+}
+
+.divider {
+    width: 80%;
+    height: 1px;
+    border-bottom: 1px solid $lightGrey;
+}
+
 // ==== Page/component section templates
 
 // sidebar padding, scrolling
@@ -55,6 +70,13 @@ html, body {
     padding: 5px 30px;
 }
 
+// Error view when api calls fail / user needs to sign in again
+.errorView {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 // ==== scrollbar design
 ::-webkit-scrollbar {
