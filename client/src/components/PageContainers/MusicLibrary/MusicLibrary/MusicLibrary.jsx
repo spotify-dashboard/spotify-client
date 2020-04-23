@@ -1,5 +1,5 @@
 import React from 'react';
-import Main from '../Main/Main.jsx';
+import MostRecentView from '../../../Views/Most_Recent/MostRecentView.jsx';
 import SidebarLeft from '../../../Sidebars/SidebarLeft/SidebarLeft.jsx';
 import SidebarRight from '../../../Sidebars/SidebarRight/SidebarRight.jsx';
 import Footer from '../../../Global/Footer/Footer.jsx';
@@ -10,7 +10,7 @@ const MusicLibraryPage = props => {
         <div className={styles.musicLibraryPage}>
             <div className="flex">
                 <SidebarLeft/>
-                <Main />
+                <MostRecentView />
                 <SidebarRight />
             </div>
             <Footer />
