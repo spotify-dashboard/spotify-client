@@ -1,4 +1,3 @@
-const Axios = require('axios');
 const login = require('../controllers/login.js');
 
 module.exports = {
