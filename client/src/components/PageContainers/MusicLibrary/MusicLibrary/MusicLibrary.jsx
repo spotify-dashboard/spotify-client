@@ -17,7 +17,10 @@ const MusicLibraryPage = props => {
         <div className={styles.musicLibraryPage}>
             <div className="flex">
                 <SidebarLeft/>
-                {props.currentView === '/favorites' || props.currentView === '/' &&
+                {props.currentView === '/favorites' &&
+                    <FavoritedSongsView />
+                }
+                {props.currentView === '/' &&
                     <FavoritedSongsView />
                 }
                 {props.currentView === '/playlists' && 
