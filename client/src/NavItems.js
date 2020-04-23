@@ -11,7 +11,7 @@ export const dashboardNavItems = [
 //navigation view for the music library page
 export const musicLibraryNavItems = [
     {id: 1, navItem: 'Playlists', navLink: '/playlists'},
-    {id: 2, navItem: 'Most Recent Plays', navLink: '/most-recent'},
+    {id: 2, navItem: 'Favorites', navLink: '/favorites'},
     {id: 3, navItem: 'Clean My Library', navLink: '/clean'},
     {id: 4, navItem: 'Song Recs', navLink: '/song-recommendations'}
 ];

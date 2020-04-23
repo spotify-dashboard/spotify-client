@@ -18,7 +18,6 @@ const BorderLinearProgress = withStyles({
   })(LinearProgress);
 
 const CurrentSong = props => {
-    console.log('current song comp', props);
     return (
         <aside className={styles.currentSongContainer}>
             <h2>Currently Playing</h2>
