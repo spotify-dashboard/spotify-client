@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './libraryitem.module.scss';
+import Truncate from 'react-truncate';
 
 const LibraryItem = props => {
 

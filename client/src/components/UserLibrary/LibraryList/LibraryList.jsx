@@ -5,8 +5,7 @@ import LibraryItem from '../LibraryItem/LibraryItem.jsx';
 import Login from '../../Login/Login.jsx';
 
 const LibraryList = props => {
-    console.log(props)
-    if (props.favorite_tracks !== undefined) {
+    if (props.favorite_tracks !== undefined && props.favorite_tracks[0] !== undefined) {
         
         return (
             <div>
@@ -31,7 +30,7 @@ const LibraryList = props => {
     } else {
         return (
             <div className="errorView">
-                <h2>Error connecting to your library, please sign in again.</h2>
+                <h2>Error connecting to your library, please sign in.</h2>
                 <Login />
             </div>
         )
