@@ -1,7 +1,7 @@
 const login = require('../controllers/login.js');
 
 module.exports = {
-    music_library: {
+    likedSongs: {
         tracks: {
             get: (req, res) => {
 
@@ -19,7 +19,7 @@ module.exports = {
                             
                             //run api calls until song count ends
                             login.credentials.getMySavedTracks({
-                                limit : 20,
+                                limit : 50,
                                 offset: offset
                             })
                             .then(results => {
@@ -31,7 +31,7 @@ module.exports = {
                             });
                             
                             // increment
-                            offset += 20;
+                            offset += 50;
                         };
 
                     }

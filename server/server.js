@@ -10,8 +10,10 @@ require('dotenv').config();
 //routes
 const loginRouter = require('./routes/login.js');
 const profileRouter = require('./routes/profile.js');
-const musicLibraryRouter = require('./routes/music_library.js');
+const likedSongsRouter = require('./routes/userLikedSongs.js');
 const currentSongRouter = require('./routes/currentSong.js');
+const newReleasesRouter = require('./routes/newReleases.js');
+const userTopRouter = require('./routes/userTop.js');
 
 //app and port
 const app = express();
@@ -26,8 +28,10 @@ app.use(cookieParser());
 //routes
 app.use('/login', loginRouter);
 app.use('/api/profile', profileRouter);
-app.use('/api/user-library', musicLibraryRouter);
+app.use('/api/user-library', likedSongsRouter);
 app.use('/api/current-song', currentSongRouter);
+app.use('/api/new-releases', newReleasesRouter);
+app.use('/api/top', userTopRouter);
 
 // ==== serve static files
 app.use(express.static(path.join(__dirname, '../client/public')));

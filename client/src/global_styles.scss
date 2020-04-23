@@ -38,11 +38,35 @@ html, body {
 .small-margin-sides {
     margin: 0px 5px;
 }
+.small-margin-top-bottom {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.remove-all-margin {
+    margin: 0px 0px;
+}
+
+.remove-top-margin {
+    margin-top: 0px !important;
+}
+
+.remove-bottom-margin {
+    margin-bottom: 0px !important;
+}
 
 .divider {
     width: 80%;
     height: 1px;
     border-bottom: 1px solid $lightGrey;
+}
+
+.textGrey {
+    color: $textGrey;
+}
+
+.textWhite {
+    color: $textWhite;
 }
 
 // ==== Page/component section templates
