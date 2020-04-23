@@ -10,6 +10,9 @@ export const actions = {
             FETCH_LIBRARY: 'FETCH_LIBRARY',
         }
     },
+    currentSong: {
+        CURRENT_SONG: 'CURRENT_SONG'
+    },
     pageChange: {
         PAGE_CHANGE: 'PAGE_CHANGE'
     },
