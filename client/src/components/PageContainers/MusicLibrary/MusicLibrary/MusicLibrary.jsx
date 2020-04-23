@@ -1,16 +1,33 @@
 import React from 'react';
-import MostRecentView from '../../../Views/Most_Recent/MostRecentView.jsx';
+import styles from './musiclibrary.module.scss';
+import { connect } from 'react-redux';
+
 import SidebarLeft from '../../../Sidebars/SidebarLeft/SidebarLeft.jsx';
 import SidebarRight from '../../../Sidebars/SidebarRight/SidebarRight.jsx';
 import Footer from '../../../Global/Footer/Footer.jsx';
-import styles from './musiclibrary.module.scss';
+
+import MostRecentView from '../../../Views/Most_Recent/MostRecentView.jsx';
+import CleanView from '../../../Views/Clean_My_Library/CleanView.jsx';
+import PlaylistsView from '../../../Views/Playlists/PlaylistsView.jsx';
+import RecommendationView from '../../../Views/Song_Recs/RecommendationView.jsx';
 
 const MusicLibraryPage = props => {
     return(
         <div className={styles.musicLibraryPage}>
             <div className="flex">
                 <SidebarLeft/>
-                <MostRecentView />
+                {props.currentView === '/' || props.currentView === '/most-recent' &&
+                    <MostRecentView />
+                }
+                {props.currentView === '/playlists' && 
+                    <PlaylistsView />
+                }
+                {props.currentView === '/clean' &&
+                    <CleanView />
+                }
+                {props.currentView === '/song-recommendations' &&
+                    <RecommendationView />
+                }
                 <SidebarRight />
             </div>
             <Footer />
@@ -18,4 +35,10 @@ const MusicLibraryPage = props => {
     )
 };
 
-export default MusicLibraryPage;
+const mapStateToProps = (state, ownProps) => {
+    return {
+        currentView: state.pageChange.currentPage
+    };
+};
+
+export default connect(mapStateToProps)(MusicLibraryPage);
