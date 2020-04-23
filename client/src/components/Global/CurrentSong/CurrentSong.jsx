@@ -19,15 +19,20 @@ const BorderLinearProgress = withStyles({
 
 const CurrentSong = props => {
     console.log('current song comp', props);
-    console.log( props.currentSong.is_playing)
     return (
         <aside className={styles.currentSongContainer}>
             <h2>Currently Playing</h2>
             <div className="divider"></div>
+            
             {props.currentSong.item === undefined &&
                 <p className="textGrey">No track playing.</p>
             }
-            {props.currentSong.item !== undefined &&
+    
+            {props.currentSong.currently_playing_type === 'ad' &&
+                <p>Ad playing.</p>
+            }
+
+            {props.currentSong.item !== undefined && props.currentSong.item !== null &&
             <div>
                 <h4 className="textGrey remove-bottom-margin">{props.currentSong.item.name}</h4>
                 <div className="flex flex-vertical-align">
@@ -46,13 +51,13 @@ const CurrentSong = props => {
             
                 <h4>Song Popularity: {props.currentSong.item.popularity} / 100</h4>
                 <BorderLinearProgress
-                    // className={classes.margin}
                     variant="determinate"
                     color="secondary"
                     value={props.currentSong.item.popularity}
                 />
             </div>
             }
+
             <div className="divider small-margin-top-bottom"></div>
         </aside>
     )

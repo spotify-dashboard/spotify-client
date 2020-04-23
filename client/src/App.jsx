@@ -36,13 +36,22 @@ class App extends React.Component {
             //page change
             this.props.pageChange('/');
 
+            // check for updated current song
+            setInterval(() => {
+            console.log('fetching current song');
+            this.props.fetchCurrentSong();
+            }, 5000);
+
         } else if (window.location.href.indexOf("error") > 1) {
             
             this.props.fetchProfile();
+
         }
     }
 
-    componentDidUpdate() {}
+    componentDidUpdate() {
+        
+    }
 
     render() {
 
