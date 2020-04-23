@@ -12,11 +12,12 @@ import PlaylistsView from '../../../Views/Playlists/PlaylistsView.jsx';
 import RecommendationView from '../../../Views/Song_Recs/RecommendationView.jsx';
 
 const MusicLibraryPage = props => {
+    
     return(
         <div className={styles.musicLibraryPage}>
             <div className="flex">
                 <SidebarLeft/>
-                {props.currentView === '/' || props.currentView === '/favorites' &&
+                {props.currentView === '/favorites' || props.currentView === '/' &&
                     <FavoritedSongsView />
                 }
                 {props.currentView === '/playlists' && 
