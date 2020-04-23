@@ -1,16 +1,25 @@
 import React from 'react';
-import Main from '../Main/Main.jsx';
+import styles from './homedashboard.module.scss';
+import { connect } from 'react-redux';
+
+import OverviewView from '../../../Views/Overview/OverviewView.jsx';
+import DashboardView from '../../../Views/Dashboard/DashboardView.jsx';
 import SidebarLeft from '../../../Sidebars/SidebarLeft/SidebarLeft.jsx';
 import SidebarRight from '../../../Sidebars/SidebarRight/SidebarRight.jsx';
 import Footer from '../../../Global/Footer/Footer.jsx';
-import styles from './homedashboard.module.scss';
 
 const HomeDashboard = props => {
+    console.log('home props', props)
     return(
         <div className={styles.homeDashboard}>
             <div className="flex">
                 <SidebarLeft/>
-                <Main />
+                {props.currentView === '/' &&
+                    <OverviewView />
+                }
+                {props.currentView === '/dashboard' &&
+                    <DashboardView />
+                }
                 <SidebarRight />
             </div>
             <Footer />
@@ -18,4 +27,10 @@ const HomeDashboard = props => {
     )
 };
 
-export default HomeDashboard;
+const mapStateToProps = (state, ownProps) => {
+    return {
+        currentView: state.pageChange.currentPage,
+    }
+};
+
+export default connect(mapStateToProps)(HomeDashboard);
