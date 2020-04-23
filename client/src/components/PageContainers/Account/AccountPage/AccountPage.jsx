@@ -1,16 +1,16 @@
 import React from 'react';
-import MostRecentView from '../../../Views/Most_Recent/MostRecentView.jsx';
+
 import SidebarLeft from '../../../Sidebars/SidebarLeft/SidebarLeft.jsx';
 import SidebarRight from '../../../Sidebars/SidebarRight/SidebarRight.jsx';
 import Footer from '../../../Global/Footer/Footer.jsx';
-import styles from './musiclibrary.module.scss';
+import styles from './accountpage.module.scss';
 
-const MusicLibraryPage = props => {
+const AccountPage = props => {
     return(
-        <div className={styles.musicLibraryPage}>
+        <div className={styles.accountPage}>
             <div className="flex">
                 <SidebarLeft/>
-                <MostRecentView />
+                {/* <Main /> */}
                 <SidebarRight />
             </div>
             <Footer />
@@ -18,4 +18,4 @@ const MusicLibraryPage = props => {
     )
 };
 
-export default MusicLibraryPage;
+export default AccountPage;

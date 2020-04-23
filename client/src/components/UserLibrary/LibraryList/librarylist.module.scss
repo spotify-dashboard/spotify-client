@@ -1,0 +1,35 @@
+@import '../../../variables';
+
+.columnHeaders {
+    display: flex;
+    // justify-content: center;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    border-bottom: 1px solid $lightGrey
+}
+
+.columnItem {
+    font-size: 10px;
+    color: $textGrey;
+}
+
+.columnTitle {
+    width: 45%;
+}
+
+.columnArtist {
+    width: 15%;
+}
+
+.columnAlbum {
+    width: 20%;
+    overflow: hidden;
+}
+
+.columnDate {
+    width: 15%;
+}
+
+.columnTime {
+    width: 5%;
+}
