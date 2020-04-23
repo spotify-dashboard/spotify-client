@@ -5,9 +5,7 @@ import LibraryItem from '../LibraryItem/LibraryItem.jsx';
 import Login from '../../Login/Login.jsx';
 
 const LibraryList = props => {
-    console.log('library items', props.music_library_tracks)
     if (props.music_library_tracks !== undefined && props.music_library_tracks.body !== undefined) {
-
         return (
             <div>
                 <div className={styles.columnHeaders}>
@@ -38,7 +36,7 @@ const LibraryList = props => {
 };
 
 const mapStateToProps = state => {
-    return { music_library_tracks: state.getMusicLibraryTracks.music_library_tracks };
+    return { music_library_tracks: state.getMusicLibraryTracks.music_library_tracks, state: state };
 };
 
 export default connect(mapStateToProps)(LibraryList);
