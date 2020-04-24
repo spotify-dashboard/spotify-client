@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './mainnav.module.scss';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'; // connect to store
 import { pageChange } from '../../../actions/pageChangeActions.js';
 
