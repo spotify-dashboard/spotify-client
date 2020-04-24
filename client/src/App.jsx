@@ -16,8 +16,7 @@ import { fetchProfile } from './actions/profileActions.js';
 import { fetchMusicLibraryTracks } from './actions/musicLibraryActions.js';
 import { pageChange } from './actions/pageChangeActions.js';
 import { fetchCurrentSong } from './actions/currentSongActions.js';
-
-
+import { getAllPlaylists } from './actions/playlistActions.js';
 
 class App extends React.Component {
 
@@ -32,6 +31,9 @@ class App extends React.Component {
 
             // get current song that user is playing on Spotify
             this.props.fetchCurrentSong();
+
+            //get all user's playlists
+            this.props.getAllPlaylists();
 
             //page change
             this.props.pageChange('/');
@@ -53,7 +55,6 @@ class App extends React.Component {
     }
 
     render() {
-
         return (
             <div>
                 <Route exact path="/" component={HomeDashboard} />
@@ -74,7 +75,8 @@ const mapDispatchToProps = {
     fetchProfile, 
     fetchMusicLibraryTracks,
     pageChange,
-    fetchCurrentSong
+    fetchCurrentSong,
+    getAllPlaylists
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
