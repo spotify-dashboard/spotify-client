@@ -14,6 +14,7 @@ const likedSongsRouter = require('./routes/userLikedSongs.js');
 const currentSongRouter = require('./routes/currentSong.js');
 const newReleasesRouter = require('./routes/newReleases.js');
 const userTopRouter = require('./routes/userTop.js');
+const playlistsRouter = require('./routes/playlists.js');
 
 //app and port
 const app = express();
@@ -32,6 +33,7 @@ app.use('/api/user-library', likedSongsRouter);
 app.use('/api/current-song', currentSongRouter);
 app.use('/api/new-releases', newReleasesRouter);
 app.use('/api/top', userTopRouter);
+app.use('/api/playlists', playlistsRouter);
 
 // ==== serve static files
 app.use(express.static(path.join(__dirname, '../client/public')));
@@ -40,7 +42,6 @@ app.use(express.static(path.join(__dirname, '../client/public')));
 app.get(/.*/, (req, res) => {
     res.sendFile(path.join(__dirname, '../client/public/index.html'));
 });
-
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
