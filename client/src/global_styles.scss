@@ -36,8 +36,10 @@ html, body {
 }
 
 .small-margin-sides {
-    margin: 0px 5px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
+
 .small-margin-top-bottom {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -67,6 +69,21 @@ html, body {
 
 .textWhite {
     color: $textWhite;
+}
+
+.green-btn {
+    color: $greenAccent;
+    font-size: 16px;
+    background-color: transparent;
+    border: 1px solid $greenAccent;
+    border-radius: 20px 20px;
+    padding: 5px 8px;
+    cursor: pointer;
+}
+
+.backgroundDarkGrey {
+    background-color: $sidebarBlack;
+    padding: 5px;
 }
 
 // ==== Page/component section templates
