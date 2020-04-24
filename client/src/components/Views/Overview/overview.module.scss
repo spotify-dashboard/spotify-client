@@ -1,0 +1,10 @@
+@import '../../../variables';
+
+.appFeatureBlurb {
+    width: 50%;
+    border-radius: 10px 10px;
+}
+
+.appFeatureBlurb:hover {
+    background-color: $lightGrey;
+}
