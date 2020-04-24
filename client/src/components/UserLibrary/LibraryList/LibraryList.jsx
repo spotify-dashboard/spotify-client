@@ -5,7 +5,8 @@ import LibraryItem from '../LibraryItem/LibraryItem.jsx';
 import Login from '../../Login/Login.jsx';
 
 const LibraryList = props => {
-    if (props.music_library_tracks !== undefined && props.music_library_tracks.body !== undefined) {
+    if (props.favorite_tracks !== undefined && props.favorite_tracks[0] !== undefined) {
+        
         return (
             <div>
                 <div className={styles.columnHeaders}>
@@ -15,10 +16,11 @@ const LibraryList = props => {
                     <p className={styles.columnItem, styles.columnDate}>Date Added</p>
                     <p className={styles.columnItem, styles.columnTime}>Time</p>
                 </div>
-                {props.music_library_tracks.body.items.map(track => {
+                {props.favorite_tracks.map(track => {
+                    console.log(track)
                     return (
                         <LibraryItem
-                            key={props.music_library_tracks.body.items.indexOf(track)} 
+                            key={props.favorite_tracks.indexOf(track)} 
                             track={track} 
                         />
                     )
@@ -28,7 +30,7 @@ const LibraryList = props => {
     } else {
         return (
             <div className="errorView">
-                <h2>Error connecting to your library, please sign in again.</h2>
+                <h2>Error connecting to your library, please sign in.</h2>
                 <Login />
             </div>
         )
@@ -36,7 +38,7 @@ const LibraryList = props => {
 };
 
 const mapStateToProps = state => {
-    return { music_library_tracks: state.getMusicLibraryTracks.music_library_tracks, state: state };
+    return { favorite_tracks: state.getMusicLibraryTracks.music_library_tracks };
 };
 
 export default connect(mapStateToProps)(LibraryList);

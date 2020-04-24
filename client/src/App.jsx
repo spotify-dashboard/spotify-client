@@ -38,7 +38,6 @@ class App extends React.Component {
 
             // check for updated current song
             setInterval(() => {
-            console.log('fetching current song');
             this.props.fetchCurrentSong();
             }, 5000);
 

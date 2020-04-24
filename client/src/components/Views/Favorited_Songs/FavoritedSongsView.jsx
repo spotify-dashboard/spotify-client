@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './mostrecent.module.scss';
+import styles from './favorited.module.scss';
 import { connect } from 'react-redux';
 
 // the navigation items that are passed into the main nav are stored in this file
@@ -9,9 +9,9 @@ import MainNav from '../../Global/MainNav/MainNav.jsx';
 import Banner from '../../Global/Banner/Banner.jsx';
 import MusicList from '../../UserLibrary/LibraryList/LibraryList.jsx';
 
-const MostRecentView = props => {
+const FavoritedSongsView = props => {
 
-    console.log('most recent view props', props)
+    console.log('favorited songs view props', props)
 
     return (
         <div className="mainSection">
@@ -30,4 +30,4 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-export default connect(mapStateToProps)(MostRecentView);
+export default connect(mapStateToProps)(FavoritedSongsView);

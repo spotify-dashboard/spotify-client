@@ -1,7 +1,13 @@
 @import '../../../variables';
 
-.sidebarNavContainer {
+.sidebarNavContainerColumn {
     display: block;
+}
+
+.sidebarNavContainerRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .icon {

@@ -5,7 +5,6 @@ export function fetchCurrentSong() {
     return function(dispatch) {
         Axios.get('/api/current-song/')
                 .then(response => {
-                    console.log(response);
                     dispatch({
                         type: actions.currentSong.CURRENT_SONG,
                         payload: response.data
