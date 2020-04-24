@@ -24,7 +24,7 @@ const CurrentSong = props => {
             <div className="divider"></div>
             
             {props.currentSong.item === undefined &&
-                <p className="textGrey">No track playing.</p>
+                <p className="textGrey">No track playing or not signed in.</p>
             }
     
             {props.currentSong.currently_playing_type === 'ad' &&
@@ -67,4 +67,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(CurrentSong);
-
