@@ -5,6 +5,7 @@ import LibraryItem from '../LibraryItem/LibraryItem.jsx';
 import Login from '../../Login/Login.jsx';
 
 const LibraryList = props => {
+    console.log(props)
     if (props.favorite_tracks !== undefined && props.favorite_tracks[0] !== undefined) {
         
         return (
@@ -17,7 +18,6 @@ const LibraryList = props => {
                     <p className={styles.columnItem, styles.columnTime}>Time</p>
                 </div>
                 {props.favorite_tracks.map(track => {
-                    console.log(track)
                     return (
                         <LibraryItem
                             key={props.favorite_tracks.indexOf(track)} 
