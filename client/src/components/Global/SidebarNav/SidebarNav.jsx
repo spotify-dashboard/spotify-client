@@ -10,9 +10,9 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 
 const SidebarNav = props => {
-    
+    console.log(props.orientation)
     return (
-        <nav className={styles.sidebarNavContainer}>
+        <nav className={props.orientation === 'row' ? styles.sidebarNavContainerRow : styles.sidebarNavContainerColumn}>
             <Link to="/" onClick={() => props.pageChange('/')} >
                 <div className={styles.navItem}>
                 <DashboardIcon className="small-margin-sides" fontSize="small" />
@@ -38,6 +38,7 @@ const SidebarNav = props => {
 const mapStateToProps = (state, ownProps) => {
     return { 
         currentPage: state.pageChange.currentPage,
+        orientation: ownProps
     };
 };
 
