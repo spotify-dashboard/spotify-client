@@ -16,6 +16,12 @@ export const actions = {
     pageChange: {
         PAGE_CHANGE: 'PAGE_CHANGE'
     },
+    playlists: {
+        get: {
+            GET_ALL_PLAYLISTS: 'GET_ALL_PLAYLISTS',
+            GET_BY_ID: 'GET_BY_ID'
+        }
+    },
     //error handling
     error: {
         UPDATE_ERROR: 'UPDATE_ERROR'
