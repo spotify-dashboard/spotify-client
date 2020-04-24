@@ -7,7 +7,7 @@ const SidebarLeft = props => {
     return(
         <div className={styles.sidebarLeft}>
             <div className="sidebarModule">
-            <SidebarNav />
+            <SidebarNav orientation="column" />
             <div className="divider"></div>
             <div className={sharedStyles.sidebarContent}>
             
