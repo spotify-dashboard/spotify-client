@@ -3,6 +3,7 @@ import styles from './librarylist.module.scss';
 import { connect } from 'react-redux';
 import LibraryItem from '../LibraryItem/LibraryItem.jsx';
 import Login from '../../Login/Login.jsx';
+import LoginError from '../../Global/LoginError/LoginError.jsx';
 
 const LibraryList = props => {
     console.log(props)
@@ -29,10 +30,7 @@ const LibraryList = props => {
         )
     } else {
         return (
-            <div className="errorView">
-                <h2>Error connecting to your library, please sign in.</h2>
-                <Login />
-            </div>
+            <LoginError />
         )
     }
 };

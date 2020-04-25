@@ -1,5 +1,9 @@
 
 export const actions = {
+    // check if user is logged in based on finding access token
+    login: {
+        LOGIN_CHECK: 'LOGIN_CHECK'
+    },
     //profile information
     profile: {
         FETCH_PROFILE: 'FETCH_PROFILE',
@@ -15,6 +19,12 @@ export const actions = {
     },
     pageChange: {
         PAGE_CHANGE: 'PAGE_CHANGE'
+    },
+    playlists: {
+        get: {
+            GET_ALL_PLAYLISTS: 'GET_ALL_PLAYLISTS',
+            GET_BY_ID: 'GET_BY_ID'
+        }
     },
     //error handling
     error: {

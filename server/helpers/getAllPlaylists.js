@@ -29,8 +29,6 @@ module.exports.getAllPlaylists = (url, params) => {
                 totalPlaylists = results.data.total;
                 //push to arr
                 dataArr.push(results.data.items);
-
-                console.log(totalPlaylists)
             })
             .catch(error => {
                 console.log('error getting tracks in getAllPlaylists.js', error);
@@ -44,7 +42,7 @@ module.exports.getAllPlaylists = (url, params) => {
 
         //flatten and serve
         let flattenedArr = dataArr.flat(Infinity)
-        
+
         //return
         resolve(flattenedArr);
     });

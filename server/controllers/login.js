@@ -55,6 +55,13 @@ module.exports = {
         } catch(err) {
           res.redirect('/#/error/invalid token');
         }
+    },
+    loginCheck: (req, res) => {
+        if (spotifyApi._credentials.accessToken !== undefined) {
+            res.status(200).json({message: "User is logged in", isLoggedIn: true});
+        } else {
+            res.status(400).json({message: "User is not logged in", isLoggedIn: false})
+        }
     }
 }
 
