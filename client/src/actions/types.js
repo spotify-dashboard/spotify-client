@@ -1,5 +1,9 @@
 
 export const actions = {
+    // check if user is logged in based on finding access token
+    login: {
+        LOGIN_CHECK: 'LOGIN_CHECK'
+    },
     //profile information
     profile: {
         FETCH_PROFILE: 'FETCH_PROFILE',
