@@ -19,7 +19,7 @@ const SidebarNav = props => {
                 <h4 className="link">Dashboard</h4>
                 </div>
             </Link>
-            <Link to="/library" onClick={() => props.pageChange('/favorites')} >
+            <Link to="/library" onClick={() => props.pageChange('/playlists')} >
                 <div className={styles.navItem}>
                     <LibraryMusicIcon className="small-margin-sides" fontSize="small" />
                     <h4>Music Library</h4>
