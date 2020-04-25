@@ -17,12 +17,16 @@ import { fetchMusicLibraryTracks } from './actions/musicLibraryActions.js';
 import { pageChange } from './actions/pageChangeActions.js';
 import { fetchCurrentSong } from './actions/currentSongActions.js';
 import { getAllPlaylists } from './actions/playlistActions.js';
+import { loginCheck } from './actions/loginActions.js';
 
 class App extends React.Component {
 
     componentDidMount() {
+
+        this.props.loginCheck()
+
         //check if login was successful
-        if (window.location.href.indexOf("success") > -1) {
+        if (this.props.loginCheck && window.location.href.indexOf("success") > -1) {
             //get profile info
             this.props.fetchProfile();
 
@@ -43,11 +47,7 @@ class App extends React.Component {
             this.props.fetchCurrentSong();
             }, 5000);
 
-        } else if (window.location.href.indexOf("error") > 1) {
-            
-            this.props.fetchProfile();
-
-        }
+        } 
     }
 
     componentDidUpdate() {
@@ -55,6 +55,9 @@ class App extends React.Component {
     }
 
     render() {
+
+        console.log('app', this.props)
+
         return (
             <div>
                 <Route exact path="/" component={HomeDashboard} />
@@ -68,15 +71,17 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
     profile: state.profile,
-    currentPage: state
+    currentPage: state.pageChange.currentPage,
+    isLoggedIn: state.loginCheck.loggedIn.isLoggedIn
 });
 
 const mapDispatchToProps = {
-    fetchProfile, 
+    loginCheck,
+    fetchProfile,
     fetchMusicLibraryTracks,
     pageChange,
     fetchCurrentSong,
-    getAllPlaylists
+    getAllPlaylists,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
