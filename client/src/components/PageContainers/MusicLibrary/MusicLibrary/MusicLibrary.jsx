@@ -26,6 +26,9 @@ const MusicLibraryPage = props => {
                 {props.currentView === '/playlists' && 
                     <PlaylistsView />
                 }
+                {props.currentView === '/playlist' && 
+                    <PlaylistsView />
+                }
                 {props.currentView === '/clean' &&
                     <CleanView />
                 }
