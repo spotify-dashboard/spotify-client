@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './mainnav.module.scss';
 import { connect } from 'react-redux'; // connect to store
 import { pageChange } from '../../../actions/pageChangeActions.js';
+import { clearPlaylist } from '../../../actions/playlistActions.js';
 
 const MainNav = props => {
     console.log('main nav props', props)
@@ -14,7 +15,7 @@ const MainNav = props => {
                         return (
                             <li 
                                 key={navItem.id}
-                                onClick={() => props.pageChange(navItem.navLink)} 
+                                onClick={() => {props.pageChange(navItem.navLink); props.clearPlaylist()}} 
                                 className={`${styles.navItem} ${navItem.navLink === props.currentPage ? styles.currentNavItem : ''}`}
                             >
                                     {navItem.navItem}
@@ -42,7 +43,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = {
-    pageChange
+    pageChange,
+    clearPlaylist
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainNav);

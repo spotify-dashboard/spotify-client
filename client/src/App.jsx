@@ -42,9 +42,9 @@ class App extends React.Component {
             //page change
             this.props.pageChange('/');
 
-            // check for updated current song
             setInterval(() => {
-            this.props.fetchCurrentSong();
+            this.props.fetchCurrentSong(); // check for updated current song
+            this.props.loginCheck(); // continually check if access token exists
             }, 5000);
 
         } 

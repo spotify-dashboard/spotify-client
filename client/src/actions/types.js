@@ -24,6 +24,9 @@ export const actions = {
         get: {
             GET_ALL_PLAYLISTS: 'GET_ALL_PLAYLISTS',
             GET_BY_ID: 'GET_BY_ID'
+        },
+        clear: {
+            CLEAR_PLAYLIST: 'CLEAR_PLAYLIST'
         }
     },
     //error handling

@@ -17,6 +17,11 @@ export default function(state = initialState, action) {
             ...state,
             playlist: action.payload
         }
+        case actions.playlists.clear.CLEAR_PLAYLIST:
+        return {
+            ...state,
+            playlist: action.payload
+        }
         default:
             return state;
     }
