@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './librarylist.module.scss';
 import { connect } from 'react-redux';
 import LibraryItem from '../LibraryItem/LibraryItem.jsx';
-import LoginError from '../../Global/LoginError/LoginError.jsx';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const LibraryList = props => {
     console.log('library list props', props)
@@ -27,9 +28,13 @@ const LibraryList = props => {
                 })}
             </div>
         )
-    } else {
+    } 
+    
+    else {
         return (
-            <LoginError />
+            <div className={styles.loadingBlurb}>
+                <CircularProgress size={70} />
+            </div>
         )
     }
 };
