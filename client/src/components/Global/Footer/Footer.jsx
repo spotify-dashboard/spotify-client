@@ -11,28 +11,33 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const Footer = props => {
 
-    return(
+    return (
         <footer className={styles.footer}>
+
+            <h4 className={styles.websiteTitle}>Spotify Dashboard / Library Tool</h4>
+
             <nav className={props.orientation === 'column' ? styles.footerNavColumn : styles.footerNavRow}>
-            <Link to="/" onClick={() => {props.pageChange('/'); props.clearPlaylist();}} >
-                <div className={styles.navItem}>
-                <DashboardIcon className="small-margin-sides" fontSize="small" />
-                <h4 className="link">Dashboard</h4>
-                </div>
-            </Link>
-            <Link to="/library" onClick={() => {props.pageChange('/playlists'); props.clearPlaylist();}} >
-                <div className={styles.navItem}>
-                    <LibraryMusicIcon className="small-margin-sides" fontSize="small" />
-                    <h4>Music Library</h4>
-                </div>
-            </Link>
-            <Link to="/account" onClick={() => {props.pageChange('/account'); props.clearPlaylist();}}>
-                <div className={styles.navItem}>
-                    <AccountCircleIcon className="small-margin-sides" fontSize="small" />
-                    <h4>Account Information</h4>
-                </div>
-            </Link>
-        </nav>
+                <Link to="/" onClick={() => {props.pageChange('/'); props.clearPlaylist();}} >
+                    <div className={styles.navItem}>
+                    <DashboardIcon className="small-margin-sides" fontSize="small" />
+                    <h4 className="link">Dashboard</h4>
+                    </div>
+                </Link>
+                <Link to="/library" onClick={() => {props.pageChange('/playlists'); props.clearPlaylist();}} >
+                    <div className={styles.navItem}>
+                        <LibraryMusicIcon className="small-margin-sides" fontSize="small" />
+                        <h4>Music Library</h4>
+                    </div>
+                </Link>
+                <Link to="/account" onClick={() => {props.pageChange('/account'); props.clearPlaylist();}}>
+                    <div className={styles.navItem}>
+                        <AccountCircleIcon className="small-margin-sides" fontSize="small" />
+                        <h4>Account Information</h4>
+                    </div>
+                </Link>
+            </nav>
+
+            <h4 className="textGrey"><a href="https://github.com/spotify-dashboard/spotify-client" target="_blank">View on Github</a></h4>
         </footer>
     )
 };
