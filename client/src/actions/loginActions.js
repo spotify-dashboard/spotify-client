@@ -12,8 +12,8 @@ export function loginCheck() {
                 })
                 .catch(error => {
                     dispatch({
-                        type: actions.error.UPDATE_ERROR,
-                        payload: error
+                        type: actions.login.LOGIN_CHECK,
+                        payload: {message: "User is not logged in", isLoggedIn: false}
                     });
                 });
     };
