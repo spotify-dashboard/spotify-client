@@ -12,7 +12,7 @@ import PlaylistsView from '../../../Views/Playlists/PlaylistsView.jsx';
 import RecommendationView from '../../../Views/Song_Recs/RecommendationView.jsx';
 
 const MusicLibraryPage = props => {
-    
+    console.log('music lib page', props.allPlaylists)
     return(
         <div className={styles.musicLibraryPage}>
             <div className="flex">
@@ -21,7 +21,7 @@ const MusicLibraryPage = props => {
                     <FavoritedSongsView />
                 }
                 {props.currentView === '/' &&
-                    <FavoritedSongsView />
+                    <PlaylistsView allPlaylists={props.allPlaylists} />
                 }
                 {props.currentView === '/playlists' && 
                     <PlaylistsView />
@@ -44,7 +44,8 @@ const MusicLibraryPage = props => {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        currentView: state.pageChange.currentPage
+        currentView: state.pageChange.currentPage,
+        allPlaylists: state.getAllPlaylists.allPlaylists
     };
 };
 
