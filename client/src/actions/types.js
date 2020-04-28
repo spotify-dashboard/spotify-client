@@ -31,6 +31,7 @@ export const actions = {
     },
     //error handling
     error: {
-        UPDATE_ERROR: 'UPDATE_ERROR'
+        UPDATE_ERROR: 'UPDATE_ERROR', // updates if error happens on api calls to server
+        SET_ERROR: 'SET_ERROR' // used in componentDidCatch
     }
 }
