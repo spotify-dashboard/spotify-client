@@ -29,16 +29,18 @@ class App extends React.Component {
 
         if (window.location.href.indexOf("success") > -1) {
             //get profile info
-            throttle(this.props.fetchProfile, 100);
+            this.props.fetchProfile();
 
             //get user's music library tracks
-            throttle(this.props.fetchMusicLibraryTracks, 100);
+            this.props.fetchMusicLibraryTracks();
 
             // get current song that user is playing on Spotify
-            throttle(this.props.fetchCurrentSong, 100);
+            this.props.fetchCurrentSong();
 
             //get all user's playlists
-            throttle(this.props.getAllPlaylists, 100);
+            this.props.getAllPlaylists();
+
+            this.props.pageChange('/');
         }
 
         let refresh = setInterval(() => {
@@ -49,23 +51,34 @@ class App extends React.Component {
     render() {
 
         console.log('app', this.props)
-
-        return (
-            <div>
-                <Route exact path="/" component={HomeDashboard} />
-                <Route exact path="/success" component={HomeDashboard} />
-                <Route path="/library" component={MusicLibraryPage} />
-                <Route path="/account" component={AccountPage} />
-            </div>
-        );
+            
+        // if (this.props.profileError || this.props.loginError || this.props.allPlaylistsError) {
+        //     return (
+        //         <div>Error</div>
+        //     )
+        // } else {
+            return (
+                <div>
+                    <Route exact path="/" component={HomeDashboard} />
+                    <Route exact path="/success" component={HomeDashboard} />
+                    <Route path="/library" component={MusicLibraryPage} />
+                    <Route path="/account" component={AccountPage} />
+                </div>
+            )
+        // }
     };
 };
 
 const mapStateToProps = state => ({
-    profile: state.profile,
+    profile: state.getProfile.profile,
     currentPage: state.pageChange.currentPage,
     isLoggedIn: state.loginCheck.loggedIn.isLoggedIn,
-    error: state
+    error: state,
+    profileError: state.getProfile.error,
+    loginError: state.loginCheck.error,
+    allPlaylistsError: state.getAllPlaylists.error,
+    // currentSongError: state.getCurrentSong.error
+
 });
 
 const mapDispatchToProps = {

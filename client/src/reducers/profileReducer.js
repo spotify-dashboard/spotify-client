@@ -10,7 +10,8 @@ export default function(state = initialState, action) {
         case actions.profile.FETCH_PROFILE:
             return {
                 ...state,
-                profile: action.payload
+                profile: action.payload,
+                error: null
             }
         case actions.error.UPDATE_ERROR:
             return {
