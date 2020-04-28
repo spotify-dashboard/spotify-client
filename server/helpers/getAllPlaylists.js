@@ -20,7 +20,7 @@ module.exports.getAllPlaylists = (url, params) => {
                 },
                 params: {
                     //O(log n) optimization 
-                    limit: (totalPlaylists - offset) < 20 ? 1: 20,
+                    limit: (totalPlaylists - offset) < 1 ? 1: 1,
                     offset: offset
                 }
             })
@@ -37,7 +37,7 @@ module.exports.getAllPlaylists = (url, params) => {
 
             //O(log n) optimization
             //increment
-            offset += (totalPlaylists - offset) < 20 ? 1: 20;
+            offset += (totalPlaylists - offset) < 1 ? 1: 1;
         }
 
         //flatten and serve
