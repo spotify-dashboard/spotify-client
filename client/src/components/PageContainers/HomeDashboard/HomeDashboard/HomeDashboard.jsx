@@ -10,6 +10,7 @@ import OverviewView from '../../../Views/Overview/OverviewView.jsx';
 import DashboardView from '../../../Views/Dashboard/DashboardView.jsx';
 import PopularityView from '../../../Views/Popularity/PopularityView.jsx';
 import MoodView from '../../../Views/Mood/MoodView.jsx';
+import LogoutView from '../../../Views/Logout/LogoutView.jsx'
 
 const HomeDashboard = props => {
     return(
@@ -18,6 +19,9 @@ const HomeDashboard = props => {
                 <SidebarLeft/>
                 {props.currentView === '/' &&
                     <OverviewView />
+                }
+                {props.currentView === '/logout' &&
+                    <LogoutView />
                 }
                 {props.currentView === '/dashboard' &&
                     <DashboardView />

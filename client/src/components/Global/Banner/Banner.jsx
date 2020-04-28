@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styles from './banner.module.scss';
 import Login from '../../Login/Login.jsx';
+import Logout from '../../Global/Logout/Logout.jsx';
 
 const Banner = props => {
 
@@ -17,7 +18,13 @@ const Banner = props => {
                 <h1 className={styles.profileName}>{props.profile.display_name}</h1>
                 }
                 </div>
-                <Login />
+
+                {props.isLoggedIn &&
+                    <Logout />
+                }
+                {!props.isLoggedIn &&
+                    <Login />
+                }
             </div>
         </div>
     )

@@ -4,6 +4,9 @@ export const actions = {
     login: {
         LOGIN_CHECK: 'LOGIN_CHECK'
     },
+    logout: {
+        LOGOUT: 'LOGOUT'
+    },
     //profile information
     profile: {
         FETCH_PROFILE: 'FETCH_PROFILE',
