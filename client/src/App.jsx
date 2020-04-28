@@ -28,6 +28,9 @@ class App extends React.Component {
         this.props.loginCheck();
 
         if (window.location.href.indexOf("success") > -1) {
+
+            this.props.loginCheck();
+            
             //get profile info
             this.props.fetchProfile();
 
@@ -51,7 +54,6 @@ class App extends React.Component {
     render() {
 
         console.log('app', this.props)
-            
         // if (this.props.profileError || this.props.loginError || this.props.allPlaylistsError) {
         //     return (
         //         <div>Error</div>
