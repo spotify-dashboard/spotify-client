@@ -43,6 +43,12 @@ html, body {
     text-decoration: none !important;
 }
 
+.link-green {
+    color: $greenAccent;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
 .small-margin-sides {
     margin-left: 5px;
     margin-right: 5px;
