@@ -1,6 +1,7 @@
 import  { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
+import throttle from 'lodash.throttle';
 
 const initialState = {};
 
@@ -14,6 +15,7 @@ const loadState = () => {
       }
       return JSON.parse(serializedState);
     } catch (e) {
+        console.log("Error loading state from local storage", e);
       return undefined;
     }
   };
@@ -23,7 +25,7 @@ const loadState = () => {
       const serializedState = JSON.stringify(state);
       localStorage.setItem('state', serializedState);
     } catch (e) {
-      // Ignore write errors;
+      console.log('Error saving state to local storage', e)
     }
   };
 
@@ -42,8 +44,8 @@ const store = createStore(
     )
 );
 
-store.subscribe(() => {
+store.subscribe(throttle(() => {
     saveState(store.getState());
-  });
+  }, 1000));
 
 export default store;

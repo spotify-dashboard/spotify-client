@@ -1,18 +1,19 @@
 import React from 'react';
-import store from '../../../store.js';
 import { connect } from 'react-redux';
 import styles from './banner.module.scss';
 import Login from '../../Login/Login.jsx';
 
 const Banner = props => {
+
+    console.log('banner props', props)
     return (
         <div className={styles.banner}>
             <div className="flex flex-vertical-align flex-spread">
                 <div className="flex flex-vertical-align">
-                {props.profile !== undefined && props.profile.images !== undefined &&
+                {props.isLoggedIn && props.profile !== undefined && props.profile.images !== undefined &&
                     <img className={styles.profileImg} src={props.profile.images[0].url} />
                 }
-                {props.profile &&
+                {props.isLoggedIn && props.profile &&
                 <h1 className={styles.profileName}>{props.profile.display_name}</h1>
                 }
                 </div>
@@ -23,7 +24,10 @@ const Banner = props => {
 };
 
 const mapStateToProps = state => {
-    return { profile: state.getProfile.profile };
+    return { 
+        profile: state.getProfile.profile,
+        isLoggedIn: state.loginCheck.loggedIn.isLoggedIn,
+    };
 }
 
 export default connect(mapStateToProps)(Banner);

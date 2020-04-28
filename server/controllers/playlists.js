@@ -36,7 +36,7 @@ module.exports = {
                 });
             } else if (songCache.hasOwnProperty(req.params.id)) {
                 // if songs are in cache
-                console.log('Song cache includes playlist');
+                console.log('Serving cached playlist');
                 // serve cached songs
                 res.status(304).json(songCache[req.params.id])
             } else {

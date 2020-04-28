@@ -85,7 +85,7 @@ const mapStateToProps = (state, ownProps) => {
         profile: state.getProfile.profile,
         allPlaylists: state.getAllPlaylists.allPlaylists || ownProps.allPlaylists,
         playlist: state.getAllPlaylists.playlist,
-        isLoggedIn: state.loginCheck.loggedIn,
+        isLoggedIn: state.loginCheck.loggedIn.isLoggedIn,
     };
 };
 
