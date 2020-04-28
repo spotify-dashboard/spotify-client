@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import _, {debounce} from 'lodash';
+import { debounce, throttle } from 'lodash';
 import styles from './global_styles.scss';
 
 // components
@@ -26,51 +26,27 @@ class App extends React.Component {
     componentDidMount() {
         //check if user is logged in
         this.props.loginCheck();
-    }
 
-    componentDidCatch(error, errorInfo) {
-        //if error, change error state and display
-        this.props.setError(error, errorInfo);
+        if (window.location.href.indexOf("success") > -1) {
+            //get profile info
+            throttle(this.props.fetchProfile, 100);
+
+            //get user's music library tracks
+            throttle(this.props.fetchMusicLibraryTracks, 100);
+
+            // get current song that user is playing on Spotify
+            throttle(this.props.fetchCurrentSong, 100);
+
+            //get all user's playlists
+            throttle(this.props.getAllPlaylists, 100);
+        }
+
+        let refresh = setInterval(() => {
+            this.props.fetchCurrentSong(); // check for updated current song
+        }, 5000);
     }
 
     render() {
-
-        if (this.props.isLoggedIn) {
-            //get profile info
-            this.props.fetchProfile();
-
-            //get user's music library tracks
-            this.props.fetchMusicLibraryTracks();
-
-            // get current song that user is playing on Spotify
-            this.props.fetchCurrentSong();
-
-            //get all user's playlists
-            this.props.getAllPlaylists();
-
-            let refresh = setInterval(() => {
-                this.props.fetchCurrentSong(); // check for updated current song
-            }, 5000);
-        }
-
-        if (window.performance) {
-            if (performance.navigation.type == 1 && this.props.isLoggedIn) {
-            //get profile info
-            debounce(this.props.fetchProfile, 1000)
-
-            //get user's music library tracks
-            debounce(this.props.fetchMusicLibraryTracks, 2000);
-
-            // get current song that user is playing on Spotify
-            debounce(this.props.fetchCurrentSong, 1000);
-
-            //get all user's playlists
-            debounce(this.props.getAllPlaylists, 500);
-
-            //page change
-            // this.props.pageChange('/');
-            }
-        }
 
         console.log('app', this.props)
 
