@@ -60,7 +60,7 @@ module.exports = {
         if (spotifyApi._credentials.accessToken !== undefined) {
             res.status(200).json({message: "User is logged in", isLoggedIn: true});
         } else {
-            res.status(400).json({message: "User is not logged in", isLoggedIn: false})
+            res.status(403).json({message: "User is not logged in", isLoggedIn: false})
         }
     }
 }
