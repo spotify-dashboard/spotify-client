@@ -19,16 +19,19 @@ import { pageChange } from './actions/pageChangeActions.js';
 import { fetchCurrentSong } from './actions/currentSongActions.js';
 import { getAllPlaylists } from './actions/playlistActions.js';
 import { loginCheck } from './actions/loginActions.js';
+import { setError } from './actions/errorActions.js';
 
 class App extends React.Component {
 
     componentDidMount() {
-
+        //check if user is logged in
         this.props.loginCheck();
-
     }
 
-    componentDidUpdate() {}
+    componentDidCatch(error, errorInfo) {
+        //if error, change error state and display
+        this.props.setError(error, errorInfo);
+    }
 
     render() {
 
@@ -85,7 +88,8 @@ class App extends React.Component {
 const mapStateToProps = state => ({
     profile: state.profile,
     currentPage: state.pageChange.currentPage,
-    isLoggedIn: state.loginCheck.loggedIn.isLoggedIn
+    isLoggedIn: state.loginCheck.loggedIn.isLoggedIn,
+    error: state
 });
 
 const mapDispatchToProps = {
@@ -95,6 +99,7 @@ const mapDispatchToProps = {
     pageChange,
     fetchCurrentSong,
     getAllPlaylists,
+    setError
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

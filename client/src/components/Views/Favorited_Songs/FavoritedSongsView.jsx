@@ -8,6 +8,7 @@ import { musicLibraryNavItems } from '../../../NavItems.js';
 import MainNav from '../../Global/MainNav/MainNav.jsx';
 import Banner from '../../Global/Banner/Banner.jsx';
 import MusicList from '../../UserLibrary/LibraryList/LibraryList.jsx';
+import LoginError from '../../Global/LoginError/LoginError.jsx';
 
 const FavoritedSongsView = props => {
 
@@ -18,7 +19,14 @@ const FavoritedSongsView = props => {
             <div className="mainModule">
                 <Banner />
                 <MainNav navItems={musicLibraryNavItems} />
-                <MusicList songs={props.favoriteSongs} />
+
+                {!props.isLoggedIn &&
+                    <LoginError />
+                }
+
+                {props.isLoggedIn &&
+                    <MusicList songs={props.favoriteSongs} />
+                }
             </div>
         </div>
     )
@@ -27,7 +35,8 @@ const FavoritedSongsView = props => {
 const mapStateToProps = (state, ownProps) => {
     return {
         currentPage: state.pageChange.currentPage,
-        favoriteSongs: state.getMusicLibraryTracks.music_library_tracks
+        favoriteSongs: state.getMusicLibraryTracks.music_library_tracks,
+        isLoggedIn: state.loginCheck.loggedIn.isLoggedIn
     };
 };
 

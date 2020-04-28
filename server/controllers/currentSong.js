@@ -9,7 +9,7 @@ module.exports = {
                 })
                 .catch(err => {
                     console.log('Error getting current song', err);
-                    res.status(400).json(err);
+                    res.status(400).json({message: 'Error getting current song', error: err});
                 });
         }
     }

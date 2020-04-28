@@ -18,7 +18,7 @@ module.exports = {
                 res.status(200).json(response.data.items);
             })
             .catch(err => {
-                res.status(400).json(err);
+                res.status(400).json({message: 'Error getting top artists and tracks', error: err});
             });        
         }
     },

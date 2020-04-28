@@ -5,6 +5,7 @@ import pageChangeReducer from './pageChangeReducer.js';
 import currentSongReducer from './currentSongReducer.js';
 import playlistReducer from './playlistReducer.js';
 import loginReducer from './loginReducer.js';
+import errorReducer from './errorReducer.js';
 
 export default combineReducers({
     loginCheck: loginReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
     pageChange: pageChangeReducer,
     getCurrentSong: currentSongReducer,
     getAllPlaylists: playlistReducer,
+    setError: errorReducer
 });
