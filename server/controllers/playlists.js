@@ -11,6 +11,7 @@ module.exports = {
                 })
                 .catch(err => {
                     console.log('Error in Playlist controller', err);
+                    res.status(400).json({message: "Error getting all playlists", error: err})
                 });
         }
     },
