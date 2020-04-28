@@ -2,7 +2,8 @@ import { actions } from '../actions/types.js';
 
 const initialState = {
     allPlaylists: [],
-    playlist: []
+    playlist: [],
+    error: null
 };
 
 export default function(state = initialState, action) {
@@ -21,6 +22,11 @@ export default function(state = initialState, action) {
         return {
             ...state,
             playlist: action.payload
+        }
+        case actions.error.UPDATE_ERROR:
+        return {
+            ...state,
+            error: action.payload
         }
         default:
             return state;
