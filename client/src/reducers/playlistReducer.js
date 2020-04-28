@@ -11,17 +11,20 @@ export default function(state = initialState, action) {
         case actions.playlists.get.GET_ALL_PLAYLISTS:
             return {
                 ...state,
-                allPlaylists: action.payload
+                allPlaylists: action.payload,
+                error: null
             }
         case actions.playlists.get.GET_BY_ID:
         return {
             ...state,
-            playlist: action.payload
+            playlist: action.payload,
+            error: null
         }
         case actions.playlists.clear.CLEAR_PLAYLIST:
         return {
             ...state,
-            playlist: action.payload
+            playlist: action.payload,
+            error: null
         }
         case actions.error.UPDATE_ERROR:
         return {

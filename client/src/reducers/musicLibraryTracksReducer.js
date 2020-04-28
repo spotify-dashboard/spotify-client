@@ -10,7 +10,8 @@ export default function(state = initialState, action) {
         case actions.music_library.tracks.FETCH_LIBRARY:
             return {
                 ...state,
-                music_library_tracks: action.payload
+                music_library_tracks: action.payload,
+                error: null
             }
         case actions.error.UPDATE_ERROR:
             return {

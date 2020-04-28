@@ -10,7 +10,8 @@ export default function(state = initialState, action) {
         case actions.currentSong.CURRENT_SONG:
             return {
                 ...state,
-                currentSong: action.payload
+                currentSong: action.payload,
+                error: null
             }
         case actions.error.UPDATE_ERROR:
             return {
