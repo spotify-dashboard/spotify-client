@@ -9,7 +9,7 @@ module.exports = {
                     res.status(200).json(data.body)
                 })
                 .catch(err => {
-                    res.status(400).json(err);
+                    res.status(400).json({message: "Error getting profile", error: err});
                 });
         }
     }
