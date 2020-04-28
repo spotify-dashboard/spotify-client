@@ -1,6 +1,9 @@
 import { actions } from './types.js';
 import Axios from 'axios';
 
+
+// ****** dispatch handled in login reducer *****
+
 export function logout() {
     return function(dispatch) {
         Axios.get('/logout/')
