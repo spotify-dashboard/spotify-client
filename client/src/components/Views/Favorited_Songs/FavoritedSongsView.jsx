@@ -18,7 +18,7 @@ const FavoritedSongsView = props => {
             <div className="mainModule">
                 <Banner />
                 <MainNav navItems={musicLibraryNavItems} />
-                <MusicList />
+                <MusicList songs={props.favoriteSongs} />
             </div>
         </div>
     )
@@ -27,6 +27,7 @@ const FavoritedSongsView = props => {
 const mapStateToProps = (state, ownProps) => {
     return {
         currentPage: state.pageChange.currentPage,
+        favoriteSongs: state.getMusicLibraryTracks.music_library_tracks
     };
 };
 

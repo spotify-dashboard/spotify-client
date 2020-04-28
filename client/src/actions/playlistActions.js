@@ -36,3 +36,12 @@ export function getPlaylistById(id) {
             });
     };
 };
+
+export function clearPlaylist() {
+    return function(dispatch) {
+        dispatch({
+            type: actions.playlists.clear.CLEAR_PLAYLIST,
+            payload: undefined
+        });
+    };
+};

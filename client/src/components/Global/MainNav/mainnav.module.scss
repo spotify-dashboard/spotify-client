@@ -27,3 +27,9 @@
 .link {
     text-decoration: none !important;
 }
+
+.currentNavItem {
+    border-bottom: 2px solid $greenAccent;
+    color: $textWhite;
+    font-weight: 600;
+}

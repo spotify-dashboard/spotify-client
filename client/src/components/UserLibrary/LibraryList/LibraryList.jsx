@@ -2,12 +2,12 @@ import React from 'react';
 import styles from './librarylist.module.scss';
 import { connect } from 'react-redux';
 import LibraryItem from '../LibraryItem/LibraryItem.jsx';
-import Login from '../../Login/Login.jsx';
-import LoginError from '../../Global/LoginError/LoginError.jsx';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const LibraryList = props => {
-    console.log(props)
-    if (props.favorite_tracks !== undefined && props.favorite_tracks[0] !== undefined) {
+    console.log('library list props', props)
+    if (props.songs !== undefined && props.songs[0] !== undefined) {
         
         return (
             <div>
@@ -18,25 +18,33 @@ const LibraryList = props => {
                     <p className={styles.columnItem, styles.columnDate}>Date Added</p>
                     <p className={styles.columnItem, styles.columnTime}>Time</p>
                 </div>
-                {props.favorite_tracks.map(track => {
+                {props.songs.map(track => {
                     return (
                         <LibraryItem
-                            key={props.favorite_tracks.indexOf(track)} 
+                            key={props.songs.indexOf(track)} 
                             track={track} 
                         />
                     )
                 })}
             </div>
         )
-    } else {
+    } 
+    
+    else {
         return (
-            <LoginError />
+            <div className={styles.loadingBlurb}>
+                <CircularProgress size={70} />
+            </div>
         )
     }
 };
 
-const mapStateToProps = state => {
-    return { favorite_tracks: state.getMusicLibraryTracks.music_library_tracks };
+const mapStateToProps = (state, ownProps) => {
+    return { 
+        songs: ownProps.songs,
+        isLoggedIn: state.loginCheck.loggedIn.isLoggedIn,
+        currentPage: state.pageChange.currentPage
+    };
 };
 
 export default connect(mapStateToProps)(LibraryList);
