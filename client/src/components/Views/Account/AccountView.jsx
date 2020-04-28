@@ -15,7 +15,7 @@ const AccountView = props => {
                 <h1>Account Information</h1>
                 <div className="divider"></div>
                 <div className={styles.accountView}>
-                    {props.profile.display_name !== undefined &&
+                    {props.isLoggedIn && props.profile.display_name !== undefined &&
                     <div>
                         <div className="flex flex-vertical-align">
                             <h4 className="small-margin-sides">Display Name:</h4>
@@ -42,7 +42,7 @@ const AccountView = props => {
                         </a>
                     </div>
                     }
-                    {props.profile.display_name === undefined &&
+                    {!props.isLoggedIn &&
                         <div>
                             <h2>Sign in to view account information</h2>
                             <Login />
@@ -57,7 +57,8 @@ const AccountView = props => {
 const mapStateToProps = (state) => {
     return {
         currentPage: state.pageChange.currentPage,
-        profile: state.getProfile.profile
+        profile: state.getProfile.profile,
+        isLoggedIn: state.loginCheck.loggedIn.isLoggedIn,
     };
 };
 
