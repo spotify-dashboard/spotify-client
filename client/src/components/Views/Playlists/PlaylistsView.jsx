@@ -23,18 +23,18 @@ const PlaylistsView = props => {
 
                 {/* User is not logged in, no data to render */}
                 
-                {props.allPlaylists[0] === undefined &&
+                {!props.isLoggedIn &&
                     <LoginError />
                 }
 
                 {/* User is logged in */}
 
-                {props.allPlaylists[0] !== undefined &&
+                {props.isLoggedIn &&
 
                     // Displaying list of all playlists
 
                     <div>
-                        {props.currentPage === '/playlists' &&
+                        {props.currentPage !== '/playlist' &&
                             <div className={styles.playlistsContainer}>
                                 <div>
                                     {props.allPlaylists.map(playlist => {
@@ -63,11 +63,12 @@ const PlaylistsView = props => {
 
                         {/* User is viewing a playlist library */}
 
+    {/* NOTE::: LOADING VIEW LOGIC IS IN LIBRARY LIST COMPONENT */}
+
                         <div className={styles.playlistDisplay}>
                             {props.currentPage === '/playlist' &&
                                 <LibraryList 
                                     songs={props.playlist}
-                                    // playlistName={props.}
                                 />
                             }
                         </div>
@@ -81,9 +82,10 @@ const PlaylistsView = props => {
 const mapStateToProps = (state, ownProps) => {
     return {
         currentPage: state.pageChange.currentPage,
-        allPlaylists: state.getAllPlaylists.allPlaylists,
+        profile: state.getProfile.profile,
+        allPlaylists: state.getAllPlaylists.allPlaylists || ownProps.allPlaylists,
         playlist: state.getAllPlaylists.playlist,
-        isLoggedIn: state.loginCheck.loggedIn.isLoggedIn
+        isLoggedIn: state.loginCheck.loggedIn,
     };
 };
 
