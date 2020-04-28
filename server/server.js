@@ -9,6 +9,7 @@ require('dotenv').config();
 
 //routes
 const loginRouter = require('./routes/login.js');
+const logoutRouter = require('./routes/logout.js');
 const profileRouter = require('./routes/profile.js');
 const likedSongsRouter = require('./routes/userLikedSongs.js');
 const currentSongRouter = require('./routes/currentSong.js');
@@ -28,6 +29,7 @@ app.use(cookieParser());
 
 //routes
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 app.use('/api/profile', profileRouter);
 app.use('/api/user-library', likedSongsRouter);
 app.use('/api/current-song', currentSongRouter);
