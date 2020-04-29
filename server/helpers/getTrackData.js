@@ -14,13 +14,34 @@ module.exports.getTrackData = (url = 'https://api.spotify.com/v1/me/tracks', pla
         
         //while more tracks are available
         while (totalTracks >= offset) {
+
+            var limit = 1;
+
+            if ((totalTracks - offset) > 50) {
+                limit = 50;
+            } else if ((totalTracks - offset) <= 50 && (totalTracks - offset) >= 40) {
+                limit = 40;
+            } else if ((totalTracks - offset) < 40 && (totalTracks - offset) >= 30) {
+                limit = 30;
+            } else if ((totalTracks - offset) < 30 && (totalTracks - offset) >= 20) {
+                limit = 20;
+            } else if ((totalTracks - offset) < 20 && (totalTracks - offset) >= 10) {
+                limit = 10;
+            } else if ((totalTracks - offset) < 10 && (totalTracks - offset) >= 5) {
+                limit = 5;
+            } else {
+                limit = 1;
+            }
+
+            console.log(limit)
+
             const getTracks = await Axios.get(url, {
                 headers: {
                     "Authorization": 'Bearer ' + login.credentials._credentials.accessToken
                 },
                 params: {
                     //O(log n) optimization 
-                    limit: (totalTracks - offset) < 50 ? 1: 50,
+                    limit: limit,
                     offset: offset
                 }
             })
@@ -38,7 +59,7 @@ module.exports.getTrackData = (url = 'https://api.spotify.com/v1/me/tracks', pla
 
             //O(log n) optimization
             //increment
-            offset += (totalTracks - offset) < 50 ? 1: 50;
+            offset += limit;
         }
 
         //flatten and serve
