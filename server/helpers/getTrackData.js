@@ -1,7 +1,7 @@
 const login = require ('../controllers/login.js'); // credentials
 const Axios = require('axios');
 
-module.exports.getTrackData = (url = 'https://api.spotify.com/v1/me/tracks', playlistId) => {
+module.exports.getTrackData = (url = 'https://api.spotify.com/v1/me/tracks', optionalLimit) => {
     return new Promise( async (resolve, reject) => {
 
         //set number of iterations for loop; will change after first api call to the max number of tracks
@@ -34,6 +34,7 @@ module.exports.getTrackData = (url = 'https://api.spotify.com/v1/me/tracks', pla
             }
 
             console.log(limit)
+            console.log('optional limit', optionalLimit)
 
             const getTracks = await Axios.get(url, {
                 headers: {
@@ -41,7 +42,7 @@ module.exports.getTrackData = (url = 'https://api.spotify.com/v1/me/tracks', pla
                 },
                 params: {
                     //O(log n) optimization 
-                    limit: limit,
+                    limit: optionalLimit ? optionalLimit : limit,
                     offset: offset
                 }
             })
