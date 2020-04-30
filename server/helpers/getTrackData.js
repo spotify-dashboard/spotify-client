@@ -33,9 +33,6 @@ module.exports.getTrackData = (url = 'https://api.spotify.com/v1/me/tracks', opt
                 limit = 1;
             }
 
-            console.log(limit)
-            console.log('optional limit', optionalLimit)
-
             const getTracks = await Axios.get(url, {
                 headers: {
                     "Authorization": 'Bearer ' + login.credentials._credentials.accessToken
