@@ -16,6 +16,7 @@ const currentSongRouter = require('./routes/currentSong.js');
 const newReleasesRouter = require('./routes/newReleases.js');
 const userTopRouter = require('./routes/userTop.js');
 const playlistsRouter = require('./routes/playlists.js');
+const recentlyPlayedRouter = require('./routes/recentlyPlayed.js');
 
 //app and port
 const app = express();
@@ -36,6 +37,7 @@ app.use('/api/current-song', currentSongRouter);
 app.use('/api/new-releases', newReleasesRouter);
 app.use('/api/top', userTopRouter);
 app.use('/api/playlists', playlistsRouter);
+app.use('/api/recently-played', recentlyPlayedRouter);
 
 // ==== serve static files
 app.use(express.static(path.join(__dirname, '../client/public')));

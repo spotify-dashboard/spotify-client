@@ -2,6 +2,8 @@
 
 .footer {
     position: fixed;
+    display: flex;
+    justify-content: space-evenly;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -29,4 +31,8 @@
     align-items: center;
     text-decoration: none;
     border-radius: 5px 5px;
+}
+
+.websiteTitle {
+    color: $greenAccent
 }

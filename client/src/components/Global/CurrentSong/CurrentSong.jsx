@@ -35,11 +35,14 @@ const CurrentSong = props => {
             <div>
                 <h4 className="textGrey remove-bottom-margin">{props.currentSong.item.name}</h4>
                 <div className="flex flex-vertical-align">
-                    <img 
-                        alt={props.currentSong.item.album.name} 
-                        src={props.currentSong.item.album.images[0].url} 
-                        className={styles.currentAlbumImg}
-                    />
+
+                    {props.currentSong.item.album.images[0] !== undefined &&
+                        <img 
+                            alt={props.currentSong.item.album.name} 
+                            src={props.currentSong.item.album.images[0].url} 
+                            className={styles.currentAlbumImg}
+                        />
+                    }
                     <div>
                         <p className="textGrey">{props.currentSong.item.artists[0].name}</p>
                         <p className="textGrey">{props.currentSong.item.album.name}</p>
