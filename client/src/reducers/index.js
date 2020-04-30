@@ -6,10 +6,12 @@ import currentSongReducer from './currentSongReducer.js';
 import playlistReducer from './playlistReducer.js';
 import loginReducer from './loginReducer.js';
 import errorReducer from './errorReducer.js';
+import recentlyPlayedReducer from './recentlyPlayedReducer.js';
 
 export default combineReducers({
     loginCheck: loginReducer,
     getProfile: profileReducer,
+    getRecentlyPlayed: recentlyPlayedReducer,
     getMusicLibraryTracks: musicLibraryTracksReducer,
     pageChange: pageChangeReducer,
     getCurrentSong: currentSongReducer,
