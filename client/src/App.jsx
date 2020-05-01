@@ -14,6 +14,7 @@ import { connect } from 'react-redux'; // connect to store
 
 //redux actions
 import { fetchProfile } from './actions/profileActions.js';
+import { getRecentlyPlayed } from './actions/recentlyPlayedActions.js';
 import { fetchMusicLibraryTracks } from './actions/musicLibraryActions.js';
 import { pageChange } from './actions/pageChangeActions.js';
 import { fetchCurrentSong } from './actions/currentSongActions.js';
@@ -43,6 +44,10 @@ class App extends React.Component {
             //get all user's playlists
             this.props.getAllPlaylists();
 
+            // get recently played tracks for charting
+            this.props.getRecentlyPlayed();
+
+            // change page reference
             this.props.pageChange('/');
         }
 
@@ -52,13 +57,8 @@ class App extends React.Component {
     }
 
     render() {
-
         console.log('app', this.props)
-        // if (this.props.profileError || this.props.loginError || this.props.allPlaylistsError) {
-        //     return (
-        //         <div>Error</div>
-        //     )
-        // } else {
+
             return (
                 <div>
                     <Route exact path="/" component={HomeDashboard} />
@@ -68,7 +68,6 @@ class App extends React.Component {
                     <Route path="/account" component={AccountPage} />
                 </div>
             )
-        // }
     };
 };
 
@@ -76,17 +75,16 @@ const mapStateToProps = state => ({
     profile: state.getProfile.profile,
     currentPage: state.pageChange.currentPage,
     isLoggedIn: state.loginCheck.loggedIn.isLoggedIn,
-    error: state,
     profileError: state.getProfile.error,
     loginError: state.loginCheck.error,
     allPlaylistsError: state.getAllPlaylists.error,
-    // currentSongError: state.getCurrentSong.error
-
+    state: state
 });
 
 const mapDispatchToProps = {
     loginCheck,
     fetchProfile,
+    getRecentlyPlayed,
     fetchMusicLibraryTracks,
     pageChange,
     fetchCurrentSong,
