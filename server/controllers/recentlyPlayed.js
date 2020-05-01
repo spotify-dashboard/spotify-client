@@ -6,14 +6,16 @@ module.exports = {
     recently_played: {
         get: async (req, res) => {
 
-            let completeTrackData = [];
+            // holds returned data
+            let completeTrackData = {
+                tracks: [],
+                genres: []
+            };
 
             // reassigned to save all track, artist, and genre data
             let tracksArr;
             let artistsArr;
             let genresArr;
-
-            let topGenres = {};
 
             // get the tracks, pass in 50 as optional limit since you can ony get 50 recently played songs
             await getTrackData('https://api.spotify.com/v1/me/player/recently-played', 50)
@@ -43,30 +45,50 @@ module.exports = {
 
 
             // function to flatten genres array and tally genres
-            const genreTallyAndSort = () => {
-                let flattenedGenres = genresArr.flat(Infinity)
-                flattenedGenres.forEach(genre => {
-                    if (!topGenres.hasOwnProperty(genre)) {
-                        topGenres[genre] = 1;
-                    } else if (topGenres.hasOwnProperty(genre)) {
-                        topGenres[genre]++;
+            const createGenreObject = async () => {
+                
+                // creating genre obj to contain multiple genre views
+                let genreObject = {}
+
+                // tally of top genres to be added to genre obj
+                let genreTally = {};
+
+                // splits each genre into an object of artist name and num of listens
+                let genreArrayOfObjects = [];
+                
+                // flatten genres array
+                let flattenedGenres = genresArr.flat(Infinity);
+
+                //iterate through all genres and add to tally
+                await flattenedGenres.forEach(genre => {
+                    if (!genreTally.hasOwnProperty(genre)) {
+                        genreTally[genre] = 1;
+                    } else if (genreTally.hasOwnProperty(genre)) {
+                        genreTally[genre]++;
                     } else {
                         console.log("Error tallying genres");
                     }
                 });
-
                 
-                console.log(Object.keys(topGenres).sort(function(a,b){return topGenres[a]-topGenres[b]}).map(key => topGenres[key]))
+                // add tally view to genre object
+                genreObject.tally = genreTally;
 
-                return topGenres;
+                for (let [key, value] of Object.entries(genreTally)) {
+                    genreArrayOfObjects.push({ genre: key, listens: value });
+                }
+
+                // add genre objects to parent obj
+                genreObject.genre_objects = genreArrayOfObjects;
+
+                // add genre object to the complete genre that will be served
+                completeTrackData.genres = genreObject;
             };
 
-            // push the genre tally to return array
-            completeTrackData.push({topGenres: genreTallyAndSort()});
+            await createGenreObject();
 
             // push track, played_at, artist, and genres for each track
             for (let i = 0; i < genresArr.length; i++) {
-                completeTrackData.push({
+                completeTrackData.tracks.push({
                     track: tracksArr[i],
                     played_at: artistsArr.playedAtDates[i],
                     artist: artistsArr.artists[i],

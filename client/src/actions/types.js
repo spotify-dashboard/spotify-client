@@ -7,22 +7,28 @@ export const actions = {
     logout: {
         LOGOUT: 'LOGOUT'
     },
+    // page change reference for different displays
+    pageChange: {
+        PAGE_CHANGE: 'PAGE_CHANGE'
+    },
     //profile information
     profile: {
         FETCH_PROFILE: 'FETCH_PROFILE',
     },
-    //user's music library
+    // current playing song on spotify
+    currentSong: {
+        CURRENT_SONG: 'CURRENT_SONG'
+    },
+    //user's favorited songs
     music_library: {
         tracks: {
             FETCH_LIBRARY: 'FETCH_LIBRARY',
         }
     },
-    currentSong: {
-        CURRENT_SONG: 'CURRENT_SONG'
+    recentlyPlayed: {
+        GET_RECENTLY_PLAYED: 'GET_RECENTLY_PLAYED'
     },
-    pageChange: {
-        PAGE_CHANGE: 'PAGE_CHANGE'
-    },
+    // playlists
     playlists: {
         get: {
             GET_ALL_PLAYLISTS: 'GET_ALL_PLAYLISTS',
