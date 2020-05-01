@@ -10,7 +10,7 @@ export default function(state = initialState, action) {
         case actions.recentlyPlayed.GET_RECENTLY_PLAYED:
             return {
                 ...state,
-                currentSong: action.payload,
+                recentlyPlayed: action.payload,
                 error: null
             }
         case actions.error.UPDATE_ERROR:
