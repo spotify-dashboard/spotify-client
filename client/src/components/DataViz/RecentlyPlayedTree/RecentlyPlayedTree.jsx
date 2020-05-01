@@ -1,47 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import styles from './recentlyplayed.module.scss';
 import { connect } from 'react-redux';
 import { Chart } from 'chart.js';
 import 'chartjs-chart-treemap';
 
-const RecentlyPlayedTree = props => {
-    console.log('recently played tree', props);
+class RecentlyPlayedTree extends React.Component {
 
-    console.log('pre page load id', document.getElementById('recentlyPlayedTree'))
+    componentDidMount() {
+        this.initializeTree();
+    }
 
-    function colorFromValue(value, border) {
-        var alpha = (1 + Math.log(value)) / 5;
-        var color = "purple";
-        if (border) {
-          alpha += 0.01;
-        }
-        return Color(color)
-          .alpha(alpha)
-          .rgbString();
-    };
+    // a filter on the data
 
-    if (document.getElementById('recentlyPlayedTree') !== null) {
-        console.log('not null', document.getElementById('recentlyPlayedTree'))
+    cleanData(arr) {
+        return arr.filter(item => {
+          return item.listens > 2;  
+        });
+    }
 
-        let ctx = document.getElementById('recentlyPlayedTree').getContext("2d");
-        window.recentlyPlayedTree = new Chart(ctx, {
+    initializeTree() {
+        let el = ReactDOM.findDOMNode(this.refs.recentlyPlayedTree);
+        let ctx = el.getContext("2d");
+        let treeMap = new Chart(ctx, {
             type: "treemap",
             data: {
                 datasets: [
                     {
-                        label: "label",
-                        // data: [4,6,10,15],
-                        tree: props.genreObjects,
-                        key: "listens",
+                        tree: this.cleanData(this.props.genreObjects),
+                        key: "listens", // what to organize by; must be a valid object property
                         groups: ['genre'],
-                        fontColor: '#fff',
-                        fontFamily: 'sans',
+                        fontColor: 'rgb(213,116,159)',
+                        // fontFamily: 'sans',
                         fontSize: 14,
                         fontStyle: 'normal',
                         backgroundColor: function(ctx) {
                             var value = ctx.dataset.data[ctx.dataIndex];
                             var alpha = (value + 3) / 10;
-                            return Color('green').alpha(alpha).rgbString();
+                            return Color('rgb(41,53,99)').alpha(alpha).rgbString();
                         },
                     }
                 ]
@@ -56,16 +52,37 @@ const RecentlyPlayedTree = props => {
                     display: false
                 }
             }
-        })
-
+        });
     }
 
-    return (
-        <div>
-            <h2>Recently Played Tree</h2>
-            <canvas id="recentlyPlayedTree" className={styles.container}></canvas>
-        </div>
-    )
+    render() {
+
+        function colorFromValue(value, border) {
+            var alpha = (1 + Math.log(value)) / 5;
+            var color = "purple";
+            if (border) {
+              alpha += 0.01;
+            }
+            return Color(color)
+              .alpha(alpha)
+              .rgbString();
+        };
+
+        console.log('recently played tree', this.props);
+
+        console.log('pre page load id', document.getElementById('recentlyPlayedTree'))
+
+        return (
+            <div>
+                <h2>Recently Played Tree</h2>
+                <canvas
+                    ref="recentlyPlayedTree"
+                    className={styles.container}
+                >
+                </canvas>
+            </div>
+        )
+    }
 };
 
 const mapStateToProps = (state, ownProps) => {
