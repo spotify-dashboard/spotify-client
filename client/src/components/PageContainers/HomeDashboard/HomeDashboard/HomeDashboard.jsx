@@ -7,7 +7,7 @@ import SidebarRight from '../../../Sidebars/SidebarRight/SidebarRight.jsx';
 import Footer from '../../../Global/Footer/Footer.jsx';
 
 import OverviewView from '../../../Views/Overview/OverviewView.jsx';
-import DashboardView from '../../../Views/Dashboard/DashboardView.jsx';
+import RecentListensView from '../../../Views/Recent_Listens/RecentListensView.jsx';
 import PopularityView from '../../../Views/Popularity/PopularityView.jsx';
 import MoodView from '../../../Views/Mood/MoodView.jsx';
 import LogoutView from '../../../Views/Logout/LogoutView.jsx'
@@ -23,8 +23,8 @@ const HomeDashboard = props => {
                 {props.currentView === '/logout' &&
                     <LogoutView />
                 }
-                {props.currentView === '/dashboard' &&
-                    <DashboardView />
+                {props.currentView === '/recent' &&
+                    <RecentListensView />
                 }
                 {props.currentView === '/popularity' &&
                     <PopularityView />
