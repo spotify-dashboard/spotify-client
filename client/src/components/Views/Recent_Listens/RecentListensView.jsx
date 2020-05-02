@@ -6,6 +6,7 @@ import Banner from '../../Global/Banner/Banner.jsx';
 
 // data visuals
 import GenreTreeMap from '../../DataViz/Recently_Played/GenreTreeMap/GenreTreeMap.jsx';
+import GenreBarChart from '../../DataViz/Recently_Played/GenreBarChart/GenreBarChart.jsx';
 import RepeatSongs from '../../DataViz/Recently_Played/RepeatSongs/RepeatSongs.jsx';
 import RecentTime from '../../DataViz/Recently_Played/Time/RecentTime.jsx';
 
@@ -28,6 +29,7 @@ const RecentListensView = props => {
                 <div className="divider"></div>
                 <div>
                     <GenreTreeMap />
+                    <GenreBarChart />
                     <div className="divider"></div>
                     <RepeatSongs />
                     <div className="divider"></div>
