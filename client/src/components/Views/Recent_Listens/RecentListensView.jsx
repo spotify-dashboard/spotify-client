@@ -6,6 +6,7 @@ import Banner from '../../Global/Banner/Banner.jsx';
 
 // data visuals
 import RecentlyPlayedTree from '../../DataViz/RecentlyPlayedTree/RecentlyPlayedTree.jsx';
+import RepeatSongs from '../../DataViz/RepeatSongs/RepeatSongs.jsx';
 
 // the navigation items that are passed into the main nav are stored in this file
 import { dashboardNavItems } from '../../../NavItems.js';
@@ -27,7 +28,7 @@ const RecentListensView = props => {
                 <div>
                     <RecentlyPlayedTree />
                     <div className="divider"></div>
-                    <RecentlyPlayedTree />  
+                    <RepeatSongs />
                 </div>
             </div>
         </div>
