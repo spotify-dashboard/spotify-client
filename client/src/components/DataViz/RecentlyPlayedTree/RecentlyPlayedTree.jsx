@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import styles from './recentlyplayed.module.scss';
 import { connect } from 'react-redux';
@@ -31,7 +31,6 @@ class RecentlyPlayedTree extends React.Component {
                         key: "listens", // what to organize by; must be a valid object property
                         groups: ['genre'],
                         fontColor: 'rgb(213,116,159)',
-                        // fontFamily: 'sans',
                         fontSize: 14,
                         fontStyle: 'normal',
                         backgroundColor: function(ctx) {
@@ -70,14 +69,30 @@ class RecentlyPlayedTree extends React.Component {
 
         console.log('recently played tree', this.props);
 
-        console.log('pre page load id', document.getElementById('recentlyPlayedTree'))
+        let topGenres = [];
+        for (var genre in this.props.genreTally) {
+            topGenres.push([genre, this.props.genreTally[genre]]);
+        }
+
+        topGenres.sort(function(a, b) {
+            return a[1] - b[1];
+        });
+
+        console.log(topGenres)
 
         return (
-            <div>
-                <h2>Recently Played Tree</h2>
+            <div className={styles.parentContainer}>
+                <div className="flex flex-spread">
+                    <h3>Which genres have you been listening to recently?</h3>
+                    <ol className={styles.genreList}>
+                        <li className={styles.genreListItem}>{topGenres[topGenres.length-1][0]}</li>
+                        <li className={styles.genreListItem}>{topGenres[topGenres.length-2][0]}</li>
+                        <li className={styles.genreListItem}>{topGenres[topGenres.length-3][0]}</li>
+                    </ol>
+                </div>
                 <canvas
                     ref="recentlyPlayedTree"
-                    className={styles.container}
+                    className={styles.graphContainer}
                 >
                 </canvas>
             </div>

@@ -1,4 +1,21 @@
-.container {
+@import '../../../variables';
+
+.parentContainer {
+    padding: 20px 0px;
+}
+
+.graphContainer {
     width: 100%;
     height: auto;
+}
+
+.genreList {
+ background-color: $darkBlue;
+ padding: 5px 25px;
+ border-radius: 5px 5px;
+}
+
+.genreListItem {
+    color: $pink;
+    font-size: 20px;
 }
