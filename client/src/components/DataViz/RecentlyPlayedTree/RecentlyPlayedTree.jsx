@@ -29,7 +29,7 @@ class RecentlyPlayedTree extends React.Component {
                     {
                         tree: this.cleanData(this.props.genreObjects),
                         key: "listens", // what to organize by; must be a valid object property
-                        groups: ['genre'],
+                        groups: ['genre'], // what to organize; must be a valid object prop
                         fontColor: 'rgb(213,116,159)',
                         fontSize: 14,
                         fontStyle: 'normal',
@@ -67,8 +67,7 @@ class RecentlyPlayedTree extends React.Component {
               .rgbString();
         };
 
-        console.log('recently played tree', this.props);
-
+        // generate sorted genres and display top 3
         let topGenres = [];
         for (var genre in this.props.genreTally) {
             topGenres.push([genre, this.props.genreTally[genre]]);
@@ -78,12 +77,10 @@ class RecentlyPlayedTree extends React.Component {
             return a[1] - b[1];
         });
 
-        console.log(topGenres)
-
         return (
             <div className={styles.parentContainer}>
                 <div className="flex flex-spread">
-                    <h3>Which genres have you been listening to recently?</h3>
+                    <h3>Genres | Which genres have you been listening to recently?</h3>
                     <ol className={styles.genreList}>
                         <li className={styles.genreListItem}>{topGenres[topGenres.length-1][0]}</li>
                         <li className={styles.genreListItem}>{topGenres[topGenres.length-2][0]}</li>
