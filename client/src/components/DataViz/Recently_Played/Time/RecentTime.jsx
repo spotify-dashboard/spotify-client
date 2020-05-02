@@ -23,6 +23,9 @@ class RecentTime extends React.Component {
                         data: Object.values(this.convertDates(this.props.recentTracks)),
                         fontColor: 'rgb(213,116,159)',
                         fontSize: 14,
+                        pointBorderColor: "#fff",
+                        pointBackgroundColor: "rgba(255,99,132,1)",
+                        borderColor: "rgba(179,181,198,1)",
                         fontStyle: 'normal',
                         backgroundColor: function(ctx) {
                             var value = ctx.dataset.data[ctx.dataIndex];
@@ -33,14 +36,28 @@ class RecentTime extends React.Component {
                 ]
             },
             options: {
-                maintainAspectRatio: false,
+                responsive: true,
+                maintainAspectRatio: true,
                 title: {
                     display: true,
                     text: "Listening by time of day"
                 },
                 legend: {
                     display: false
-                }
+                },
+                scale: {
+                    gridLines: {
+                      color: ['rgb(213,116,159)','rgb(213,116,159)','rgb(213,116,159)','rgb(213,116,159)','rgb(213,116,159)','rgb(213,116,159)']
+                    }
+                },
+                scale: {
+                    ticks: {
+                       display: false
+                    },
+                    pointLabels: {
+                        fontSize: 20
+                      }
+                 }
             }
         });
     }
@@ -104,23 +121,24 @@ class RecentTime extends React.Component {
     }
 
     render() {
-
-        console.log(this.convertDates(this.props.recentTracks))
-
+        console.log('recent time', this.props)
         return (
             <div className={styles.parentContainer}>
-                <h3>Time of Day | When have you been listening most often?</h3>
-                <div>
-                {this.getMax(this.convertDates(this.props.recentTracks)).map(time => {
-                    return (
-                    <h1 key={this.getMax(this.convertDates(this.props.recentTracks)).indexOf(time)} className={styles.dateItem}>{time}</h1>
-                    )
-                })}
-                <canvas
-                    ref="recentTimeRadar"
-                    className={styles.graphContainer}
-                >
-                </canvas>
+                <div className="flex flex-vertical-align">
+                    <div className={styles.left}>
+                        <h3>Time of Day | When have you been listening most often?</h3>
+                        
+                        {this.getMax(this.convertDates(this.props.recentTracks)).map(time => {
+                            return (
+                            <h1 key={this.getMax(this.convertDates(this.props.recentTracks)).indexOf(time)} className={styles.dateItem}>{time}</h1>
+                            )
+                        })}
+                    </div>
+                    <canvas
+                        ref="recentTimeRadar"
+                        className={styles.graphContainer}
+                    >
+                    </canvas>
                 </div>
             </div>
         )

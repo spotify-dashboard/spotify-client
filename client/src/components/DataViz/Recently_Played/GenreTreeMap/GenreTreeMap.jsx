@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styles from './recentlyplayed.module.scss';
+import styles from './genretreemap.module.scss';
 import { connect } from 'react-redux';
 import { Chart } from 'chart.js';
 import 'chartjs-chart-treemap';
 
-class RecentlyPlayedTree extends React.Component {
+class GenreTreeMap extends React.Component {
 
     componentDidMount() {
         this.initializeTree();
@@ -77,6 +77,8 @@ class RecentlyPlayedTree extends React.Component {
             return a[1] - b[1];
         });
 
+        console.log('recent tree map', this.props)
+
         return (
             <div className={styles.parentContainer}>
                 <div className="flex flex-spread">
@@ -104,4 +106,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
-export default connect(mapStateToProps)(RecentlyPlayedTree);
+export default connect(mapStateToProps)(GenreTreeMap);
