@@ -9,6 +9,7 @@ import GenreTreeMap from '../../DataViz/Recently_Played/GenreTreeMap/GenreTreeMa
 import GenreBarChart from '../../DataViz/Recently_Played/GenreBarChart/GenreBarChart.jsx';
 import RepeatSongs from '../../DataViz/Recently_Played/RepeatSongs/RepeatSongs.jsx';
 import RecentTime from '../../DataViz/Recently_Played/Time/RecentTime.jsx';
+import RefreshData from '../../Global/RefreshData/RefreshData.jsx';
 
 // the navigation items that are passed into the main nav are stored in this file
 import { dashboardNavItems } from '../../../NavItems.js';
@@ -23,7 +24,10 @@ const RecentListensView = props => {
                 <Banner />
                 <MainNav navItems={dashboardNavItems} />
                 <div>
-                    <h1>Visualizing your 50 most recent songs</h1>
+                    <div className="flex flex-vertical-align flex-spread">
+                        <h1>Visualizing your 50 most recent songs</h1>
+                        <RefreshData />
+                    </div>
                     <p className="textGrey">For many of us, music is a very important part of our lives. See what genres, and artists you've been listening to and how it compares to your usual listening habits.</p>
                 </div>
                 <div className="divider"></div>
