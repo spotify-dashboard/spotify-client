@@ -43,8 +43,6 @@ module.exports = {
         try {
           var data = await spotifyApi.authorizationCodeGrant(code)
           const { access_token, refresh_token } = data.body;
-
-          console.log('access token++', access_token)
           
           spotifyApi.setAccessToken(access_token);
           spotifyApi.setRefreshToken(refresh_token);
