@@ -8,8 +8,6 @@ import Footer from '../../../Global/Footer/Footer.jsx';
 
 import OverviewView from '../../../Views/Overview/OverviewView.jsx';
 import RecentListensView from '../../../Views/Recent_Listens/RecentListensView.jsx';
-import PopularityView from '../../../Views/Popularity/PopularityView.jsx';
-import MoodView from '../../../Views/Mood/MoodView.jsx';
 import LogoutView from '../../../Views/Logout/LogoutView.jsx'
 
 const HomeDashboard = props => {
@@ -25,12 +23,6 @@ const HomeDashboard = props => {
                 }
                 {props.currentView === '/recent' &&
                     <RecentListensView />
-                }
-                {props.currentView === '/popularity' &&
-                    <PopularityView />
-                }
-                {props.currentView === '/mood' &&
-                    <MoodView />
                 }
                 <SidebarRight />
             </div>
