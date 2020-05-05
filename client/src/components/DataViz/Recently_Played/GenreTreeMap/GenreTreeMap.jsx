@@ -49,6 +49,18 @@ class GenreTreeMap extends React.Component {
                 },
                 legend: {
                     display: false
+                },
+                tooltips: {
+                    callbacks: {
+                        title: (item, data) => {
+                            return;
+                        },
+                        label: (item, data) => {
+                            // let datasetLabel = data.datasets[item.datasetIndex].label || "";
+                            let datasetPoint = item.yLabel;
+                            return datasetPoint;
+                        }
+                    }
                 }
             }
         });
