@@ -33,6 +33,7 @@ class GenreTreeMap extends React.Component {
                         fontColor: 'rgb(213,116,159)',
                         fontSize: 14,
                         fontStyle: 'normal',
+                        label: '# of listens',
                         backgroundColor: function(ctx) {
                             var value = ctx.dataset.data[ctx.dataIndex];
                             var alpha = (value + 3) / 10;
@@ -55,11 +56,6 @@ class GenreTreeMap extends React.Component {
                         title: (item, data) => {
                             return;
                         },
-                        label: (item, data) => {
-                            // let datasetLabel = data.datasets[item.datasetIndex].label || "";
-                            let datasetPoint = item.yLabel;
-                            return datasetPoint;
-                        }
                     }
                 }
             }
