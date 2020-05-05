@@ -1,6 +1,16 @@
 @import '../../../../variables';
 
+.parentContainer {
+    width: 100%;
+    padding: 20px 0px;
+}
+
 .popularName {
     color: $pink;
     margin-bottom: 0px;
+}
+
+.left, .right {
+    width: 50%;
+    margin: 0px 10px;
 }

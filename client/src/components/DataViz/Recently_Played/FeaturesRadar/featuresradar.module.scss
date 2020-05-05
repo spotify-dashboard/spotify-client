@@ -5,10 +5,6 @@
     padding: 20px 0px;
 }
 
-.dateItem {
-    color: $pink;
-}
-
 .graphContainer {
     width: 80% !important;
     height: 80% !important;
@@ -16,5 +12,9 @@
 
 .left {
     width: 20% !important;
-    
+}
+
+span {
+    color: $pink !important;
+    font-weight: 600 !important;
 }

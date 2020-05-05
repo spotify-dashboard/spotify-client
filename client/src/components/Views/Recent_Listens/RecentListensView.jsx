@@ -12,6 +12,7 @@ import RepeatSongs from '../../DataViz/Recently_Played/RepeatSongs/RepeatSongs.j
 import RecentTime from '../../DataViz/Recently_Played/Time/RecentTime.jsx';
 import RefreshData from '../../Global/RefreshData/RefreshData.jsx';
 import Popularity from '../../DataViz/Recently_Played/Popularity/Popularity.jsx';
+import FeaturesRadar from '../../DataViz/Recently_Played/FeaturesRadar/FeaturesRadar.jsx';
 
 // the navigation items that are passed into the main nav are stored in this file
 import { dashboardNavItems } from '../../../NavItems.js';
@@ -47,6 +48,8 @@ const RecentListensView = props => {
                             <RecentTime />
                             <div className="divider"></div>
                             <Popularity />
+                            <div className="divider"></div>
+                            <FeaturesRadar />
                         </div>
                     </div>
                 }
