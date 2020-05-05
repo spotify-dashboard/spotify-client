@@ -99,8 +99,6 @@ module.exports = {
             // add features to return obj
             completeTrackData.features = featuresArr;
 
-            console.log('on complete data', completeTrackData.features)
-
             // push track, played_at, artist, and genres for each track
             for (let i = 0; i < genresArr.length; i++) {
                 completeTrackData.tracks.push({
