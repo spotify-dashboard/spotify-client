@@ -9,7 +9,7 @@ const BorderLinearProgress = withStyles({
     root: {
         borderRadius: 20,
         height: 30,
-        width: 300,
+        width: "100%",
         backgroundColor: 'rgb(41,53,99)',
     },
     bar: {
@@ -43,7 +43,7 @@ const Popularity = props => {
         <div className={styles.parentContainer}>
             <h3>Popularity | Most and least popular?</h3>
             <div className="flex flex-justify-evenly">
-                <div className="small-margin-sides">
+                <div className={styles.left}>
                     <h3>Most Popular</h3>
                     <h2 className={styles.popularName}>{mostPopular.track.name}</h2>
                     <p className="textGrey remove-top-margin">{mostPopular.track.artists[0].name}</p>
@@ -54,7 +54,7 @@ const Popularity = props => {
                         value={mostPopular.track.popularity}
                     />
                 </div>
-                <div className="small-margin-sides">
+                <div className={styles.right}>
                     <h3>Most Lame</h3>
                     <h2 className={styles.popularName}>{leastPopular.track.name}</h2>
                     <p className="textGrey remove-top-margin">{leastPopular.track.artists[0].name}</p>
