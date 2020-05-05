@@ -1,6 +1,7 @@
 const  { getTrackData } = require('../helpers/getTrackData.js');
 const { getArtistData } = require('../helpers/getArtistData.js');
 const { getGenreData } = require('../helpers/getGenreData.js');
+const { getAudioFeatures } = require('../helpers/getAudioFeatures.js');
 
 module.exports = {
     recently_played: {
@@ -16,6 +17,7 @@ module.exports = {
             let tracksArr;
             let artistsArr;
             let genresArr;
+            let featuresArr;
 
             // get the tracks, pass in 50 as optional limit since you can ony get 50 recently played songs
             await getTrackData('https://api.spotify.com/v1/me/player/recently-played', 50)
@@ -37,6 +39,14 @@ module.exports = {
                 .then(genres => {
                     // set for part of return data
                     genresArr = genres;
+                })
+                .then(() => {
+                    // get audio features for all songs
+                    return getAudioFeatures(tracksArr);
+                })
+                .then(features => {
+                    // set features for return data
+                    featuresArr = features;
                 })
                 .catch(err => {
                     console.log("Error from getTrackData Promise", err);
@@ -85,6 +95,11 @@ module.exports = {
             };
 
             await createGenreObject();
+
+            // add features to return obj
+            completeTrackData.features = featuresArr;
+
+            console.log('on complete data', completeTrackData.features)
 
             // push track, played_at, artist, and genres for each track
             for (let i = 0; i < genresArr.length; i++) {
