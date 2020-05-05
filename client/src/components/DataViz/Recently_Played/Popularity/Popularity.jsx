@@ -20,27 +20,24 @@ const BorderLinearProgress = withStyles({
 
 
 const Popularity = props => {
-    console.log('popularity comp', props.recentTracks)
 
-    let mostPopular, leastPopular;
-    let high = 0;
-    let low = 100;
+    let mostPopular, leastPopular; // used to save full track item
+    let high = 0; // saves highest popularity
+    let low = 100; // saves lowest popularity
 
     // find most and least popular
     for (let i = 0; i < props.recentTracks.length; i++) {
+        // if the current track popularity is higher than high var
         if (props.recentTracks[i].track.track.popularity > high) {
             high = props.recentTracks[i].track.track.popularity;
-            mostPopular = props.recentTracks[i].track.track;
+            mostPopular = props.recentTracks[i].track; // save the track
         }
-    
+        // if the current track popularity is lower than low var
         if (props.recentTracks[i].track.track.popularity < low) {
             low = props.recentTracks[i].track.track.popularity;
-            leastPopular = props.recentTracks[i].track.track;
+            leastPopular = props.recentTracks[i].track; // save the track
         }
-        console.log( high, low)
     }
-    
-    console.log(mostPopular)
 
     return (
         <div className={styles.parentContainer}>
@@ -48,22 +45,24 @@ const Popularity = props => {
             <div className="flex flex-justify-evenly">
                 <div className="small-margin-sides">
                     <h3>Most Popular</h3>
-                    <h2 className={styles.popularName}>{mostPopular.name}</h2>
-                    <p className="textGrey remove-top-margin">{mostPopular.popularity} / 100</p>
+                    <h2 className={styles.popularName}>{mostPopular.track.name}</h2>
+                    <p className="textGrey remove-top-margin">{mostPopular.track.artists[0].name}</p>
+                    <p className="textGrey remove-top-margin">{mostPopular.track.popularity} / 100</p>
                     <BorderLinearProgress 
                         variant="determinate"
                         color="secondary"
-                        value={mostPopular.popularity}
+                        value={mostPopular.track.popularity}
                     />
                 </div>
                 <div className="small-margin-sides">
                     <h3>Most Lame</h3>
-                    <h2 className={styles.popularName}>{leastPopular.name}</h2>
-                    <p className="textGrey remove-top-margin">{leastPopular.popularity} / 100</p>
+                    <h2 className={styles.popularName}>{leastPopular.track.name}</h2>
+                    <p className="textGrey remove-top-margin">{leastPopular.track.artists[0].name}</p>
+                    <p className="textGrey remove-top-margin">{leastPopular.track.popularity} / 100</p>
                     <BorderLinearProgress 
                         variant="determinate"
                         color="secondary"
-                        value={leastPopular.popularity}
+                        value={leastPopular.track.popularity}
                     />
                 </div>
             </div>
