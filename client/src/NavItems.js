@@ -4,14 +4,12 @@
 export const dashboardNavItems = [
     {id: 1, navItem: 'Overview', navLink: '/'},
     {id: 2, navItem: 'Recent Listens', navLink: '/recent'},
-    {id: 3, navItem: 'Popularity', navLink: '/popularity'},
-    {id: 4, navItem: 'Mood', navLink: '/mood'}
+    {id: 3, navItem: 'Playlist Breakdown', navLink: '/breakdown'},
 ];
 
 //navigation view for the music library page
 export const musicLibraryNavItems = [
     {id: 1, navItem: 'Playlists', navLink: '/playlists'},
-    {id: 2, navItem: 'Favorites', navLink: '/favorites'},
-    {id: 3, navItem: 'Clean My Library', navLink: '/clean'},
-    {id: 4, navItem: 'Song Recs', navLink: '/song-recommendations'}
+    {id: 2, navItem: 'Clean My Library', navLink: '/clean'},
+    {id: 3, navItem: 'Song Recs', navLink: '/song-recommendations'}
 ];
