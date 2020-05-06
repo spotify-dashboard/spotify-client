@@ -119,9 +119,20 @@ html, body {
     left: 18%;
     height: 92vh;
     overflow: scroll;
-    // z-index: 1;
+    z-index: 1;
     margin-bottom: 80px;
     background-color: $darkGrey;
+    // background: linear-gradient(0deg, $darkGrey, $darkGrey 85%, $backgroundGrey 100%);
+
+}
+
+.mainSection::before {
+    content: '';
+    width: 100vw;
+    position: absolute;
+    height: 15%;
+    z-index: 2;
+    background: linear-gradient(0deg, $darkGrey, $darkGrey 10%, $backgroundGrey 100%);
 }
 
 // padding for main section

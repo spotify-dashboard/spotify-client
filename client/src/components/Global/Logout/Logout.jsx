@@ -8,7 +8,7 @@ import { pageChange } from '../../../actions/pageChangeActions.js';
 
 const Login = props => {
     return (
-        <div className="logoutModule">
+        <div className={styles.logoutModule}>
             <Link to="/" >
                 <button onClick={() => { props.logout(); props.pageChange('/logout') }} className="green-btn">Logout</button>
             </Link>

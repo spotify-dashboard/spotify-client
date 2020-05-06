@@ -4,11 +4,13 @@
     width: 100%;
     padding: 10px 0px;
     border-bottom: 1px solid $lightGrey;
+    z-index: 9999;
 }
 
 .navList {
     display: flex;
     list-style: none;
+    z-index: 9999;
 }
 
 .navItem {
@@ -17,6 +19,7 @@
     text-transform: uppercase;
     cursor: pointer;
     text-decoration: none !important;
+    z-index: 9999;
 }
 
 .navItem:hover {
