@@ -9,6 +9,7 @@ import Footer from '../../../Global/Footer/Footer.jsx';
 import OverviewView from '../../../Views/Overview/OverviewView.jsx';
 import RecentListensView from '../../../Views/Recent_Listens/RecentListensView.jsx';
 import LogoutView from '../../../Views/Logout/LogoutView.jsx'
+import BreakdownView from '../../../Views/Playlist_Breakdown/BreakdownView/BreakdownView.jsx';
 
 const HomeDashboard = props => {
     return(
@@ -23,6 +24,9 @@ const HomeDashboard = props => {
                 }
                 {props.currentView === '/recent' &&
                     <RecentListensView />
+                }
+                {props.currentView === '/breakdown' &&
+                    <BreakdownView />
                 }
                 <SidebarRight />
             </div>
