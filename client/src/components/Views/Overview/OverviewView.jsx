@@ -24,8 +24,17 @@ const OverviewView = props => {
                 <Banner />
                 <MainNav navItems={dashboardNavItems} />
                 <div className={styles.summary}>
-                    <p>Have you ever wanted to visualize categorize your listening habits and activity</p>
+                    <p>Have you ever wondered what type of music listener you are? 
+                        This application uses your personal listening data on Spotify to help you see what trends have shown up in the music that you've been listening to. 
+                        Through your playlists and recently played songs, you will gain insight into things like your top genres and artists, the popularity of your music, the time of day that you tend to listen, what's been on repeat, and the characteristics of your favorite songs.
+                    </p>
+
+                    {!props.isLoggedIn &&
+                        <p>To get started, please <a className="link-green" href="/login/">sign in</a> by clicking the button above.</p>
+                    }
+
                 </div>
+                <div className="divider"></div>
                 <div className="flex flex-wrap">
                     <div onClick={() => props.pageChange('/recent')} className={styles.appFeatureBlurb}>
                         <BarChartIcon fontSize="large" />
@@ -45,6 +54,9 @@ const OverviewView = props => {
                         </div>
                     </Link>
                 </div>
+                <div className="divider"></div>
+                <h4 className={styles.dataPrivacyTitle}>Data Privacy</h4>
+                <p>This application does not save, record or share any of your personal information.</p>
             </div>
         </div>
     )
@@ -53,6 +65,7 @@ const OverviewView = props => {
 const mapStateToProps = (state) => {
     return {
         currentPage: state.pageChange.currentPage,
+        isLoggedIn: state.loginCheck.loggedIn.isLoggedIn,
     };
 };
 const mapDispatchToProps = {
