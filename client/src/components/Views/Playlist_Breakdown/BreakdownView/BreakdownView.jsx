@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { pageChange } from '../../../../actions/pageChangeActions.js';
 
 // the navigation items that are passed into the main nav are stored in this file
-import { musicLibraryNavItems } from '../../../../NavItems.js';
+import { dashboardNavItems } from '../../../../NavItems.js';
 
 import MainNav from '../../../Global/MainNav/MainNav.jsx';
 import Banner from '../../../Global/Banner/Banner.jsx';
@@ -18,7 +18,7 @@ const PlaylistsView = props => {
         <div className="mainSection">
             <div className="mainModule">
                 <Banner />
-                <MainNav navItems={musicLibraryNavItems} />
+                <MainNav navItems={dashboardNavItems} />
 
                 {/* User is not logged in, no data to render */}
                 
