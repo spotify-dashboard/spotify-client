@@ -1,13 +1,15 @@
 @import '../../../../variables';
 
 .playlistsContainer {
-    display: block;
+    display: flex;
+    flex-wrap: wrap !important;
+    flex-direction: row;
 }
 
 .playlistItem {
     display: flex;
-    width: 100%;
-    height: auto;
+    width: 50%;
+    height: 220px;
     border-radius: 8px;
 }
 
@@ -16,8 +18,8 @@
 }
 
 .playlistImg {
-    width: 10%;
-    height: 10%;
+    width: auto;
+    height: 100%;
 }
 
 .playlistItemRight {

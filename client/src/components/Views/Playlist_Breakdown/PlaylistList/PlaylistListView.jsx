@@ -10,8 +10,8 @@ const PlaylistListView = props => {
     console.log('playlist list view', props);
 
     return (
-        <div className={styles.playlistsContainer}>
-            <div>
+        <div>
+            <div className={styles.playlistsContainer}>
 
                 {props.allPlaylists.map(playlist => {
                     
