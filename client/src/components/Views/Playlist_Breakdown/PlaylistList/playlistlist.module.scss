@@ -1,0 +1,31 @@
+@import '../../../../variables';
+
+.playlistsContainer {
+    display: flex;
+    flex-wrap: wrap !important;
+    flex-direction: row;
+}
+
+.playlistItem {
+    display: flex;
+    width: 50%;
+    height: 220px;
+    border-radius: 8px;
+}
+
+.playlistItem:hover {
+    background-color: $lightGrey;
+}
+
+.playlistImg {
+    width: auto;
+    height: 100%;
+}
+
+.playlistItemRight {
+    width: 60%;
+    display: flex;
+    margin: 0px 25px;
+    align-items: center;
+    align-content: center;
+}
