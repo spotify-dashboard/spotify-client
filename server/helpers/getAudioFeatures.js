@@ -69,7 +69,8 @@ module.exports.getAudioFeatures = tracksArray => {
                     speechiness: 0
                 },
                 avgTimeSignature: 0,
-                avgLoudness: 0
+                avgLoudness: 0,
+                avgValence: 0 // overall positive/negative feel of songs - 0 (sad) - 1 (happy)
             };
 
             let totalItems = 0 // keep track of total tracks
@@ -88,6 +89,7 @@ module.exports.getAudioFeatures = tracksArray => {
 
                     featuresObj.avgTimeSignature += flattenedArr[z].audio_features[j].time_signature;
                     featuresObj.avgLoudness += flattenedArr[z].audio_features[j].loudness;
+                    featuresObj.avgValence += flattenedArr[z].audio_features[j].valence;
                 }
             }
             
@@ -100,6 +102,7 @@ module.exports.getAudioFeatures = tracksArray => {
             featuresObj.featuresTally.liveness = featuresObj.featuresTally.liveness / totalItems;
             featuresObj.avgTimeSignature = featuresObj.avgTimeSignature / totalItems;
             featuresObj.avgLoudness = featuresObj.avgLoudness / totalItems;
+            featuresObj.avgValence = featuresObj.avgValence / totalItems;
 
             return featuresObj;
         };

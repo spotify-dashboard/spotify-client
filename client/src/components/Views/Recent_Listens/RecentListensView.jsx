@@ -36,7 +36,7 @@ const RecentListensView = props => {
                                 <h1>Visualizing your 50 most recent songs</h1>
                                 <RefreshData />
                             </div>
-                            <p className="textGrey">For many of us, music is a very important part of our lives. See what genres, and artists you've been listening to and how it compares to your usual listening habits.</p>
+                            <p className="textGrey">For many of us, music is a very important part of our lives. The charts below give you a glimpse into your listening history on Spotify, and help to illuminate the type of music listener that you are.</p>
                         </div>
                         <div className="divider"></div>
                         <div>

@@ -23,6 +23,7 @@ class RecentTime extends React.Component {
                         data: Object.values(this.convertDates(this.props.recentTracks)),
                         fontColor: 'rgb(213,116,159)',
                         fontSize: 14,
+                        label: "# of tracks played",
                         pointBorderColor: "#fff",
                         pointBackgroundColor: "rgba(255,99,132,1)",
                         borderColor: "rgba(179,181,198,1)",
@@ -57,6 +58,21 @@ class RecentTime extends React.Component {
                     pointLabels: {
                         fontSize: 20
                       }
+                 },
+                 tooltips: {
+                     callbacks: {
+                         title: (item, data) => {
+                             return;
+                         },
+                         label: (item, data) => {
+                            console.log(item) 
+                            if (item.value === "0") {
+                                 return;
+                             } else {
+                                 return `listens: ${item.value}`
+                             }
+                         }
+                     }
                  }
             }
         });

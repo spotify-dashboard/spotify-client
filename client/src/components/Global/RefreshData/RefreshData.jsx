@@ -6,7 +6,7 @@ import { getRecentlyPlayed } from '../../../actions/recentlyPlayedActions.js';
 const RefreshData = props => {    
     return (
         <div>
-            <button onClick={() => props.getRecentlyPlayed()} className="green-btn">
+            <button onClick={() => { props.getRecentlyPlayed(); }} className="green-btn">
                 Refresh Data
             </button>
         </div>

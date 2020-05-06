@@ -57,6 +57,16 @@ class FeaturesRadar extends React.Component {
                     pointLabels: {
                         fontSize: 20
                     },
+                },
+                tooltips: {
+                    callbacks: {
+                        title: (item, data) => {
+                            return '';
+                        },
+                        label: (item, data) => {
+                            return '';
+                        }
+                    }
                 }
             }
         });

@@ -1,10 +1,50 @@
 @import '../../../variables';
 
 .appFeatureBlurb {
-    width: 50%;
+    flex-grow: 1;
     border-radius: 10px 10px;
+    padding: 10px;
+
+    p {
+        color: $textGrey
+    }
 }
 
-.appFeatureBlurb:hover {
-    background-color: $lightGrey;
+.appFeatureBlurb:hover:nth-child(1) {
+    background-color: $darkBlue !important;
+    
+    h3, p {
+        color: $pink !important;
+    }
+}
+
+.appFeatureBlurb:hover:nth-child(2) {
+    background-color: $lightBlue !important;
+    
+    h3, p {
+        color: $lightGreen !important;
+    }
+}
+
+.bottomLink {
+    flex-grow: 4;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px 10px;
+
+    p {
+        color: $textGrey
+    }
+}
+
+.bottomLink:hover {
+    background-color: $red !important;
+    
+    h3, p {
+        color: $aqua !important;
+    }
+}
+
+.dataPrivacyTitle {
+    color: $greenAccent
 }
