@@ -1,0 +1,29 @@
+@import '../../../../variables';
+
+.playlistsContainer {
+    display: block;
+}
+
+.playlistItem {
+    display: flex;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.playlistItem:hover {
+    background-color: $lightGrey;
+}
+
+.playlistImg {
+    width: 10%;
+    height: 10%;
+}
+
+.playlistItemRight {
+    width: 60%;
+    display: flex;
+    margin: 0px 25px;
+    align-items: center;
+    align-content: center;
+}
