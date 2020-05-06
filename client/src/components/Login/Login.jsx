@@ -3,7 +3,7 @@ import styles from './login.module.scss';
 
 const Login = props => {
     return (
-        <div className="loginModule">
+        <div className={styles.loginModule}>
             <a href="/login/">
                 <button id={styles.loginBtn}>Log in with Spotify</button>
             </a>
