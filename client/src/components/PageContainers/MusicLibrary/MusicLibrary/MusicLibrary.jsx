@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './musiclibrary.module.scss';
 import { connect } from 'react-redux';
+import { useMediaPredicate } from "react-media-hook";
 
 import SidebarLeft from '../../../Sidebars/SidebarLeft/SidebarLeft.jsx';
 import SidebarRight from '../../../Sidebars/SidebarRight/SidebarRight.jsx';
@@ -13,6 +14,10 @@ import RecommendationView from '../../../Views/Song_Recs/RecommendationView.jsx'
 
 const MusicLibraryPage = props => {
     
+
+    // MEDIA QUERY SIZING
+    const tabletMediaQuery = useMediaPredicate("(min-width: 1185px)");
+
     return(
         <div className={styles.musicLibraryPage}>
             <div className="flex">
@@ -32,7 +37,7 @@ const MusicLibraryPage = props => {
                 {props.currentView === '/song-recommendations' &&
                     <RecommendationView />
                 }
-                <SidebarRight />
+                {tabletMediaQuery && <SidebarRight />}
             </div>
             <Footer />
         </div>
