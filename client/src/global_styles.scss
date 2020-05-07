@@ -125,6 +125,9 @@ html, body {
     background-color: $darkGrey;
     // background: linear-gradient(0deg, $darkGrey, $darkGrey 85%, $backgroundGrey 100%);
 
+    @media (max-width: 1185px) {
+        width: 82%;
+    }
 }
 
 .mainSection::before {

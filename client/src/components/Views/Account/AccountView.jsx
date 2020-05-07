@@ -6,13 +6,11 @@ import Login from '../../Login/Login.jsx';
 
 const AccountView = props => {
 
-    console.log('account comp props', props.profile)
-
     return (
         <div className="mainSection">
             <div className="mainModule">
                 <Banner />
-                <h1>Account Information</h1>
+                <h1 className={styles.title}>Account Information</h1>
                 <div className="divider"></div>
                 <div className={styles.accountView}>
                     {props.isLoggedIn && props.profile.display_name !== undefined &&

@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './homedashboard.module.scss';
 import { connect } from 'react-redux';
+import { useMediaPredicate } from "react-media-hook";
 
 import SidebarLeft from '../../../Sidebars/SidebarLeft/SidebarLeft.jsx';
 import SidebarRight from '../../../Sidebars/SidebarRight/SidebarRight.jsx';
@@ -12,6 +13,10 @@ import LogoutView from '../../../Views/Logout/LogoutView.jsx'
 import BreakdownView from '../../../Views/Playlist_Breakdown/BreakdownView/BreakdownView.jsx';
 
 const HomeDashboard = props => {
+    
+    // MEDIA QUERY SIZING
+    const tabletMediaQuery = useMediaPredicate("(min-width: 1185px)");
+    
     return(
         <div className={styles.homeDashboard}>
             <div className="flex">
@@ -28,7 +33,8 @@ const HomeDashboard = props => {
                 {props.currentView === '/breakdown' &&
                     <BreakdownView />
                 }
-                <SidebarRight />
+                {tabletMediaQuery && <SidebarRight />}
+                
             </div>
             <Footer />
         </div>
