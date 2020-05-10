@@ -107,9 +107,6 @@ module.exports.getAudioFeatures = tracksArray => {
             return featuresObj;
         };
 
-        console.log('obj +++', createFeaturesObj())
-
-
         resolve({
             featuresByTrack: flattenedArr,
             featuresObj: await createFeaturesObj()
