@@ -17,8 +17,10 @@ module.exports.getArtistData = (tracksArray) => {
 
         // iterate trough tracksArr to get artists - O(n) operation
         tracksArray.forEach(track => {
-            //push artist id to artistArr
-            artistsArr.push(track.track.artists[0].id);
+            if (track.track.artists[0].id !== null) {
+                //push artist id to artistArr
+                artistsArr.push(track.track.artists[0].id);
+            }
             // if song has a played_at parameter (for recent songs api)
             if (track.hasOwnProperty("played_at")) {
                 // push played_at date 
@@ -71,6 +73,12 @@ module.exports.getArtistData = (tracksArray) => {
             // return played at, and artists
             resolve({
                 playedAtDates: playedAtArr,
+                artists: flattenedArr
+            })
+        } else if (addedAtArr.length > 0) {
+            // return added at and artists
+            resolve({
+                addedAtDates: addedAtArr,
                 artists: flattenedArr
             })
         } else {

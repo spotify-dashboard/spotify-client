@@ -11,7 +11,9 @@ module.exports.getAudioFeatures = tracksArray => {
         // iterate trough tracksArr to get ids - O(n) operation
         await tracksArray.forEach(track => {
             //push artist id to artistArr
-            trackIds.push(track.track.id);
+            if (track.track.id !== null) {
+                trackIds.push(track.track.id);
+            }
         });
 
         //starting point for api call; will increment
