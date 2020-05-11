@@ -12,15 +12,21 @@ module.exports.getArtistData = (tracksArray) => {
         // capture the date/time played at, if exists (most recent tracks api)
         let playedAtArr = [];
 
+        // capture the date/time added to playlist
+        let addedAtArr = [];
+
         // iterate trough tracksArr to get artists - O(n) operation
         tracksArray.forEach(track => {
             //push artist id to artistArr
             artistsArr.push(track.track.artists[0].id);
-            
             // if song has a played_at parameter (for recent songs api)
             if (track.hasOwnProperty("played_at")) {
                 // push played_at date 
                 playedAtArr.push(track.played_at);
+            }
+            if (track.hasOwnProperty("added_at")) {
+                // push played_at date 
+                addedAtArr.push(track.added_at);
             }
         });
 

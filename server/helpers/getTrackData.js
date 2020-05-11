@@ -1,7 +1,7 @@
 const login = require ('../controllers/login.js'); // credentials
 const Axios = require('axios');
 
-module.exports.getTrackData = (url = 'https://api.spotify.com/v1/me/tracks', optionalLimit) => {
+module.exports.getTrackData = (url, optionalLimit) => {
     return new Promise( async (resolve, reject) => {
 
         //set number of iterations for loop; will change after first api call to the max number of tracks
@@ -44,10 +44,13 @@ module.exports.getTrackData = (url = 'https://api.spotify.com/v1/me/tracks', opt
                 }
             })
             .then(results => {
-                
+                // console.log(results.data.items)
                 //set total tracks to the total in the res obj, actual #
                 totalTracks = results.data.total;
                 //push to arr
+
+                
+
                 dataArr.push(results.data.items);
             })
             .catch(error => {
