@@ -11,7 +11,7 @@
     "start:dev": "nodemon server/server.js -w server -w database/config.js",
     "build:dev": "webpack -d --watch",
     "start": "node server/server.js",
-    "build": "webpack",
+    "build": "npm install && webpack",
     "lint": "eslint ./"
   },
   "author": "",
