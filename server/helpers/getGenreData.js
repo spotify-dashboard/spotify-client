@@ -4,12 +4,19 @@ module.exports.getGenreData = artistArray => {
 
         //stores genres for each artist
         let genresArr = [];
-
         try {
-            //iterate through artist array
-            await artistArray.artists.forEach(artist => {
-                genresArr.push(artist.genres);
-            });
+
+            if (artistArray.artists !== undefined) {
+                //iterate through artist array
+                await artistArray.artists.forEach(artist => {
+                    // console.log('asdfasdf', artists)
+                    genresArr.push(artist.genres);
+                });
+            } else  {
+                await artistArray.forEach(artist => {
+                    genresArr.push(artist.genres);
+                });
+            }
 
         } catch(err) {
             reject(err);
