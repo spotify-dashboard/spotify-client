@@ -3,7 +3,7 @@ const { getTrackData } = require('../helpers/getTrackData.js');
 const { getArtistData } = require('../helpers/getArtistData.js');
 const { getGenreData } = require('../helpers/getGenreData.js');
 const { getAudioFeatures } = require('../helpers/getAudioFeatures.js');
-
+const { getProfile } = require('../helpers/getProfile.js');
 // cache for playlists
 var playlistCache = {
     // key names are playlist ids
@@ -129,22 +129,47 @@ module.exports = {
         // for aggregating all playlists
         allPlaylists: async (req, res) => {
             
-            // array for storing all tracks 
+            let userProfile;
+
+            //store playlists from get all playlists func
+            let playlistsArr = [];
+
+            // array for storing all tracks
+            let tracksArr = [];
                 // added at prop
                 // array of ids
             
-            // get all playlists
-            await getAllPlaylists('https://api.spotify.com/v1/me/playlists')
-                .then(response => {
-                    // iterate though all playlist ids
-                        console.log('all playlists +++', response)
-                        // call getTracks func, pass in url with id
+            if (playlistCache.hasOwnProperty('all')) {
+                res.status(304).json(playlistCache['all']);
+            } else {
 
+                await getProfile()
+                    .then(profile => {
+                        console.log('profile +++', profile);
+                        userProfile = profile;
+                    })
+            
+                // get all playlists
+                await getAllPlaylists('https://api.spotify.com/v1/me/playlists')
+                    .then(response => {
+                        // save playlists in an arr
+                        playlistsArr = response;
+                    })
+                    .catch(err => {
+                        console.log('Error getting all playlists in allPlaylists breakdown', err);
+                        res.status(400).json({message: "Error", error: err});
+                    });
+                
+                
+                await playlistsArr.forEach(playlist => {
+                    // only iterate through playlists that user owns
+                    if (playlist.owner.display_name === userProfile.display_name) {
+                        console.log('asdf +++', playlist)
+                    }
                 })
-                .catch(err => {
-                    console.log('Error in allPlaylists breakdown', err);
-                    res.status(400).json({message: "Error", error: err});
-                });
+
+                res.json(playlistsArr);
+            }
         }
     }
 };
