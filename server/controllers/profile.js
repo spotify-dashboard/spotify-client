@@ -1,15 +1,17 @@
-const Axios = require('axios');
 const login = require('../controllers/login.js');
+const { getProfile } = require('../helpers/getProfile.js');
 
 module.exports = {
     profile: {
-        get: (req, res) => {
-            login.credentials.getMe()
-                .then(data => {
-                    res.status(200).json(data.body)
+        get: async (req, res) => {
+            
+            await getProfile()
+                .then(profile => {
+                    res.status(200).json(profile);
                 })
                 .catch(err => {
-                    res.status(400).json({message: "Error getting profile", error: err});
+                    console.log("Error getting profile");
+                    res.status(400).json({message: "Error", error: err});
                 });
         }
     }
