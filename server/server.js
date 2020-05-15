@@ -30,7 +30,7 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
-//routes
+//route connection to handlers
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/api/profile', profileRouter);
@@ -51,6 +51,7 @@ app.get(/.*/, (req, res) => {
     res.sendFile(path.join(__dirname, '../client/public/index.html'));
 });
 
+// ==== listen
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
 });

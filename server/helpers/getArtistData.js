@@ -1,6 +1,9 @@
 const login = require ('../controllers/login.js'); // credentials
 const Axios = require('axios');
 
+// delay function; for api call limit; takes miliseconds as argument
+const delay = interval => new Promise(resolve => setTimeout(resolve, interval));
+
 module.exports.getArtistData = (tracksArray) => {
     return new Promise(async (resolve, reject) => {
         //array to hold artists of each track, will need to be comma sep; duplicates are okay
@@ -17,18 +20,20 @@ module.exports.getArtistData = (tracksArray) => {
 
         // iterate trough tracksArr to get artists - O(n) operation
         tracksArray.forEach(track => {
-            if (track.track.artists[0].id !== null) {
-                //push artist id to artistArr
-                artistsArr.push(track.track.artists[0].id);
-            }
-            // if song has a played_at parameter (for recent songs api)
-            if (track.hasOwnProperty("played_at")) {
-                // push played_at date 
-                playedAtArr.push(track.played_at);
-            }
-            if (track.hasOwnProperty("added_at")) {
-                // push played_at date 
-                addedAtArr.push(track.added_at);
+            if (track.track !== undefined) {
+                if (track.track.artists[0].id !== null) {
+                    //push artist id to artistArr
+                    artistsArr.push(track.track.artists[0].id);
+                }
+                // if song has a played_at parameter (for recent songs api)
+                if (track.hasOwnProperty("played_at")) {
+                    // push played_at date 
+                    playedAtArr.push(track.played_at);
+                }
+                if (track.hasOwnProperty("added_at")) {
+                    // push played_at date 
+                    addedAtArr.push(track.added_at);
+                }
             }
         });
 
@@ -41,6 +46,10 @@ module.exports.getArtistData = (tracksArray) => {
         
         // batch api calls; max 50 artists
         while (limit <= totalArtists) {
+
+            // ==== delay for api call limits
+            await delay(100);
+
             //api call to get artists for each track
             const artistsApi = await Axios.get('https://api.spotify.com/v1/artists', {
                 headers: {
