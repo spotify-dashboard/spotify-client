@@ -4,6 +4,7 @@ const { getArtistData } = require('../helpers/getArtistData.js');
 const { getGenreData } = require('../helpers/getGenreData.js');
 const { getAudioFeatures } = require('../helpers/getAudioFeatures.js');
 const { getProfile } = require('../helpers/getProfile.js');
+
 // cache for playlists
 var playlistCache = {
     // key names are playlist ids
@@ -128,6 +129,18 @@ module.exports = {
         },
         // for aggregating all playlists
         allPlaylists: async (req, res) => {
+
+            // holds returned data
+            let completeTrackData = {
+                tracks: [],
+                genres: [],
+                features: []
+            };
+
+            let tracksCollection = [];
+            let artistsArr;
+            let genresArr;
+            let featuresArr;
             
             let userProfile;
 
@@ -143,6 +156,7 @@ module.exports = {
                 res.status(304).json(playlistCache['all']);
             } else {
 
+                // get profile so you have display name to compare playlist owner to
                 await getProfile()
                     .then(profile => {
                         console.log('profile +++', profile);
@@ -160,15 +174,26 @@ module.exports = {
                         res.status(400).json({message: "Error", error: err});
                     });
                 
-                
-                await playlistsArr.forEach(playlist => {
+                // iterate through all saved playlists
+                playlistsArr.forEach(playlist => {
                     // only iterate through playlists that user owns
                     if (playlist.owner.display_name === userProfile.display_name) {
-                        console.log('asdf +++', playlist)
+                        // console.log('asdf +++', playlist)
+
+                        // get tracks for each playlist
+                        getTrackData(`https://api.spotify.com/v1/playlists/${playlist.id}/tracks`)
+                            .then(tracks => {
+                                console.log('+++', tracks);
+                                tracksCollection.push(tracks);
+                            })
+                            .catch(err => {
+                                console.log("Error iterating through playists for data", err);
+                                res.status(400).json({message: "Error", error: err});
+                            });
                     }
                 })
 
-                res.json(playlistsArr);
+                res.json(tracksCollection);
             }
         }
     }

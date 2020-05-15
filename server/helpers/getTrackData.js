@@ -1,5 +1,29 @@
 const login = require ('../controllers/login.js'); // credentials
 const Axios = require('axios');
+const throttle = require('lodash.throttle');
+const _ = require('lodash');
+
+function throttleAsync(fn, wait) {
+    let lastRun = 0;
+  
+    async function throttled(...args) {
+      const currentWait = lastRun + wait - Date.now();
+      const shouldRun   = currentWait <= 0;
+  
+      if (shouldRun) {
+        lastRun = Date.now();
+        return fn(...args);
+      } else {
+        return new Promise(function(resolve) {
+          setTimeout(function() {
+            resolve(throttled());
+          }, currentWait);
+        });
+      }
+    }
+  
+    return throttled;
+  }
 
 module.exports.getTrackData = (url, optionalLimit) => {
     return new Promise( async (resolve, reject) => {
@@ -48,10 +72,9 @@ module.exports.getTrackData = (url, optionalLimit) => {
                 //set total tracks to the total in the res obj, actual #
                 totalTracks = results.data.total;
                 //push to arr
-
-                
-
                 dataArr.push(results.data.items);
+                
+                console.log('offset', offset)
             })
             .catch(error => {
                 console.log('error getting tracks in getTrackData.js', error);
