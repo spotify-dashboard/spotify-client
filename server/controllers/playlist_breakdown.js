@@ -162,7 +162,6 @@ module.exports = {
                 // get profile so you have display name to compare playlist owner to
                 await getProfile()
                     .then(profile => {
-                        console.log('profile +++', profile);
                         userProfile = profile;
                     })
             
@@ -183,19 +182,20 @@ module.exports = {
                     // holds all tracks from all relevant playlists during the initial getTrackData func call
                     let tracksCollection = [];
 
+                    // ==== GET TRACKS
+
                     // iterate through all saved playlists
-                    for (let i = 0; i < array.length; i++) {
+                    for (let playlist = 0; playlist < array.length; playlist++) {
                         // only iterate through playlists that user owns
-                        if (array[i].owner.display_name === userProfile.display_name) {
+                        if (array[playlist].owner.display_name === userProfile.display_name) {
                             
 
                             // ==== delay for api call limits
                             await delay(100);
                             
                             // get tracks for each playlist
-                            await getTrackData(`https://api.spotify.com/v1/playlists/${array[i].id}/tracks`)
+                            await getTrackData(`https://api.spotify.com/v1/playlists/${array[playlist].id}/tracks`)
                             .then(tracks => {
-                                console.log('+++', tracks);
                                 tracksCollection.push(tracks);
                             })
                             .catch(err => {
@@ -204,9 +204,27 @@ module.exports = {
                             });
                         }
                     }
+
+                    // flatten the tracks collection
+                    let flattenedTracks = tracksCollection.flat(Infinity);
                     
+                    // ==== GET ARTISTS
+
+                    await getArtistData(flattenedTracks)
+                        .then(genres => {
+                            console.log(genres);
+                            res.json(genres);
+                        })
+                        .catch(err => {
+                            console.log("Error in getting artist data for aggregate", err);
+                            res.status(400).json({message: "Error", error: err});
+                        });
                     
-                    res.json(tracksCollection);
+                    // ==== GET GENRES
+
+
+                    // ==== GET FEATURES
+                    
                 };
 
                 // call process function
