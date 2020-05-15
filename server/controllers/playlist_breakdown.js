@@ -12,6 +12,9 @@ var playlistCache = {
             // tracks array
 };
 
+// delay function; for api call limit; takes miliseconds as argument
+const delay = interval => new Promise(resolve => setTimeout(resolve, interval));
+
 module.exports = {
     analyze: {
         // specific playlist breakdown
@@ -136,8 +139,7 @@ module.exports = {
                 genres: [],
                 features: []
             };
-
-            let tracksCollection = [];
+            
             let artistsArr;
             let genresArr;
             let featuresArr;
@@ -153,6 +155,7 @@ module.exports = {
                 // array of ids
             
             if (playlistCache.hasOwnProperty('all')) {
+                // serve from cache
                 res.status(304).json(playlistCache['all']);
             } else {
 
@@ -174,14 +177,23 @@ module.exports = {
                         res.status(400).json({message: "Error", error: err});
                     });
                 
-                // iterate through all saved playlists
-                playlistsArr.forEach(playlist => {
-                    // only iterate through playlists that user owns
-                    if (playlist.owner.display_name === userProfile.display_name) {
-                        // console.log('asdf +++', playlist)
 
-                        // get tracks for each playlist
-                        getTrackData(`https://api.spotify.com/v1/playlists/${playlist.id}/tracks`)
+                const processData = async (array) => {
+
+                    // holds all tracks from all relevant playlists during the initial getTrackData func call
+                    let tracksCollection = [];
+
+                    // iterate through all saved playlists
+                    for (let i = 0; i < array.length; i++) {
+                        // only iterate through playlists that user owns
+                        if (array[i].owner.display_name === userProfile.display_name) {
+                            
+
+                            // ==== delay for api call limits
+                            await delay(100);
+                            
+                            // get tracks for each playlist
+                            await getTrackData(`https://api.spotify.com/v1/playlists/${array[i].id}/tracks`)
                             .then(tracks => {
                                 console.log('+++', tracks);
                                 tracksCollection.push(tracks);
@@ -190,10 +202,15 @@ module.exports = {
                                 console.log("Error iterating through playists for data", err);
                                 res.status(400).json({message: "Error", error: err});
                             });
+                        }
                     }
-                })
+                    
+                    
+                    res.json(tracksCollection);
+                };
 
-                res.json(tracksCollection);
+                // call process function
+                await processData(playlistsArr);
             }
         }
     }
