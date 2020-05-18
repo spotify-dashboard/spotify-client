@@ -68,8 +68,6 @@ module.exports.getTimeline = (musicArray) => {
             }
         }
 
-        console.log('+++', timelineObj)
-        console.log(timelineObj.playlists)
         resolve(timelineObj);
     });
 };
