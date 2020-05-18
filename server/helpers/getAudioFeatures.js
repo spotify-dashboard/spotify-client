@@ -1,6 +1,9 @@
 const login = require ('../controllers/login.js'); // credentials
 const Axios = require('axios');
 
+// delay function; for api call limit; takes miliseconds as argument
+const delay = interval => new Promise(resolve => setTimeout(resolve, interval));
+
 module.exports.getAudioFeatures = tracksArray => {
     return new Promise(async (resolve, reject) => {
         //array to hold artists of each track, will need to be comma sep; duplicates are okay
@@ -25,6 +28,10 @@ module.exports.getAudioFeatures = tracksArray => {
         
         // batch api calls; max 50 tracks
         while (limit <= totalTracks) {
+
+            // ==== delay for api call limits
+            await delay(100);
+
             //api call to get artists for each track
             const featuresApi = await Axios.get('https://api.spotify.com/v1/audio-features', {
                 headers: {
