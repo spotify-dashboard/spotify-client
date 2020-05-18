@@ -4,6 +4,7 @@ const { getArtistData } = require('../helpers/getArtistData.js');
 const { getGenreData } = require('../helpers/getGenreData.js');
 const { getAudioFeatures } = require('../helpers/getAudioFeatures.js');
 const { getProfile } = require('../helpers/getProfile.js');
+const { getTimeline } = require('../helpers/getTimeline.js');
 
 // cache for playlists
 var playlistCache = {
@@ -196,7 +197,11 @@ module.exports = {
                             // get tracks for each playlist
                             await getTrackData(`https://api.spotify.com/v1/playlists/${array[playlist].id}/tracks`)
                             .then(tracks => {
-                                tracksCollection.push(tracks);
+                                tracksCollection.push({ 
+                                    playlistId: array[playlist].id,
+                                    playlistName: array[playlist].name,
+                                    tracks: tracks
+                                });
                             })
                             .catch(err => {
                                 console.log("Error iterating through playists for data", err);
@@ -207,20 +212,31 @@ module.exports = {
 
                     // flatten the tracks collection
                     let flattenedTracks = tracksCollection.flat(Infinity);
-                    
-                    // ==== GET ARTISTS
 
-                    await getArtistData(flattenedTracks)
-                        .then(genres => {
-                            console.log(genres);
-                            res.json(genres);
+                    // GET TIMELINE
+                    await getTimeline(flattenedTracks)
+                        .then(response => {
+                            res.json(response);
                         })
                         .catch(err => {
-                            console.log("Error in getting artist data for aggregate", err);
-                            res.status(400).json({message: "Error", error: err});
+                            console.log("Error getting timeline data", err);
+                            res.status(400).json(err);
                         });
+                        
+                    // ==== GET ARTISTS
+
+                    // await getArtistData(flattenedTracks)
+                    //     .then(artists => {
+                    //         // save artists
+                    //         artistsArr = artists;
+                    //     })
+                    //     .catch(err => {
+                    //         console.log("Error in getting artist data for aggregate", err);
+                    //         res.status(400).json({message: "Error", error: err});
+                    //     });
                     
-                    // ==== GET GENRES
+                    // // ==== GET GENRES
+                    // await getGenreData(artistsArr);
 
 
                     // ==== GET FEATURES
