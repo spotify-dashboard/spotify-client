@@ -13,9 +13,19 @@ module.exports.getAudioFeatures = tracksArray => {
 
         // iterate trough tracksArr to get ids - O(n) operation
         await tracksArray.forEach(track => {
-            //push artist id to artistArr
-            if (track.track.id !== null) {
-                trackIds.push(track.track.id);
+            if (track.track !== undefined) {
+                //push artist id to artistArr
+                if (track.track.id !== null) {
+                    trackIds.push(track.track.id);
+                }
+            } else if (track.tracks !== undefined) {
+                // for handling multiple playlists instead of 1; different data shape
+                for (let i = 0; i < track.tracks.length; i++) {
+                    //push artist id to artistArr
+                    if (track.tracks[i].track.id !== null) {
+                        trackIds.push(track.tracks[i].track.id);
+                    }
+                }
             }
         });
 
