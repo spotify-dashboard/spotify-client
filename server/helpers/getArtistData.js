@@ -34,6 +34,17 @@ module.exports.getArtistData = (tracksArray) => {
                     // push played_at date 
                     addedAtArr.push(track.added_at);
                 }
+            } else if (track.tracks !== undefined) {
+                // for the aggregate playlists function, this handles iterating through all playlists, not just one
+                for (let i = 0; i < track.tracks.length; i++) {
+                    if (track.tracks[i].track.artists[0].id !== null) {
+                        artistsArr.push(track.tracks[i].track.artists[0].id);
+                    }
+                    if (track.tracks[i].hasOwnProperty("added_at")) {
+                        // push played_at date 
+                        addedAtArr.push(track.tracks[i].added_at);
+                    }
+                }
             }
         });
 
