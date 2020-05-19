@@ -136,24 +136,24 @@ module.exports = {
 
             // holds returned data
             let completeTrackData = {
-                tracks: [],
+                // tracks: [],
                 genres: [],
-                features: []
+                features: [],
+                artists: [],
+                timeline: [],
+                added_at_arr: []
             };
             
             let artistsArr;
             let genresArr;
             let featuresArr;
+            let timelineObj;
+            let addedAtArr;
             
             let userProfile;
 
             //store playlists from get all playlists func
             let playlistsArr = [];
-
-            // array for storing all tracks
-            let tracksArr = [];
-                // added at prop
-                // array of ids
             
             if (playlistCache.hasOwnProperty('all')) {
                 // serve from cache
@@ -165,6 +165,10 @@ module.exports = {
                     .then(profile => {
                         userProfile = profile;
                     })
+                    .catch(err => {
+                        console.log("Error getting profile in playlist breakdown aggregate", err);
+                        res.status(400).json({message: "Error", error: err});
+                    });
             
                 // get all playlists
                 await getAllPlaylists('https://api.spotify.com/v1/me/playlists')
@@ -214,9 +218,10 @@ module.exports = {
                     let flattenedTracks = tracksCollection.flat(Infinity);
 
                     // GET TIMELINE
+
                     await getTimeline(flattenedTracks)
                         .then(response => {
-                            res.json(response);
+                            timelineObj = response;
                         })
                         .catch(err => {
                             console.log("Error getting timeline data", err);
@@ -225,23 +230,93 @@ module.exports = {
                         
                     // ==== GET ARTISTS
 
-                    // await getArtistData(flattenedTracks)
-                    //     .then(artists => {
-                    //         // save artists
-                    //         artistsArr = artists;
-                    //     })
-                    //     .catch(err => {
-                    //         console.log("Error in getting artist data for aggregate", err);
-                    //         res.status(400).json({message: "Error", error: err});
-                    //     });
+                    await getArtistData(flattenedTracks)
+                        .then(artists => {
+                            // save artists
+                            artistsArr = artists;
+                            addedAtArr = artists.addedAtDates
+                        })
+                        .catch(err => {
+                            console.log("Error in getting artist data for aggregate", err);
+                            res.status(400).json({message: "Error", error: err});
+                        });
                     
                     // // ==== GET GENRES
-                    // await getGenreData(artistsArr);
+                    await getGenreData(artistsArr)
+                        .then(genres => {
+                            genresArr = genres;
+                        })
+                        .catch(err => {
+                            console.log("Error getting genre data in aggregate");
+                            res.status(400).json({meessage: "Error", error: err});
+                        });
 
 
                     // ==== GET FEATURES
+                    await getAudioFeatures(flattenedTracks)
+                        .then(features => {
+                            featuresArr = features;
+                        })
+                        .catch(err => {
+                            console.log("Error in getting audio features for aggregate");
+                            res.status(400).json({message: "Error", error: err});
+                        });
+
+                    // function to flatten genres array and tally genres
+                    const createGenreObject = async () => {
+                        
+                        // creating genre obj to contain multiple genre views
+                        let genreObject = {}
+
+                        // tally of top genres to be added to genre obj
+                        let genreTally = {};
+
+                        // splits each genre into an object of artist name and num of listens
+                        let genreArrayOfObjects = [];
+                        
+                        // flatten genres array
+                        let flattenedGenres = genresArr.flat(Infinity);
+                        // console.log('+++', flattenedGenres[0])
+                        //iterate through all genres and add to tally
+                        await flattenedGenres.forEach(genre => {
+                            if (!genreTally.hasOwnProperty(genre)) {
+                                genreTally[genre] = 1;
+                            } else if (genreTally.hasOwnProperty(genre)) {
+                                genreTally[genre]++;
+                            } else {
+                                console.log("Error tallying genres");
+                            }
+                        });
+                         
+                        // add tally view to genre object
+                        // genreObject.tally = genreTally;
+
+                        // for (let [key, value] of Object.entries(genreTally)) {
+                        //     genreArrayOfObjects.push({ genre: key, listens: value });
+                        // }
+
+                        // add genre objects to parent obj
+                        // genreObject.genre_objects = genreArrayOfObjects;
+
+                        // add genre object to the complete genre that will be served
+                        // completeTrackData.genres = genreObject;
+                        completeTrackData.genres = genreTally;
+                    };
+
+                    await createGenreObject();
+
                     
+                    // add features to return obj
+                    completeTrackData.features = featuresArr.featuresObj;
+                    completeTrackData.added_at_arr = addedAtArr;
+                    completeTrackData.timeline = timelineObj;
+
+                    playlistCache['all'] = completeTrackData;
+
+                    res.status(200).json(completeTrackData);
                 };
+
+                
 
                 // call process function
                 await processData(playlistsArr);
