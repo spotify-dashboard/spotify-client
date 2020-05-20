@@ -5,6 +5,7 @@ const { getGenreData } = require('../helpers/getGenreData.js');
 const { getAudioFeatures } = require('../helpers/getAudioFeatures.js');
 const { getProfile } = require('../helpers/getProfile.js');
 const { getTimeline } = require('../helpers/getTimeline.js');
+const { getPopularity } = require('../helpers/getPopularity.js');
 
 // cache for playlists
 var playlistCache = {
@@ -149,6 +150,7 @@ module.exports = {
             let featuresArr;
             let timelineObj;
             let addedAtArr;
+            let popularityArr;
             
             let userProfile;
 
@@ -262,6 +264,16 @@ module.exports = {
                             res.status(400).json({message: "Error", error: err});
                         });
 
+                    // ==== GET POPULARITY CHARTING
+                    await getPopularity(flattenedTracks)
+                        .then(popularityData => {
+                            popularityArr = popularityData;
+                        })
+                        .catch(err => {
+                            console.log("Error in getting popularity for aggregate");
+                            res.status(400).json({message: "Error", error: err});
+                        })
+
                     // function to flatten genres array and tally genres
                     const createGenreObject = async () => {
                         
@@ -310,6 +322,7 @@ module.exports = {
                     completeTrackData.features = featuresArr.featuresObj;
                     completeTrackData.added_at_arr = addedAtArr;
                     completeTrackData.timeline = timelineObj;
+                    completeTrackData.popularity = popularityArr;
 
                     playlistCache['all'] = completeTrackData;
 
