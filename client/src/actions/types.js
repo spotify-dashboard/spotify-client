@@ -28,6 +28,15 @@ export const actions = {
     recentlyPlayed: {
         GET_RECENTLY_PLAYED: 'GET_RECENTLY_PLAYED'
     },
+    // for individual and aggregate analytics
+    analyze: {
+        playlist: {
+            ANALYZE_PLAYLIST: "ANALYZE_PLAYLIST"
+        },
+        allPlaylists: {
+            ANALYZE_ALL_PLAYLISTS: "ANALYZE_ALL_PLAYLISTS"
+        }
+    },
     // playlists
     playlists: {
         get: {
