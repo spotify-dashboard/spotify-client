@@ -21,6 +21,7 @@ import { fetchCurrentSong } from './actions/currentSongActions.js';
 import { getAllPlaylists } from './actions/playlistActions.js';
 import { loginCheck } from './actions/loginActions.js';
 import { setError } from './actions/errorActions.js';
+import { breakdownAllPlaylists } from './actions/breakdownActions.js';
 
 class App extends React.Component {
 
@@ -47,6 +48,9 @@ class App extends React.Component {
             // get recently played tracks for charting
             this.props.getRecentlyPlayed();
 
+            // get aggregate playlist data
+            this.props.breakdownAllPlaylists();
+
             // change page reference
             this.props.pageChange('/');
         }
@@ -57,16 +61,16 @@ class App extends React.Component {
     }
 
     render() {
-
-            return (
-                <div>
-                    <Route exact path="/" component={HomeDashboard} />
-                    <Route exact path="/success" component={HomeDashboard} />
-                    <Route exact path="/logout/" component={HomeDashboard} />
-                    <Route path="/library" component={MusicLibraryPage} />
-                    <Route path="/account" component={AccountPage} />
-                </div>
-            )
+        console.log('app props', this.props)
+        return (
+            <div>
+                <Route exact path="/" component={HomeDashboard} />
+                <Route exact path="/success" component={HomeDashboard} />
+                <Route exact path="/logout/" component={HomeDashboard} />
+                <Route path="/library" component={MusicLibraryPage} />
+                <Route path="/account" component={AccountPage} />
+            </div>
+        )
     };
 };
 
@@ -84,6 +88,7 @@ const mapDispatchToProps = {
     loginCheck,
     fetchProfile,
     getRecentlyPlayed,
+    breakdownAllPlaylists,
     fetchMusicLibraryTracks,
     pageChange,
     fetchCurrentSong,
