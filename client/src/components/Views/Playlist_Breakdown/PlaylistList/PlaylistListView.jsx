@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { getPlaylistById } from '../../../../actions/playlistActions.js';
 import { pageChange } from '../../../../actions/pageChangeActions.js';
+import { breakdownIndividualPlaylist } from '../../../../actions/breakdownActions.js';
 
 const PlaylistListView = props => {
 
@@ -21,7 +22,7 @@ const PlaylistListView = props => {
                         return (
                             <div
                                 key={playlist.id}
-                                onClick={() => {props.getPlaylistById(playlist.id); props.pageChange('/playlist');}}
+                                onClick={() => {props.breakdownIndividualPlaylist(playlist.id); props.pageChange('/breakdown-playlist');}}
                                 className={styles.playlistItem}
                             >
                                 {playlist.images[0] !== undefined &&
@@ -55,6 +56,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
     getPlaylistById,
+    breakdownIndividualPlaylist,
     pageChange
 };
 

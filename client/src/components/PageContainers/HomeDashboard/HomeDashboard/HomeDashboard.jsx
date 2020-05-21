@@ -33,8 +33,13 @@ const HomeDashboard = props => {
                 {props.currentView === '/breakdown' &&
                     <BreakdownView />
                 }
-                {tabletMediaQuery && <SidebarRight />}
-                
+                {props.currentView === '/breakdown-all' &&
+                    <BreakdownView />
+                }
+                {props.currentView === '/breakdown-playlist' &&
+                    <BreakdownView />
+                }
+                {tabletMediaQuery && <SidebarRight />}      
             </div>
             <Footer />
         </div>

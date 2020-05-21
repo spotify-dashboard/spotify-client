@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './breakdown.module.scss';
 import { connect } from 'react-redux';
 import { pageChange } from '../../../../actions/pageChangeActions.js';
@@ -10,6 +10,7 @@ import MainNav from '../../../Global/MainNav/MainNav.jsx';
 import Banner from '../../../Global/Banner/Banner.jsx';
 import LoginError from '../../../Global/LoginError/LoginError.jsx';
 import PlaylistListView from '../PlaylistList/PlaylistListView.jsx';
+import { breakdownAllPlaylists } from '../../../../actions/breakdownActions.js';
 
 const PlaylistsView = props => {
     console.log('playlist view props', props)
@@ -32,7 +33,7 @@ const PlaylistsView = props => {
 
                     // Displaying list of all playlists
                     <div>
-                        {props.currentPage !== '/playlist-breakdown' &&
+                        {props.currentPage === '/breakdown' &&
                             <div>
                                 <div>
                                     <h1>Playlist Breakdown</h1>
@@ -41,7 +42,10 @@ const PlaylistsView = props => {
 
                                     {/* Button for all playlist aggregate */}
                                     
-                                    <div>
+                                    <div 
+                                        onClick={() => {props.pageChange('/breakdown-all')}}
+                                        className={styles.allPlaylistButton}
+                                    >
                                         <h4>All Playlists</h4>
                                         <p>Aggregate all playlists</p>
                                     </div>
@@ -52,9 +56,25 @@ const PlaylistsView = props => {
                             </div>
                         }
 
-                        {/* User is viewing a playlist library */}
+    {/* NOTE::: LOADING/SPINNER VIEW LOGIC IS IN EACH DATA VIZ VIEW */}
 
-    {/* NOTE::: LOADING VIEW LOGIC IS IN LIBRARY LIST COMPONENT */}
+                        {/* Viewing individual playlist breakdown */}
+
+                        {props.currentPage === '/breakdown-playlist' &&
+                            <div>
+                                <h1>Jeff</h1>
+                            </div>
+                        }
+
+                        {/* Viewing all playlist breakdown */}
+
+                        {props.currentPage === '/breakdown-all' &&
+                            <div>
+                                <h1>Jeffery</h1>
+                            </div>
+                        }
+
+    
 
                         
                     </div>
@@ -70,12 +90,14 @@ const mapStateToProps = (state, ownProps) => {
         profile: state.getProfile.profile,
         allPlaylists: state.getAllPlaylists.allPlaylists || ownProps.allPlaylists,
         playlist: state.getAllPlaylists.playlist,
+        breakdownAll: state,
         isLoggedIn: state.loginCheck.loggedIn.isLoggedIn,
     };
 };
 
 const mapDispatchToProps = {
-    pageChange
+    pageChange,
+    breakdownAllPlaylists
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlaylistsView);
