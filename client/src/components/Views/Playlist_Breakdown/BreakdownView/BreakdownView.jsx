@@ -13,7 +13,20 @@ import PlaylistListView from '../PlaylistList/PlaylistListView.jsx';
 import { breakdownAllPlaylists } from '../../../../actions/breakdownActions.js';
 
 const PlaylistsView = props => {
-    console.log('playlist view props', props)
+    console.log('breakdown playlist view props', props)
+
+    // function to remove stored playlist from local storage;
+    const removeStoredPlaylist = () => {
+        if (JSON.parse(localStorage.state).getPlaylistBreakdown.breakdownPlaylist) {
+            delete JSON.parse(localStorage.state).getPlaylistBreakdown.breakdownPlaylist
+            // console.log(JSON.parse(localStorage.state).getPlaylistBreakdown.breakdownPlaylist)
+        }
+    };
+
+    useEffect(() => {
+        // remove stored playlist on page load
+        removeStoredPlaylist();
+    })
 
     return (
         <div className="mainSection">
@@ -62,7 +75,7 @@ const PlaylistsView = props => {
 
                         {props.currentPage === '/breakdown-playlist' &&
                             <div>
-                                <h1>Jeff</h1>
+                                
                             </div>
                         }
 
@@ -90,7 +103,8 @@ const mapStateToProps = (state, ownProps) => {
         profile: state.getProfile.profile,
         allPlaylists: state.getAllPlaylists.allPlaylists || ownProps.allPlaylists,
         playlist: state.getAllPlaylists.playlist,
-        breakdownAll: state,
+        breakdownAll: state.getPlaylistBreakdown.breakdownAll,
+        breakdownPlaylist: state.getPlaylistBreakdown.breakdownPlaylist,
         isLoggedIn: state.loginCheck.loggedIn.isLoggedIn,
     };
 };
