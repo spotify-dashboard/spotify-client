@@ -10,23 +10,26 @@ import MainNav from '../../../Global/MainNav/MainNav.jsx';
 import Banner from '../../../Global/Banner/Banner.jsx';
 import LoginError from '../../../Global/LoginError/LoginError.jsx';
 import PlaylistListView from '../PlaylistList/PlaylistListView.jsx';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import { breakdownAllPlaylists } from '../../../../actions/breakdownActions.js';
+
 
 const PlaylistsView = props => {
     console.log('breakdown playlist view props', props)
 
     // function to remove stored playlist from local storage;
-    const removeStoredPlaylist = () => {
-        if (JSON.parse(localStorage.state).getPlaylistBreakdown.breakdownPlaylist) {
-            delete JSON.parse(localStorage.state).getPlaylistBreakdown.breakdownPlaylist
-            // console.log(JSON.parse(localStorage.state).getPlaylistBreakdown.breakdownPlaylist)
-        }
-    };
+    // const removeStoredPlaylist = () => {
+    //     if (JSON.parse(localStorage.state).getPlaylistBreakdown.breakdownPlaylist) {
+    //         delete JSON.parse(localStorage.state).getPlaylistBreakdown.breakdownPlaylist
+    //         // console.log(JSON.parse(localStorage.state).getPlaylistBreakdown.breakdownPlaylist)
+    //     }
+    // };
 
-    useEffect(() => {
-        // remove stored playlist on page load
-        removeStoredPlaylist();
-    })
+    // useEffect(() => {
+    //     // remove stored playlist on page load
+    //     removeStoredPlaylist();
+    // })
 
     return (
         <div className="mainSection">
@@ -75,7 +78,7 @@ const PlaylistsView = props => {
 
                         {props.currentPage === '/breakdown-playlist' &&
                             <div>
-                                
+                                jeff
                             </div>
                         }
 
@@ -83,7 +86,16 @@ const PlaylistsView = props => {
 
                         {props.currentPage === '/breakdown-all' &&
                             <div>
-                                <h1>Jeffery</h1>
+                                {/* LOADING VIEW */}
+                                {Array.isArray(props.breakdownAll) &&
+                                    <div className={styles.loadingBlurb}>
+                                        <CircularProgress size={70} />
+                                    </div>
+                                }
+                                {/* LOADED VIEW */}
+                                {!Array.isArray(props.breakdownAll) &&
+                                    <div>finished loading</div>
+                                }
                             </div>
                         }
 

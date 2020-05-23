@@ -37,7 +37,7 @@ class App extends React.Component {
             this.props.fetchProfile();
 
             //get user's music library tracks
-            this.props.fetchMusicLibraryTracks();
+            // this.props.fetchMusicLibraryTracks();
 
             // get current song that user is playing on Spotify
             this.props.fetchCurrentSong();
