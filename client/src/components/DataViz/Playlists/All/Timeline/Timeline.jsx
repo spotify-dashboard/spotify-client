@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';   
 import styles from './timeline.module.scss';
 import { connect } from 'react-redux';
@@ -6,12 +6,21 @@ import { Chart } from 'chart.js';
 
 class Timeline extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        // storing index for color selector
+        this.state = {
+            index: 0
+        }
+    }
+
     componentDidMount() {
         this.initializeChart();
     }
 
     // randomized background colors for the chart
-    randomizedColor() {
+    selectColor() {
         // Spotify branding colors
         let colors = [
             "rgb(34,176,67)",
@@ -27,8 +36,20 @@ class Timeline extends React.Component {
             "rgb(56,0,244)",
             "rgb(241,203,209)"
         ];
-        let randomNum = Math.floor(Math.random() * 12);
-        return colors[randomNum];
+        // if all colors are used
+        if (this.state.index === colors.length) {
+            // reset to 0
+            this.setState({
+                index: 0
+            });
+            // return first item
+            return colors[0];
+        } else if (this.state.index < colors.length) {
+            this.setState({
+                index: this.state.index++
+            });
+        }
+        return colors[this.state.index - 1];
     }
 
     // data formatting for stacked bar chart
@@ -40,7 +61,7 @@ class Timeline extends React.Component {
             let dataArray = Object.values(this.props.timelineData[key]);
             formattedData.push({
                 label: key,
-                backgroundColor: this.randomizedColor(),
+                backgroundColor: this.selectColor(),
                 data: dataArray
             });
         }
