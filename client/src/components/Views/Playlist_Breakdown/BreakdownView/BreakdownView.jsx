@@ -10,7 +10,10 @@ import MainNav from '../../../Global/MainNav/MainNav.jsx';
 import Banner from '../../../Global/Banner/Banner.jsx';
 import LoginError from '../../../Global/LoginError/LoginError.jsx';
 import PlaylistListView from '../PlaylistList/PlaylistListView.jsx';
+
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+import Timeline from '../../../DataViz/Playlists/All/Timeline/Timeline.jsx';
 
 import { breakdownAllPlaylists } from '../../../../actions/breakdownActions.js';
 
@@ -89,12 +92,13 @@ const PlaylistsView = props => {
                                 {/* LOADING VIEW */}
                                 {Array.isArray(props.breakdownAll) &&
                                     <div className={styles.loadingBlurb}>
+                                        <h3>Loading Data</h3>
                                         <CircularProgress size={70} />
                                     </div>
                                 }
-                                {/* LOADED VIEW */}
+                                {/* DATA LOADED VIEW */}
                                 {!Array.isArray(props.breakdownAll) &&
-                                    <div>finished loading</div>
+                                    <Timeline />
                                 }
                             </div>
                         }
