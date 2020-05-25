@@ -36,9 +36,6 @@ class App extends React.Component {
             //get profile info
             this.props.fetchProfile();
 
-            //get user's music library tracks
-            // this.props.fetchMusicLibraryTracks();
-
             // get current song that user is playing on Spotify
             this.props.fetchCurrentSong();
 
@@ -61,7 +58,6 @@ class App extends React.Component {
     }
 
     render() {
-        console.log('app props', this.props)
         return (
             <div>
                 <Route exact path="/" component={HomeDashboard} />
