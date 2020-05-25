@@ -6,6 +6,15 @@ import { Chart } from 'chart.js';
 
 class Timeline extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            sortValue: 'Month'
+        }
+
+        this.sortChange = this.sortChange.bind(this);
+    }
+
     componentDidMount() {
         this.initializeChart();
     }
@@ -16,8 +25,8 @@ class Timeline extends React.Component {
         let timelineBarChart = new Chart(ctx, {
             type: "bar",
             data: {
-                labels: this.props.timelineLabels,
-                datasets: this.props.timelineData
+                labels: this.state.sortValue === "Month" ? this.props.timelineLabelsByMonth : this.props.timelineLabelsByYear,
+                datasets: this.state.sortValue === "Month" ? this.props.timelineDataByMonth : this.props.timelineDataByYear
             },
             options: {
                 scales: {
@@ -30,6 +39,12 @@ class Timeline extends React.Component {
                 }
             }
         })
+    }
+
+    sortChange(event) {
+        this.setState({
+            sortValue: event.target.value
+        }, () => {this.initializeChart()});
     }
 
     render() {
@@ -45,9 +60,9 @@ class Timeline extends React.Component {
                     </div>
                     <div>
                         <p>Sort Options</p>
-                        <select>
-                            <option>Month</option>
-                            <option>Year</option>
+                        <select value={this.state.sortValue} className={styles.groupSelector} onChange={this.sortChange}>
+                            <option value="Month">Month</option>
+                            <option value="Year">Year</option>
                         </select>
                     </div>
                 </div>
@@ -63,8 +78,10 @@ class Timeline extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        timelineLabels: state.getPlaylistBreakdown.breakdownAll.timeline.dateLabels,
-        timelineData: state.getPlaylistBreakdown.breakdownAll.timeline.formattedData
+        timelineLabelsByMonth: state.getPlaylistBreakdown.breakdownAll.timeline.dateLabelsByMonth,
+        timelineLabelsByYear: state.getPlaylistBreakdown.breakdownAll.timeline.dateLabelsByYear,
+        timelineDataByMonth: state.getPlaylistBreakdown.breakdownAll.timeline.formattedByMonth,
+        timelineDataByYear: state.getPlaylistBreakdown.breakdownAll.timeline.formattedByYear,
     };
 };
 
