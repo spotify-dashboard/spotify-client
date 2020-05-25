@@ -39,8 +39,8 @@ const store = createStore(
     persistedState,
     compose(
     applyMiddleware(...middleware),
-    //dev tools extension set up
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    //dev tools extension set up; remove on production env
+    process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
     )
 );
 
