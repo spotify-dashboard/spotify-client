@@ -8,64 +8,15 @@ class Timeline extends React.Component {
 
     constructor(props) {
         super(props);
-
-        // storing index for color selector
         this.state = {
-            index: 0
+            sortValue: 'Month'
         }
+
+        this.sortChange = this.sortChange.bind(this);
     }
 
     componentDidMount() {
         this.initializeChart();
-    }
-
-    // randomized background colors for the chart
-    selectColor() {
-        // Spotify branding colors
-        let colors = [
-            "rgb(34,176,67)",
-            "rgb(41,53,99)", 
-            "rgb(213,116,159)",
-            "rgb(108,154,243)",
-            "rgb(207,239,185)",
-            "rgb(121,30,53)",
-            "rgb(183,241,226)",
-            "rgb(224,99,49)",
-            "rgb(242,232,54)",
-            "rgb(56,101,82)",
-            "rgb(56,0,244)",
-            "rgb(241,203,209)"
-        ];
-        // if all colors are used
-        if (this.state.index === colors.length) {
-            // reset to 0
-            this.setState({
-                index: 0
-            });
-            // return first item
-            return colors[0];
-        } else if (this.state.index < colors.length) {
-            this.setState({
-                index: this.state.index++
-            });
-        }
-        return colors[this.state.index - 1];
-    }
-
-    // data formatting for stacked bar chart
-    convertToDatasets() {
-        // array of formatted items
-        let formattedData = [];
-        // iterate through data object
-        for (let [key, value] of Object.entries(this.props.timelineData)) {
-            let dataArray = Object.values(this.props.timelineData[key]);
-            formattedData.push({
-                label: key,
-                backgroundColor: this.selectColor(),
-                data: dataArray
-            });
-        }
-        return formattedData;
     }
 
     initializeChart() {
@@ -74,8 +25,8 @@ class Timeline extends React.Component {
         let timelineBarChart = new Chart(ctx, {
             type: "bar",
             data: {
-                labels: this.props.timelineLabels,
-                datasets: this.convertToDatasets()
+                labels: this.state.sortValue === "Month" ? this.props.timelineLabelsByMonth : this.props.timelineLabelsByYear,
+                datasets: this.state.sortValue === "Month" ? this.props.timelineDataByMonth : this.props.timelineDataByYear
             },
             options: {
                 scales: {
@@ -90,23 +41,31 @@ class Timeline extends React.Component {
         })
     }
 
-    render() {
+    sortChange(event) {
+        this.setState({
+            sortValue: event.target.value
+        }, () => {this.initializeChart()});
+    }
 
-        function colorFromValue(value, border) {
-            var alpha = (1 + Math.log(value)) / 5;
-            var color = "purple";
-            if (border) {
-              alpha += 0.01;
-            }
-            return Color(color)
-              .alpha(alpha)
-              .rgbString();
-        };
+    render() {
 
         console.log('Timeline comp', this.props);
 
         return (
             <div className={styles.parentContainer}>
+                <div className="flex flex-vertical-align flex-spread">
+                    <div>
+                        <h3>Timeline</h3>
+                        <p>Dates when tracks were added, grouped by playlist</p>
+                    </div>
+                    <div>
+                        <p>Sort Options</p>
+                        <select value={this.state.sortValue} className={styles.groupSelector} onChange={this.sortChange}>
+                            <option value="Month">Month</option>
+                            <option value="Year">Year</option>
+                        </select>
+                    </div>
+                </div>
                 <canvas
                     ref="timelineBarChart"
                     className={styles.graphContainer}
@@ -119,8 +78,10 @@ class Timeline extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        timelineLabels: state.getPlaylistBreakdown.breakdownAll.timeline.dateLabels,
-        timelineData: state.getPlaylistBreakdown.breakdownAll.timeline.playlists
+        timelineLabelsByMonth: state.getPlaylistBreakdown.breakdownAll.timeline.dateLabelsByMonth,
+        timelineLabelsByYear: state.getPlaylistBreakdown.breakdownAll.timeline.dateLabelsByYear,
+        timelineDataByMonth: state.getPlaylistBreakdown.breakdownAll.timeline.formattedByMonth,
+        timelineDataByYear: state.getPlaylistBreakdown.breakdownAll.timeline.formattedByYear,
     };
 };
 
