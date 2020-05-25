@@ -1,0 +1,9 @@
+@import '../../../../../variables';
+
+.groupSelector {
+    background-color: transparent;
+    border: 2px solid $greenAccent;
+    border-radius: 10px;
+    font-size: 14px;
+    padding: 7px;
+}
