@@ -7,7 +7,7 @@ require('dotenv').config();
 let spotifyApi = new SpotifyWebApi({
   clientId: process.env.MY_CLIENT_ID,
   clientSecret: process.env.MY_CLIENT_SECRET,
-  redirectUri: 'http://localhost:8080/login/callback'
+  redirectUri: NODE_ENV === 'production' ? 'https://spotify-tool.herokuapp.com/login/callback' : 'http://localhost:8080/login/callback'
 });
 
 scopes = [
