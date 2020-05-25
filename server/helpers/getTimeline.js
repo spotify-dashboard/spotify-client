@@ -57,7 +57,7 @@ module.exports.getTimeline = (musicArray) => {
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
 
-            return `${month}-${day}-${year}`;
+            return `${month}-${year}`;
         };
 
 
@@ -74,7 +74,7 @@ module.exports.getTimeline = (musicArray) => {
             for (let i = 0; i < item.tracks.length; i++) {
                 // format the added at date
                 let addedAtDate = dateConverter(item.tracks[i].added_at);
-                
+                console.log(item.tracks[i].added_at.valueOf())
                 if (!timelineObj.dateLabels.includes(addedAtDate)) {
                     timelineObj.dateLabels.push(addedAtDate);
                 }
