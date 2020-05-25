@@ -1,5 +1,7 @@
 
+// holds the index reference for selectColor func
 let index = 0;
+
 // randomized background colors for the chart
 let selectColor = () => {
     // Spotify branding colors
@@ -45,18 +47,24 @@ module.exports.getTimeline = (musicArray) => {
                     // each date object includes the date and a tally
                 // ex
                 // rockPlaylist: [
-                    //{ "2-6-2018": 0 }
+                    //{ "2018-2": 6 },
+                    //{ "2012-6": 12 },
                 // ]
             },
-            formattedData: []
+            formattedByMonth: [],
+            formattedByYear: []
         };
+
+        let yearObj = {
+
+        }
 
         const dateConverter = (rawDate) => {
             let date = new Date(rawDate); // convert to date obj
             let day = date.getDate();
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
-
+            // return yyyy-mm
             return `${year}-${month}`;
         };
 
@@ -69,6 +77,11 @@ module.exports.getTimeline = (musicArray) => {
             // add playlist names to obj; set equal to empty arrays
             if (!timelineObj.playlists.hasOwnProperty(item.playlistName)) {
                 timelineObj.playlists[item.playlistName] = {};
+            }
+
+            // for formatting by year
+            if (!yearObj.hasOwnProperty(item.playlistName)) {
+                yearObj[item.playlistName] = {};
             }
 
             for (let i = 0; i < item.tracks.length; i++) {
@@ -95,6 +108,10 @@ module.exports.getTimeline = (musicArray) => {
             timelineObj.dateLabels.forEach(dateLabel => {
                 // save each date label as a property of the specific playlist; set initially to 0
                 timelineObj.playlists[key][dateLabel] = 0;
+
+                // for year formatting
+                let year = dateLabel.slice(0,4);
+                yearObj[key][year] = 0;
             });
         }
 
@@ -107,17 +124,32 @@ module.exports.getTimeline = (musicArray) => {
                 
                 // increment playlist obj 
                 timelineObj.playlists[currentPlaylist][currentDate]++;
+                
+                // for year formatting
+                let currentYear = currentDate.slice(0,4);
+                yearObj[currentPlaylist][currentYear]++;
             }
         }
+
+        // ==== format By Month
 
         // iterate through data object
         for (let [key, value] of Object.entries(timelineObj.playlists)) {
             let dataArray = Object.values(timelineObj.playlists[key]);
-            timelineObj.formattedData.push({
+            timelineObj.formattedByMonth.push({
                 label: key,
                 backgroundColor: selectColor(),
                 data: dataArray
             });
+        }
+
+        for (let [key, value] of Object.entries(yearObj)) {
+            let dataArray = Object.values(yearObj[key]);
+            timelineObj.formattedByYear.push({
+                label: key,
+                backgroundColor: selectColor(),
+                data: dataArray
+            })
         }
 
         resolve(timelineObj);
