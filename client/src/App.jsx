@@ -24,7 +24,7 @@ import { setError } from './actions/errorActions.js';
 import { breakdownAllPlaylists } from './actions/breakdownActions.js';
 
 class App extends React.Component {
-
+    
     componentDidMount() {
         //check if user is logged in
         this.props.loginCheck();
@@ -58,6 +58,7 @@ class App extends React.Component {
     }
 
     render() {
+        console.log('env', process.env.NODE_ENV)
         return (
             <div>
                 <Route exact path="/" component={HomeDashboard} />
