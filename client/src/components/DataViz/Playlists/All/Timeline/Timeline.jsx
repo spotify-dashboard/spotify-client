@@ -34,12 +34,23 @@ class Timeline extends React.Component {
 
     render() {
 
-        console.log('sorted', this.props.timelineLabels.sort())
-
         console.log('Timeline comp', this.props);
 
         return (
             <div className={styles.parentContainer}>
+                <div className="flex flex-vertical-align flex-spread">
+                    <div>
+                        <h3>Timeline</h3>
+                        <p>Dates when tracks were added, grouped by playlist</p>
+                    </div>
+                    <div>
+                        <p>Sort Options</p>
+                        <select>
+                            <option>Month</option>
+                            <option>Year</option>
+                        </select>
+                    </div>
+                </div>
                 <canvas
                     ref="timelineBarChart"
                     className={styles.graphContainer}
