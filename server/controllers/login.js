@@ -47,7 +47,7 @@ module.exports = {
           spotifyApi.setAccessToken(access_token);
           spotifyApi.setRefreshToken(refresh_token);
       
-          res.redirect('http://localhost:8080/success');
+          res.redirect('/success');
 
           res.status(200).send({message: "Signed in successfully"});
         } catch(err) {
