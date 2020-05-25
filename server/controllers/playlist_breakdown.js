@@ -157,10 +157,13 @@ module.exports = {
             //store playlists from get all playlists func
             let playlistsArr = [];
             
+            // SERVING FROM CACHE
             if (playlistCache.hasOwnProperty('all')) {
+                console.log('Serving aggregate data from cache');
                 // serve from cache
                 res.status(304).json(playlistCache['all']);
             } else {
+                // NOT SERVING FROM CACHE
 
                 // get profile so you have display name to compare playlist owner to
                 await getProfile()
@@ -274,6 +277,9 @@ module.exports = {
                             res.status(400).json({message: "Error", error: err});
                         })
 
+                    // ==== ORGANIZE GENRE OBJECT
+                    // NOTE: PLANNING TO MOVE TO GENRE HELPER FUNCTION
+
                     // function to flatten genres array and tally genres
                     const createGenreObject = async () => {
                         
@@ -327,6 +333,7 @@ module.exports = {
                     // save data object in cache
                     playlistCache['all'] = completeTrackData;
 
+                    // serve
                     res.status(200).json(completeTrackData);
                 };
 
