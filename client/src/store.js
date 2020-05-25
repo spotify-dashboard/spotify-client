@@ -8,41 +8,51 @@ const initialState = {};
 const middleware = [thunk];
 
 const loadState = () => {
-    try {
-      const serializedState = localStorage.getItem('state');
-      if(serializedState === null) {
-        return undefined;
-      }
-      return JSON.parse(serializedState);
-    } catch (e) {
-        console.log("Error loading state from local storage", e);
+  try {
+    const serializedState = localStorage.getItem('state');
+    if(serializedState === null) {
       return undefined;
     }
-  };
+    return JSON.parse(serializedState);
+  } catch (e) {
+      console.log("Error loading state from local storage", e);
+    return undefined;
+  }
+};
   
-  const saveState = (state) => {
-    try {
-      const serializedState = JSON.stringify(state);
-      localStorage.setItem('state', serializedState);
-    } catch (e) {
-      console.log('Error saving state to local storage', e)
-    }
-  };
+const saveState = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('state', serializedState);
+  } catch (e) {
+    console.log('Error saving state to local storage', e)
+  }
+};
 
-  const persistedState = loadState();
+const persistedState = loadState();
 
+let store;
   
-
-//store takes a root reducer, initial state and middleware
-const store = createStore(
+if (window.navigator.userAgent.includes('Chrome') && process.env.NODE_ENV !== 'production') {
+  store = createStore(
     rootReducer,
     persistedState,
     compose(
     applyMiddleware(...middleware),
     //dev tools extension set up; remove on production env
-    process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
-);
+  );
+} else {
+  //store takes a root reducer, initial state and middleware
+  store = createStore(
+      rootReducer,
+      persistedState,
+      compose(
+      applyMiddleware(...middleware)
+      )
+  );
+}
 
 store.subscribe(throttle(() => {
     saveState(store.getState());
