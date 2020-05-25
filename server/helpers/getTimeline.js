@@ -57,7 +57,7 @@ module.exports.getTimeline = (musicArray) => {
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
 
-            return `${month}-${year}`;
+            return `${year}-${month}`;
         };
 
 
@@ -74,13 +74,19 @@ module.exports.getTimeline = (musicArray) => {
             for (let i = 0; i < item.tracks.length; i++) {
                 // format the added at date
                 let addedAtDate = dateConverter(item.tracks[i].added_at);
-                console.log(item.tracks[i].added_at.valueOf())
+
                 if (!timelineObj.dateLabels.includes(addedAtDate)) {
                     timelineObj.dateLabels.push(addedAtDate);
                 }
 
             }
         });
+
+        // ==== SORT the date labels
+        
+        for (let i = 0; i < timelineObj.dateLabels.length; i++) {
+            timelineObj.dateLabels.sort((a,b) => a - b);
+        }
 
         // iterate through playlists and add each date obj
         // for each playlist
