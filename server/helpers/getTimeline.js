@@ -40,7 +40,8 @@ module.exports.getTimeline = (musicArray) => {
         
         // timeline return obj
         let timelineObj = {
-            dateLabels: [], // includes dates as array items
+            dateLabelsByMonth: [], // includes dates as array items
+            dateLabelsByYear: [],
             playlists: {
                 // keys are each playlist name
                 // value is an array of objects containing each date object
@@ -88,24 +89,34 @@ module.exports.getTimeline = (musicArray) => {
                 // format the added at date
                 let addedAtDate = dateConverter(item.tracks[i].added_at);
 
-                if (!timelineObj.dateLabels.includes(addedAtDate)) {
-                    timelineObj.dateLabels.push(addedAtDate);
+                if (!timelineObj.dateLabelsByMonth.includes(addedAtDate)) {
+                    timelineObj.dateLabelsByMonth.push(addedAtDate);
                 }
+                
+                // for year formatting
+                let addedAtYear = addedAtDate.slice(0,4);
 
+                if (!timelineObj.dateLabelsByYear.includes(addedAtYear)) {
+                    timelineObj.dateLabelsByYear.push(addedAtYear);
+                }
             }
         });
 
         // ==== SORT the date labels
         
-        for (let i = 0; i < timelineObj.dateLabels.length; i++) {
-            timelineObj.dateLabels.sort((a,b) => a - b);
+        for (let i = 0; i < timelineObj.dateLabelsByMonth.length; i++) {
+            timelineObj.dateLabelsByMonth.sort((a,b) => a - b);
+        }
+
+        for (let i = 0; i < timelineObj.dateLabelsByYear.length; i++) {
+            timelineObj.dateLabelsByYear.sort((a,b) => a - b);
         }
 
         // iterate through playlists and add each date obj
         // for each playlist
         for (let [key, value] of Object.entries(timelineObj.playlists)) {
             // iterate through date labels
-            timelineObj.dateLabels.forEach(dateLabel => {
+            timelineObj.dateLabelsByMonth.forEach(dateLabel => {
                 // save each date label as a property of the specific playlist; set initially to 0
                 timelineObj.playlists[key][dateLabel] = 0;
 
@@ -151,6 +162,9 @@ module.exports.getTimeline = (musicArray) => {
                 data: dataArray
             })
         }
+
+        //remove playlists data before serving
+        delete timelineObj.playlists;
 
         resolve(timelineObj);
     });
