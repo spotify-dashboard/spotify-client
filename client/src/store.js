@@ -31,9 +31,11 @@ const saveState = (state) => {
 
 const persistedState = loadState();
 
+//store takes a root reducer, initial state and middleware
 let store;
   
-if (window.navigator.userAgent.includes('Chrome') && process.env.NODE_ENV !== 'production') {
+// if there is a chrome extension on the browser
+if (window.__REDUX_DEVTOOLS_EXTENSION__ !== undefined) {
   store = createStore(
     rootReducer,
     persistedState,
@@ -44,7 +46,7 @@ if (window.navigator.userAgent.includes('Chrome') && process.env.NODE_ENV !== 'p
     )
   );
 } else {
-  //store takes a root reducer, initial state and middleware
+  // if no chrome extension
   store = createStore(
       rootReducer,
       persistedState,
