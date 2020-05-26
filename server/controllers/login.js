@@ -52,7 +52,8 @@ module.exports = {
 
           res.status(200).send({message: "Signed in successfully"});
         } catch(err) {
-          res.redirect('/#/error/invalid token');
+          res.redirect('/error');
+          res.status(400).json({message: 'Error getting account information', error: err});
         }
     },
     loginCheck: (req, res) => {
