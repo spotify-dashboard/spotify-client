@@ -8,6 +8,7 @@ import styles from './global_styles.scss';
 import HomeDashboard from './components/PageContainers/HomeDashboard/HomeDashboard/HomeDashboard.jsx';
 import MusicLibraryPage from './components/PageContainers/MusicLibrary/MusicLibrary/MusicLibrary.jsx';
 import AccountPage from './components/PageContainers/Account/AccountPage/AccountPage.jsx';
+import ErrorPage from './components/PageContainers/ErrorPage/ErrorPage.jsx';
 
 // redux
 import { connect } from 'react-redux'; // connect to store
@@ -58,7 +59,7 @@ class App extends React.Component {
     }
 
     render() {
-        console.log('env', process.env.NODE_ENV)
+        
         return (
             <div>
                 <Route exact path="/" component={HomeDashboard} />
@@ -66,6 +67,7 @@ class App extends React.Component {
                 <Route exact path="/logout/" component={HomeDashboard} />
                 <Route path="/library" component={MusicLibraryPage} />
                 <Route path="/account" component={AccountPage} />
+                <Route path="/error" component={ErrorPage} />
             </div>
         )
     };
