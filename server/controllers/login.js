@@ -48,7 +48,7 @@ module.exports = {
           spotifyApi.setRefreshToken(refresh_token);
       
           // redirect; either locally or to production url
-          process.env.NODE_ENV === 'production' ? res.redirect('https://spotify-tool.herokuapp.com/success') : res.redirect('http://localhost:8080/login/callback')
+          process.env.NODE_ENV === 'production' ? res.redirect('https://spotify-tool.herokuapp.com/success') : res.redirect('http://localhost:8080/success')
 
           res.status(200).send({message: "Signed in successfully"});
         } catch(err) {
