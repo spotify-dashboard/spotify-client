@@ -9,20 +9,14 @@ import HomeDashboard from './components/PageContainers/HomeDashboard/HomeDashboa
 import MusicLibraryPage from './components/PageContainers/MusicLibrary/MusicLibrary/MusicLibrary.jsx';
 import AccountPage from './components/PageContainers/Account/AccountPage/AccountPage.jsx';
 import ErrorPage from './components/PageContainers/ErrorPage/ErrorPage.jsx';
+import SuccessLogin from './components/PageContainers/SuccessLogin/SuccessLogin.jsx';
 
 // redux
 import { connect } from 'react-redux'; // connect to store
 
 //redux actions
-import { fetchProfile } from './actions/profileActions.js';
-import { getRecentlyPlayed } from './actions/recentlyPlayedActions.js';
-import { fetchMusicLibraryTracks } from './actions/musicLibraryActions.js';
-import { pageChange } from './actions/pageChangeActions.js';
 import { fetchCurrentSong } from './actions/currentSongActions.js';
-import { getAllPlaylists } from './actions/playlistActions.js';
 import { loginCheck } from './actions/loginActions.js';
-import { setError } from './actions/errorActions.js';
-import { breakdownAllPlaylists } from './actions/breakdownActions.js';
 
 class App extends React.Component {
     
@@ -30,32 +24,12 @@ class App extends React.Component {
         //check if user is logged in
         this.props.loginCheck();
 
-        if (window.location.href.indexOf("success") > -1) {
-
-            this.props.loginCheck();
-            
-            //get profile info
-            this.props.fetchProfile();
-
-            // get current song that user is playing on Spotify
-            this.props.fetchCurrentSong();
-
-            //get all user's playlists
-            this.props.getAllPlaylists();
-
-            // get recently played tracks for charting
-            this.props.getRecentlyPlayed();
-
-            // get aggregate playlist data
-            this.props.breakdownAllPlaylists();
-
-            // change page reference
-            this.props.pageChange('/');
-        }
-
+        // check for updated current song
         let refresh = setInterval(() => {
-            this.props.fetchCurrentSong(); // check for updated current song
+            this.props.fetchCurrentSong();
         }, 5000);
+
+        // NOTE: all API calls moved to SuccessLogin Page
     }
 
     render() {
@@ -63,7 +37,7 @@ class App extends React.Component {
         return (
             <div>
                 <Route exact path="/" component={HomeDashboard} />
-                <Route exact path="/success" component={HomeDashboard} />
+                <Route exact path="/success" component={SuccessLogin} />
                 <Route exact path="/logout/" component={HomeDashboard} />
                 <Route path="/library" component={MusicLibraryPage} />
                 <Route path="/account" component={AccountPage} />
@@ -85,14 +59,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     loginCheck,
-    fetchProfile,
-    getRecentlyPlayed,
-    breakdownAllPlaylists,
-    fetchMusicLibraryTracks,
-    pageChange,
     fetchCurrentSong,
-    getAllPlaylists,
-    setError
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
