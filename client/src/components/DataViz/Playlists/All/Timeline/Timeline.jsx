@@ -20,9 +20,14 @@ class Timeline extends React.Component {
     }
 
     initializeChart() {
+        // destroy old chart if it exists (something is passed in)
+        if (window.timelineBarChart !== undefined) {
+            window.timelineBarChart.destroy();
+        }
+
         let el = ReactDOM.findDOMNode(this.refs.timelineBarChart);
         let ctx = el.getContext("2d");
-        let timelineBarChart = new Chart(ctx, {
+        window.timelineBarChart = new Chart(ctx, {
             type: "bar",
             data: {
                 labels: this.state.sortValue === "Month" ? this.props.timelineLabelsByMonth : this.props.timelineLabelsByYear,
@@ -36,7 +41,8 @@ class Timeline extends React.Component {
                     yAxes: [{
                         stacked: true
                     }]
-                }
+                },
+                
             }
         })
     }
