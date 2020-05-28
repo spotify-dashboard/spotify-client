@@ -51,17 +51,15 @@ const SuccessLogin = props => {
     // reroutes user to home page after 3 seconds
     let reroute = setTimeout(() => {
         history.push('/');
-    }, 10000)
+    }, 4000)
 
     return (
-        <div className="mainSection">
-            <div className="mainModule">
-                <div className={styles.successBlurb}>
-                    <h1>Successfully logged in.</h1>
-                    <Link to="/">
-                        <p>Click here if the page is not re-routed</p>
-                    </Link>
-                </div>
+        <div className={styles.successPageContainer}>
+            <div className={styles.successBlurb}>
+                <h1>Successfully logged in.</h1>
+                <Link to="/">
+                    <p>Click here if the page is not re-routed</p>
+                </Link>
             </div>
         </div>
     )
