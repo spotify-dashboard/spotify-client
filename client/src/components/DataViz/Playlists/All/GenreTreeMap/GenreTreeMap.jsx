@@ -27,7 +27,7 @@ class GenreTreeMap extends React.Component {
             data: {
                 datasets: [
                     {
-                        tree: this.cleanData(this.props.genres),
+                        tree: this.cleanData(this.props.genreObjects),
                         key: "listens", // what to organize by; must be a valid object property
                         groups: ['genre'], // what to organize; must be a valid object prop
                         fontColor: 'rgb(213,116,159)',
@@ -77,7 +77,7 @@ class GenreTreeMap extends React.Component {
 
         // generate sorted genres and display top 3
         let topGenres = [];
-        for (var genre in this.props.genres) {
+        for (var genre in this.props.genresTally) {
             topGenres.push([genre, this.props.genreTally[genre]]);
         }
 
@@ -109,7 +109,8 @@ class GenreTreeMap extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        genres: state.getPlaylistBreakdown.breakdownAll.genres,
+        genresTally: state.getPlaylistBreakdown.breakdownAll.genres,
+        genreObjects: state.getPlaylistBreakdown.breakdownAll.genre_objects
     }
 };
 
