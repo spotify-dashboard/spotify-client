@@ -28,12 +28,12 @@ class GenreTreeMap extends React.Component {
                 datasets: [
                     {
                         tree: this.cleanData(this.props.genreObjects),
-                        key: "listens", // what to organize by; must be a valid object property
+                        key: "num_of_tracks", // what to organize by; must be a valid object property
                         groups: ['genre'], // what to organize; must be a valid object prop
                         fontColor: 'rgb(213,116,159)',
                         fontSize: 14,
                         fontStyle: 'normal',
-                        label: '# of listens',
+                        label: '# of tracks',
                         backgroundColor: function(ctx) {
                             var value = ctx.dataset.data[ctx.dataIndex];
                             var alpha = (value + 3) / 10;
@@ -78,7 +78,7 @@ class GenreTreeMap extends React.Component {
         // generate sorted genres and display top 3
         let topGenres = [];
         for (var genre in this.props.genresTally) {
-            topGenres.push([genre, this.props.genreTally[genre]]);
+            topGenres.push([genre, this.props.genresTally[genre]]);
         }
 
         topGenres.sort(function(a, b) {
@@ -98,7 +98,7 @@ class GenreTreeMap extends React.Component {
                     </ol>
                 </div>
                 <canvas
-                    ref="AllplaylistsGenreTree"
+                    ref="allPlaylistsGenreTree"
                     className={styles.graphContainer}
                 >
                 </canvas>
