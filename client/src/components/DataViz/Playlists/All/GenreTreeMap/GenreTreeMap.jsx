@@ -15,7 +15,7 @@ class GenreTreeMap extends React.Component {
 
     cleanData(arr) {
         return arr.filter(item => {
-          return item.listens > 4;  
+          return item.listens > 5;
         });
     }
 
@@ -28,7 +28,7 @@ class GenreTreeMap extends React.Component {
                 datasets: [
                     {
                         tree: this.cleanData(this.props.genreObjects),
-                        key: "num_of_tracks", // what to organize by; must be a valid object property
+                        key: "listens", // what to organize by; must be a valid object property
                         groups: ['genre'], // what to organize; must be a valid object prop
                         fontColor: 'rgb(213,116,159)',
                         fontSize: 14,
