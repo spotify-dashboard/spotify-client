@@ -307,7 +307,7 @@ module.exports = {
                         });
 
                         for (let [key, value] of Object.entries(genreTally)) {
-                            genreArrayOfObjects.push({ genre: key, listens: value });
+                            genreArrayOfObjects.push({ genre: key, num_of_tracks: value });
                         }
 
                         // add genre tally
