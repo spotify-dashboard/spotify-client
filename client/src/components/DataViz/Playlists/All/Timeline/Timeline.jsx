@@ -55,8 +55,6 @@ class Timeline extends React.Component {
 
     render() {
 
-        console.log('Timeline comp', this.props);
-
         return (
             <div className={styles.parentContainer}>
                 <div className="flex flex-vertical-align flex-spread">
