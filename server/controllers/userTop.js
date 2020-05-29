@@ -4,7 +4,6 @@ const login = require('../controllers/login.js');
 module.exports = {
     top: {
         get: (req, res) => {
-            console.log(login.credentials._credentials.accessToken)
             Axios.get(`https://api.spotify.com/v1/me/top/${req.params.type}`, {
                 headers: {
                     "Authorization": 'Bearer ' + login.credentials._credentials.accessToken

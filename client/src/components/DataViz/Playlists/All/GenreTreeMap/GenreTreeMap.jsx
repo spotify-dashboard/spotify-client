@@ -15,7 +15,7 @@ class GenreTreeMap extends React.Component {
 
     cleanData(arr) {
         return arr.filter(item => {
-          return item.listens > 2;  
+          return item.listens > 4;  
         });
     }
 
