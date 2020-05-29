@@ -49,10 +49,7 @@ module.exports.getPopularity = tracksArray => {
             };
             // call func
             getAvgPlaylistPopularity();
-
-            console.log(popularityObj.overallAverage)
-            console.log(popularityObj.playlists)
-
+            
         } catch(err) {
             reject(err);
         }

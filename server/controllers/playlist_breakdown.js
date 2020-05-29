@@ -277,7 +277,7 @@ module.exports = {
                             res.status(400).json({message: "Error", error: err});
                         })
 
-                    // ==== ORGANIZE GENRE OBJECT
+                    // ==== sORGANIZE GENRE OBJECT
                     // NOTE: PLANNING TO MOVE TO GENRE HELPER FUNCTION
 
                     // function to flatten genres array and tally genres
@@ -305,20 +305,15 @@ module.exports = {
                                 console.log("Error tallying genres");
                             }
                         });
-                         
-                        // add tally view to genre object
-                        // genreObject.tally = genreTally;
 
-                        // for (let [key, value] of Object.entries(genreTally)) {
-                        //     genreArrayOfObjects.push({ genre: key, listens: value });
-                        // }
+                        for (let [key, value] of Object.entries(genreTally)) {
+                            genreArrayOfObjects.push({ genre: key, num_of_tracks: value });
+                        }
 
-                        // add genre objects to parent obj
-                        // genreObject.genre_objects = genreArrayOfObjects;
-
-                        // add genre object to the complete genre that will be served
-                        // completeTrackData.genres = genreObject;
+                        // add genre tally
                         completeTrackData.genres = genreTally;
+                        // add genre objects
+                        completeTrackData.genre_objects = genreArrayOfObjects;
                     };
 
                     await createGenreObject();

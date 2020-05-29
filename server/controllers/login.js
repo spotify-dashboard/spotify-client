@@ -65,4 +65,5 @@ module.exports = {
     }
 }
 
+// used to import credentials into helper functions
 module.exports.credentials = spotifyApi;
