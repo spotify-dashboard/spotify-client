@@ -56,6 +56,12 @@ class GenreTreeMap extends React.Component {
                         title: (item, data) => {
                             return;
                         },
+                        beforeLabel: (tooltipItem, object) => {
+                            // index of the hovered item
+                            let currentIndex = tooltipItem.index;
+                            // returns the name of the current hovered item
+                            return object.datasets[0].data[currentIndex].g;
+                        }
                     }
                 }
             }
