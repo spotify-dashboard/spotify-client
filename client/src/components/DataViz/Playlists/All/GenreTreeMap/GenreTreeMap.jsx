@@ -4,6 +4,7 @@ import styles from './genretreemap.module.scss';
 import { connect } from 'react-redux';
 import { Chart } from 'chart.js';
 import 'chartjs-chart-treemap';
+import selectColor from '../../../../../helpers/selectColor.js';
 
 class GenreTreeMap extends React.Component {
 
@@ -34,11 +35,7 @@ class GenreTreeMap extends React.Component {
                         fontSize: 14,
                         fontStyle: 'normal',
                         label: '# of tracks',
-                        backgroundColor: function(ctx) {
-                            var value = ctx.dataset.data[ctx.dataIndex];
-                            var alpha = (value + 3) / 10;
-                            return Color('rgb(41,53,99)').alpha(alpha).rgbString();
-                        },
+                        backgroundColor: selectColor()
                     }
                 ]
             },
@@ -59,8 +56,6 @@ class GenreTreeMap extends React.Component {
                         beforeLabel: (tooltipItem, object) => {
                             // index of the hovered item
                             let currentIndex = tooltipItem.index;
-                            console.log(object)
-                            console.log('item', tooltipItem)
                             // returns the name of the current hovered item
                             return object.datasets[0].data[currentIndex].g;
                         }
@@ -92,8 +87,6 @@ class GenreTreeMap extends React.Component {
         topGenres.sort(function(a, b) {
             return a[1] - b[1];
         });
-
-        console.log('all playlists tree map', this.props)
 
         return (
             <div className={styles.parentContainer}>
