@@ -34,11 +34,7 @@ class GenreTreeMap extends React.Component {
                         fontSize: 14,
                         fontStyle: 'normal',
                         label: '# of listens',
-                        backgroundColor: function(ctx) {
-                            var value = ctx.dataset.data[ctx.dataIndex];
-                            var alpha = (value + 3) / 10;
-                            return Color('rgb(41,53,99)').alpha(alpha).rgbString();
-                        },
+                        backgroundColor: 'rgb(41,53,99)'
                     }
                 ]
             },
@@ -70,17 +66,6 @@ class GenreTreeMap extends React.Component {
 
     render() {
 
-        function colorFromValue(value, border) {
-            var alpha = (1 + Math.log(value)) / 5;
-            var color = "purple";
-            if (border) {
-              alpha += 0.01;
-            }
-            return Color(color)
-              .alpha(alpha)
-              .rgbString();
-        };
-
         // generate sorted genres and display top 3
         let topGenres = [];
         for (var genre in this.props.genreTally) {
@@ -90,8 +75,6 @@ class GenreTreeMap extends React.Component {
         topGenres.sort(function(a, b) {
             return a[1] - b[1];
         });
-
-        console.log('recent tree map', this.props)
 
         return (
             <div className={styles.parentContainer}>
