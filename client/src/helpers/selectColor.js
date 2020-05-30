@@ -1,5 +1,7 @@
-// randomized background colors for the chart
-export default selectColor = () => {
+
+let index = 0;
+// randomized background colors for chart datasets
+export default function selectColor() {
     // Spotify branding colors
     let colors = [
         "rgb(34,176,67)",
