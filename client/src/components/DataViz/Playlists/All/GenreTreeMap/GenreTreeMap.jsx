@@ -35,7 +35,7 @@ class GenreTreeMap extends React.Component {
                         fontSize: 14,
                         fontStyle: 'normal',
                         label: '# of tracks',
-                        backgroundColor: selectColor()
+                        backgroundColor: 'rgb(41,53,99)'
                     }
                 ]
             },
@@ -43,7 +43,7 @@ class GenreTreeMap extends React.Component {
                 maintainAspectRatio: false,
                 title: {
                     display: true,
-                    text: "Recent Listening By Genre"
+                    text: "Genres in All Playlists"
                 },
                 legend: {
                     display: false
@@ -91,7 +91,7 @@ class GenreTreeMap extends React.Component {
         return (
             <div className={styles.parentContainer}>
                 <div className="flex flex-spread">
-                    <h3>Genres | Which genres have you been listening to recently?</h3>
+                    <h3>Genres | Which genres are in your playlists?</h3>
                     <ol className={styles.genreList}>
                         <li className={styles.genreListItem}>{topGenres[topGenres.length-1][0]}</li>
                         <li className={styles.genreListItem}>{topGenres[topGenres.length-2][0]}</li>
