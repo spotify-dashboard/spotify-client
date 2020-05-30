@@ -4,6 +4,7 @@ import styles from './genretreemap.module.scss';
 import { connect } from 'react-redux';
 import { Chart } from 'chart.js';
 import 'chartjs-chart-treemap';
+import selectColor from '../../../../../helpers/selectColor.js';
 
 class GenreTreeMap extends React.Component {
 
@@ -15,7 +16,7 @@ class GenreTreeMap extends React.Component {
 
     cleanData(arr) {
         return arr.filter(item => {
-          return item.listens > 4;  
+          return item.listens > 5;
         });
     }
 
@@ -28,17 +29,13 @@ class GenreTreeMap extends React.Component {
                 datasets: [
                     {
                         tree: this.cleanData(this.props.genreObjects),
-                        key: "num_of_tracks", // what to organize by; must be a valid object property
+                        key: "listens", // what to organize by; must be a valid object property
                         groups: ['genre'], // what to organize; must be a valid object prop
                         fontColor: 'rgb(213,116,159)',
                         fontSize: 14,
                         fontStyle: 'normal',
                         label: '# of tracks',
-                        backgroundColor: function(ctx) {
-                            var value = ctx.dataset.data[ctx.dataIndex];
-                            var alpha = (value + 3) / 10;
-                            return Color('rgb(41,53,99)').alpha(alpha).rgbString();
-                        },
+                        backgroundColor: 'rgb(41,53,99)'
                     }
                 ]
             },
@@ -46,7 +43,7 @@ class GenreTreeMap extends React.Component {
                 maintainAspectRatio: false,
                 title: {
                     display: true,
-                    text: "Recent Listening By Genre"
+                    text: "Genres in All Playlists"
                 },
                 legend: {
                     display: false
@@ -56,6 +53,12 @@ class GenreTreeMap extends React.Component {
                         title: (item, data) => {
                             return;
                         },
+                        beforeLabel: (tooltipItem, object) => {
+                            // index of the hovered item
+                            let currentIndex = tooltipItem.index;
+                            // returns the name of the current hovered item
+                            return object.datasets[0].data[currentIndex].g;
+                        }
                     }
                 }
             }
@@ -85,12 +88,10 @@ class GenreTreeMap extends React.Component {
             return a[1] - b[1];
         });
 
-        console.log('all playlists tree map', this.props)
-
         return (
             <div className={styles.parentContainer}>
                 <div className="flex flex-spread">
-                    <h3>Genres | Which genres have you been listening to recently?</h3>
+                    <h3>Genres | Which genres are in your playlists?</h3>
                     <ol className={styles.genreList}>
                         <li className={styles.genreListItem}>{topGenres[topGenres.length-1][0]}</li>
                         <li className={styles.genreListItem}>{topGenres[topGenres.length-2][0]}</li>

@@ -51,7 +51,7 @@ const SuccessLogin = props => {
     // reroutes user to home page after 3 seconds
     let reroute = setTimeout(() => {
         history.push('/');
-    }, 4000)
+    }, 10000)
 
     return (
         <div className={styles.successPageContainer}>

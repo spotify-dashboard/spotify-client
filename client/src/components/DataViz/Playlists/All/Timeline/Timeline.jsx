@@ -55,14 +55,12 @@ class Timeline extends React.Component {
 
     render() {
 
-        console.log('Timeline comp', this.props);
-
         return (
             <div className={styles.parentContainer}>
                 <div className="flex flex-vertical-align flex-spread">
                     <div>
                         <h3>Timeline</h3>
-                        <p>Dates when tracks were added, grouped by playlist</p>
+                        <p>Dates when tracks were added, grouped by each of your personal playlists</p>
                     </div>
                     <div>
                         <p>Sort Options</p>

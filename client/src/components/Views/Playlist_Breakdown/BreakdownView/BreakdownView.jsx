@@ -15,6 +15,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Timeline from '../../../DataViz/Playlists/All/Timeline/Timeline.jsx';
 import GenreTreeMap from '../../../DataViz/Playlists/All/GenreTreeMap/GenreTreeMap.jsx';
+import GenreBarChart from '../../../DataViz/Playlists/All/GenreBarChart/GenreBarChart.jsx';
 
 import { breakdownAllPlaylists } from '../../../../actions/breakdownActions.js';
 
@@ -100,9 +101,15 @@ const PlaylistsView = props => {
                                 {/* DATA LOADED VIEW */}
                                 {!Array.isArray(props.breakdownAll) &&
                                     <div>
+                                        <div>
+                                            <h1>All Playlists</h1>
+                                            <p>A breakdown of the trends found after analyzing all of your personal playlists.</p>
+                                        </div>
+                                        <GenreTreeMap />
+                                        <GenreBarChart />
+                                        <div className="divider"></div>
                                         <Timeline />
                                         <div className="divider"></div>
-                                        <GenreTreeMap />
                                     </div>
                                 }
                             </div>
