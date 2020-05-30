@@ -1,5 +1,9 @@
 @import '../../../../../variables';
 
+.parentContainer {
+    padding: 20px 0px;
+}
+
 .groupSelector {
     background-color: transparent;
     border: 2px solid $greenAccent;
