@@ -123,7 +123,7 @@ html, body {
     z-index: 1;
     margin-bottom: 80px;
     background-color: $darkGrey;
-    // background: linear-gradient(0deg, $darkGrey, $darkGrey 85%, $backgroundGrey 100%);
+    overflow-x: hidden;
 
     @media (max-width: 1185px) {
         width: 82%;
