@@ -17,6 +17,7 @@ class Timeline extends React.Component {
 
     componentDidMount() {
         this.initializeChart();
+        this.analyzeOldPlaylists();
     }
 
     initializeChart() {
@@ -53,7 +54,56 @@ class Timeline extends React.Component {
         }, () => {this.initializeChart()});
     }
 
+
+    // find playlists that you have not added anything to in years
+    analyzeOldPlaylists() {
+
+        // hold the playlists
+        let playlists = [
+            // { name: STR, year: NUM }
+        ]
+
+        for (let i = 0 ; i < this.props.timelineDataByYear.length; i++) {
+            let currentPlaylist = this.props.timelineDataByYear[i];
+            let currentYearIndex = this.props.timelineDataByYear[i].data.length  - 1;
+            // if no tracks were added this year or past 2  
+            if (currentPlaylist.data[currentYearIndex] === 0 && currentPlaylist.data[currentYearIndex - 1] === 0 && currentPlaylist.data[currentYearIndex - 2] === 0) {
+                let index = currentYearIndex;
+                // while tracks added for the year is 0
+                while (currentPlaylist.data[index] === 0) {
+                    // decrement (check prior year)
+                    index--;
+                }
+                // when it finds a year when a track WAS added
+                // push object to array with name of playlist and year last added to
+                playlists.push({
+                    name: currentPlaylist.label,
+                    year: this.props.timelineLabelsByYear[index]
+                })
+            }
+        }
+
+        return playlists;
+    }
+
     render() {
+
+        // holds the tally # of tracks by year
+        let totalTracksByYear = {
+
+        }
+        
+        // ==== for displaying track differences between years
+
+        for (let playlistKey in this.props.yearTally) {
+            for (let [yearKey, value] of Object.entries(this.props.yearTally[playlistKey])) {
+                if (!totalTracksByYear.hasOwnProperty(yearKey)) {
+                    totalTracksByYear[yearKey] = value;
+                } else {
+                    totalTracksByYear[yearKey] += value;
+                }
+            }
+        }
 
         return (
             <div className={styles.parentContainer}>
@@ -75,6 +125,43 @@ class Timeline extends React.Component {
                     className={styles.graphContainer}
                 >
                 </canvas>
+                
+                <div className="divider"></div>
+                
+                <div className="flex">
+
+                    {/* if user has playlists that haven't been added to in 2+ years */}
+
+                    {this.analyzeOldPlaylists().length > 0 &&
+                        <div>
+                            <h2>Playlists that need some love</h2>
+                            <div className="divider"></div>
+                            {this.analyzeOldPlaylists().map(playlist => {
+                                return (
+                                    <p key={playlist.label}>You haven't added tracks to <span className={styles.highlight}>{playlist.name}</span> since <span className={styles.highlight}>{playlist.year}</span></p>
+                                )
+                            })}
+                        </div>
+                    }
+                    <div>
+                        {/* if year obj contains this year and last */}
+                        {totalTracksByYear[new Date().getFullYear()] !== undefined && totalTracksByYear[new Date().getFullYear() - 1] !== undefined &&
+                            <div>
+                                <div>
+                                    {totalTracksByYear[new Date().getFullYear()] > totalTracksByYear[new Date().getFullYear() - 1] &&
+                                        <h4>You've added <span className={styles.highlight}>{totalTracksByYear[new Date().getFullYear()] - totalTracksByYear[new Date().getFullYear() - 1]}</span> more songs in {new Date().getFullYear()} than last year</h4>
+                                    }
+                                </div>
+                                <div>
+                                    {totalTracksByYear[new Date().getFullYear()] <= totalTracksByYear[new Date().getFullYear() - 1] &&
+                                        <h2>You've added <span className={styles.highlight}>{totalTracksByYear[new Date().getFullYear() - 1] - totalTracksByYear[new Date().getFullYear()]}</span> less songs in {new Date().getFullYear()} than last year</h2>
+                                    }
+                                </div>
+                            </div>
+                        }
+                        <h4>2014 was your most active year where you added 800 songs</h4>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -86,6 +173,7 @@ const mapStateToProps = (state, ownProps) => {
         timelineLabelsByYear: state.getPlaylistBreakdown.breakdownAll.timeline.dateLabelsByYear,
         timelineDataByMonth: state.getPlaylistBreakdown.breakdownAll.timeline.formattedByMonth,
         timelineDataByYear: state.getPlaylistBreakdown.breakdownAll.timeline.formattedByYear,
+        yearTally: state.getPlaylistBreakdown.breakdownAll.timeline.yearTally
     };
 };
 
