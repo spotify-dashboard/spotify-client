@@ -53,7 +53,8 @@ module.exports.getTimeline = (musicArray) => {
                 // ]
             },
             formattedByMonth: [],
-            formattedByYear: []
+            formattedByYear: [],
+            yearTally: {}
         };
 
         let yearObj = {
@@ -163,7 +164,10 @@ module.exports.getTimeline = (musicArray) => {
             })
         }
 
-        //remove playlists data before serving
+        // add yearObj to return obj as tally
+        timelineObj.yearTally = yearObj;
+
+        //remove playlists data before serving  
         delete timelineObj.playlists;
 
         resolve(timelineObj);
