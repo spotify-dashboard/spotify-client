@@ -12,7 +12,7 @@ Ability to view playlists, favorited songs, and user's top artists/tracks<br>
 Realtime display of current track playing on Spotify<br>
 Access to account information<br>
 
-### Development
+### Environment Setup
 Clone the repo and install dependencies<br>
 ```
 npm install
@@ -24,3 +24,7 @@ MY_CLIENT_SECRET= client secret provided by Spotify<br>
 <br>
 Note: you must sign up on Spotify for an application to get the ID and SECRET<br>
 
+### Starting the App
+```
+npm start
+```
