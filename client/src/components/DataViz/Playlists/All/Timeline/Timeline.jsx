@@ -90,8 +90,14 @@ class Timeline extends React.Component {
 
         // holds the tally # of tracks by year
         let totalTracksByYear = {
+            // example:  { 2012: 30, 2013: 56 }
+        };
 
-        }
+        // holds the year with most tracks added
+        let mostTracksAdded = {
+            year: 0,
+            numOfTracks: 0
+        };
         
         // ==== for displaying track differences between years
 
@@ -102,6 +108,15 @@ class Timeline extends React.Component {
                 } else {
                     totalTracksByYear[yearKey] += value;
                 }
+            }
+        }
+
+        // ==== find year with most tracks added
+
+        for (let [key, value] of Object.entries(totalTracksByYear)) {
+            if (value >= mostTracksAdded.numOfTracks) {
+                mostTracksAdded.numOfTracks = value;
+                mostTracksAdded.year = key
             }
         }
 
@@ -133,7 +148,7 @@ class Timeline extends React.Component {
                     {/* if user has playlists that haven't been added to in 2+ years */}
 
                     {this.analyzeOldPlaylists().length > 0 &&
-                        <div>
+                        <div className={styles.left}>
                             <h2>Playlists that need some love</h2>
                             <div className="divider"></div>
                             {this.analyzeOldPlaylists().map(playlist => {
@@ -143,7 +158,7 @@ class Timeline extends React.Component {
                             })}
                         </div>
                     }
-                    <div>
+                    <div className={styles.right}>
                         {/* if year obj contains this year and last */}
                         {totalTracksByYear[new Date().getFullYear()] !== undefined && totalTracksByYear[new Date().getFullYear() - 1] !== undefined &&
                             <div>
@@ -159,7 +174,7 @@ class Timeline extends React.Component {
                                 </div>
                             </div>
                         }
-                        <h4>2014 was your most active year where you added 800 songs</h4>
+                        <h2><span className={styles.highlight}>{mostTracksAdded.year}</span> was your most active year when you added <span className={styles.highlight}>{mostTracksAdded.numOfTracks} songs</span></h2>
                     </div>
                 </div>
             </div>
