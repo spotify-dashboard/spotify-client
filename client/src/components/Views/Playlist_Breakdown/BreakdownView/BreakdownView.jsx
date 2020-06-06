@@ -12,12 +12,14 @@ import LoginError from '../../../Global/LoginError/LoginError.jsx';
 import PlaylistListView from '../PlaylistList/PlaylistListView.jsx';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
+import DeveloperBoardIcon from '@material-ui/icons/DeveloperBoard';
 
 import Timeline from '../../../DataViz/Playlists/All/Timeline/Timeline.jsx';
 import GenreTreeMap from '../../../DataViz/Playlists/All/GenreTreeMap/GenreTreeMap.jsx';
 import GenreBarChart from '../../../DataViz/Playlists/All/GenreBarChart/GenreBarChart.jsx';
 import FeaturesRadar from '../../../DataViz/Playlists/All/FeaturesRadar/FeaturesRadar.jsx';
 import Popularity from '../../../DataViz/Playlists/All/Popularity/Popularity.jsx';
+import ArtistsTop from '../../../DataViz/Playlists/All/ArtistsTop/ArtistsTop.jsx';
 
 import { breakdownAllPlaylists } from '../../../../actions/breakdownActions.js';
 
@@ -60,7 +62,7 @@ const PlaylistsView = props => {
                             <div>
                                 <div>
                                     <h1>Playlist Breakdown</h1>
-                                    <p>For many of us, music is a very important part of our lives. The charts below give you a glimpse into your listening history on Spotify, and help to illuminate the type of music listener that you are.</p>
+                                    <p>Select a playlist below to get a glimpse into your listening history on Spotify.</p>
                                     <div className="divider"></div>
 
                                     {/* Button for all playlist aggregate */}
@@ -69,8 +71,11 @@ const PlaylistsView = props => {
                                         onClick={() => {props.pageChange('/breakdown-all')}}
                                         className={styles.allPlaylistButton}
                                     >
-                                        <h4>All Playlists</h4>
-                                        <p>Aggregate all playlists</p>
+                                        <DeveloperBoardIcon fontSize="large" className={styles.icon} />
+                                        <div className={styles.right}>
+                                            <h3 className="remove-all-margin">All Playlists</h3>
+                                            <p className="textGrey remove-all-margin">View trends across all of your playlists</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="divider"></div>
@@ -78,8 +83,6 @@ const PlaylistsView = props => {
                                 <PlaylistListView />
                             </div>
                         }
-
-    {/* NOTE::: LOADING/SPINNER VIEW LOGIC IS IN EACH DATA VIZ VIEW */}
 
                         {/* Viewing individual playlist breakdown */}
 
@@ -104,7 +107,7 @@ const PlaylistsView = props => {
                                 {!Array.isArray(props.breakdownAll) &&
                                     <div>
                                         <div>
-                                            <h1>All Playlists</h1>
+                                            <h1>Breakdown All Playlists</h1>
                                             <p>A breakdown of the trends found after analyzing all of your personal playlists.</p>
                                         </div>
                                         <div className="divider"></div>
@@ -112,17 +115,14 @@ const PlaylistsView = props => {
                                         <GenreBarChart />
                                         <div className="divider"></div>
                                         <Timeline />
-                                        <Popularity />
+                                        <ArtistsTop />
+                                        <Popularity />  
                                         <div className="divider"></div>
                                         <FeaturesRadar />
                                     </div>
                                 }
                             </div>
-                        }
-
-    
-
-                        
+                        }       
                     </div>
                 }
             </div>
