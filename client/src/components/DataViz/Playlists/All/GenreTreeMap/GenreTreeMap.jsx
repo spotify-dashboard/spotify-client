@@ -90,13 +90,16 @@ class GenreTreeMap extends React.Component {
 
         return (
             <div className={styles.parentContainer}>
-                <div className="flex flex-spread">
+                <div className="flex flex-spread flex-vertical-align">
                     <h3>Genres | Which genres are in your playlists?</h3>
-                    <ol className={styles.genreList}>
-                        <li className={styles.genreListItem}>{topGenres[topGenres.length-1][0]}</li>
-                        <li className={styles.genreListItem}>{topGenres[topGenres.length-2][0]}</li>
-                        <li className={styles.genreListItem}>{topGenres[topGenres.length-3][0]}</li>
-                    </ol>
+                    <div>
+                        <p className="textGrey">Top Genres</p>
+                        <ol className={styles.genreList}>
+                            <li className={styles.genreListItem}>{topGenres[topGenres.length-1][0]}</li>
+                            <li className={styles.genreListItem}>{topGenres[topGenres.length-2][0]}</li>
+                            <li className={styles.genreListItem}>{topGenres[topGenres.length-3][0]}</li>
+                        </ol>
+                    </div>
                 </div>
                 <canvas
                     ref="allPlaylistsGenreTree"
