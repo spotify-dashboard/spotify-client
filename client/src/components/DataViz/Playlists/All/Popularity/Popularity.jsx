@@ -20,7 +20,6 @@ const PopularityBar = withStyles({
 
 const Popularity = props => {
     
-    console.log('popularity props', props);
     return (
         <div className={styles.parentContainer}>
             <div className="flex flex-vertical-align">
@@ -34,22 +33,27 @@ const Popularity = props => {
                     />
                 </div>
             </div>
-            <div className={styles.playlistsList}>
-                {Object.keys(props.popularityByPlaylist).map(playlistKey => {
-                    return (
-                        <div className={styles.playlistPopularityItem}>
-                            <h4 className={styles.playlistName}>{playlistKey}</h4>
-                            <p className={styles.playlistTotal}>{Math.floor(props.popularityByPlaylist[playlistKey])} / 100</p>
-                            <PopularityBar
-                                className={styles.popularityBar}
-                                variant="determinate"
-                                color="secondary"
-                                value={props.popularityByPlaylist[playlistKey]}
-                            />
-                        </div>
-                    )
-                })}
-            </div>
+
+            {/* List each playlist, if they exist */}
+
+            {Object.keys(props.popularityByPlaylist).length > 0 &&
+                <div className={styles.playlistsList}>
+                    {Object.keys(props.popularityByPlaylist).map(playlistKey => {
+                        return (
+                            <div className={styles.playlistPopularityItem}>
+                                <h4 className={styles.playlistName}>{playlistKey}</h4>
+                                <p className={styles.playlistTotal}>{Math.floor(props.popularityByPlaylist[playlistKey])} / 100</p>
+                                <PopularityBar
+                                    className={styles.popularityBar}
+                                    variant="determinate"
+                                    color="secondary"
+                                    value={props.popularityByPlaylist[playlistKey]}
+                                />
+                            </div>
+                        )
+                    })}
+                </div>
+            }
         </div>
     )
 };

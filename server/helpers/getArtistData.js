@@ -18,6 +18,9 @@ module.exports.getArtistData = (tracksArray) => {
         // capture the date/time added to playlist
         let addedAtArr = [];
 
+        //artist tally
+        let artistTally = {};
+
         // iterate trough tracksArr to get artists - O(n) operation
         tracksArray.forEach(track => {
             if (track.track !== undefined) {
@@ -72,7 +75,19 @@ module.exports.getArtistData = (tracksArray) => {
                 }
             })
             .then(results => {
+                // push artist obj to array
                 genresArr.push(results.data.artists);
+                
+                // add artist to tally
+                if (results.data.artists.length > 0) {
+                    for (let i = 0; i < results.data.artists.length; i++) {
+                        if (!artistTally.hasOwnProperty(results.data.artists[i].name)) {
+                            artistTally[results.data.artists[i].name] = 1;
+                        } else {
+                            artistTally[results.data.artists[i].name]++;
+                        }
+                    }
+                }
             })
             .catch(err => {
                 console.log('Error in getting artist genres', err);
@@ -93,13 +108,15 @@ module.exports.getArtistData = (tracksArray) => {
             // return played at, and artists
             resolve({
                 playedAtDates: playedAtArr,
-                artists: flattenedArr
+                artists: flattenedArr,
+                artistTally: artistTally
             })
         } else if (addedAtArr.length > 0) {
             // return added at and artists
             resolve({
                 addedAtDates: addedAtArr,
-                artists: flattenedArr
+                artists: flattenedArr,
+                artistTally: artistTally
             })
         } else {
             // return just the artists

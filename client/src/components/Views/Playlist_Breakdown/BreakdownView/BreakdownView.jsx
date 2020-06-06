@@ -112,10 +112,9 @@ const PlaylistsView = props => {
                                         <GenreBarChart />
                                         <div className="divider"></div>
                                         <Timeline />
-                                        {/* <div className="divider"></div> */}
-                                        <FeaturesRadar />
-                                        <div className="divider"></div>
                                         <Popularity />
+                                        <div className="divider"></div>
+                                        <FeaturesRadar />
                                     </div>
                                 }
                             </div>
