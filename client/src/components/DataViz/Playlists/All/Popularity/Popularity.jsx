@@ -31,6 +31,7 @@ const Popularity = props => {
                         color="secondary"
                         value={props.popularityAvg}
                     />
+                    <div className="divider small-margin-top-bottom"></div>
                 </div>
             </div>
 
