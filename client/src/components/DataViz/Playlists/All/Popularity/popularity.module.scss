@@ -1,0 +1,28 @@
+@import '../../../../../variables';
+
+.parentContainer {
+    padding: 20px 0px;
+}
+
+.left, .right {
+    width: 50% !important;
+}
+
+.playlistsList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.playlistPopularityItem {
+    width: 30%;
+    margin: 0px 15px;
+}
+
+.playlistTotal {
+    color: $lightGrey;
+    margin-top: 0;
+}
+
+.playlistName {
+    margin-bottom: 0;
+}
