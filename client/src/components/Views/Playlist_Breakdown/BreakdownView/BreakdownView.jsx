@@ -72,8 +72,8 @@ const PlaylistsView = props => {
                                     >
                                         <DeveloperBoardIcon fontSize="large" className={styles.icon} />
                                         <div className={styles.right}>
-                                            <h3>All Playlists</h3>
-                                            <p className="textGrey">Aggregate all playlists</p>
+                                            <h3 className="remove-all-margin">All Playlists</h3>
+                                            <p className="textGrey remove-all-margin">View trends across all of your playlists</p>
                                         </div>
                                     </div>
                                 </div>
