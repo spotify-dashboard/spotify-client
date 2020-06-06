@@ -61,7 +61,7 @@ const PlaylistsView = props => {
                             <div>
                                 <div>
                                     <h1>Playlist Breakdown</h1>
-                                    <p>For many of us, music is a very important part of our lives. The charts below give you a glimpse into your listening history on Spotify, and help to illuminate the type of music listener that you are.</p>
+                                    <p>Select a playlist below to get a glimpse into your listening history on Spotify.</p>
                                     <div className="divider"></div>
 
                                     {/* Button for all playlist aggregate */}
@@ -82,8 +82,6 @@ const PlaylistsView = props => {
                                 <PlaylistListView />
                             </div>
                         }
-
-    {/* NOTE::: LOADING/SPINNER VIEW LOGIC IS IN EACH DATA VIZ VIEW */}
 
                         {/* Viewing individual playlist breakdown */}
 
@@ -108,7 +106,7 @@ const PlaylistsView = props => {
                                 {!Array.isArray(props.breakdownAll) &&
                                     <div>
                                         <div>
-                                            <h1>All Playlists</h1>
+                                            <h1>Breakdown All Playlists</h1>
                                             <p>A breakdown of the trends found after analyzing all of your personal playlists.</p>
                                         </div>
                                         <div className="divider"></div>
@@ -122,11 +120,7 @@ const PlaylistsView = props => {
                                     </div>
                                 }
                             </div>
-                        }
-
-    
-
-                        
+                        }       
                     </div>
                 }
             </div>
