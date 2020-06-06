@@ -132,7 +132,14 @@ module.exports = {
                 res.status(200).json(completeTrackData);
             }
         },
-        // for aggregating all playlists
+
+
+
+
+        // ==== for aggregating all playlists
+
+
+        
         allPlaylists: async (req, res) => {
 
             // holds returned data
@@ -140,12 +147,14 @@ module.exports = {
                 // tracks: [],
                 genres: [],
                 features: [],
-                artists: [],
+                // artists: [],
+                // artistTally: {} added at the end of file
                 timeline: [],
                 added_at_arr: []
             };
             
             let artistsArr;
+            let artistTally;
             let genresArr;
             let featuresArr;
             let timelineObj;
@@ -205,17 +214,17 @@ module.exports = {
                             
                             // get tracks for each playlist
                             await getTrackData(`https://api.spotify.com/v1/playlists/${array[playlist].id}/tracks`)
-                            .then(tracks => {
-                                tracksCollection.push({ 
-                                    playlistId: array[playlist].id,
-                                    playlistName: array[playlist].name,
-                                    tracks: tracks
+                                .then(tracks => {
+                                    tracksCollection.push({ 
+                                        playlistId: array[playlist].id,
+                                        playlistName: array[playlist].name,
+                                        tracks: tracks
+                                    });
+                                })
+                                .catch(err => {
+                                    console.log("Error iterating through playists for data", err);
+                                    res.status(400).json({message: "Error", error: err});
                                 });
-                            })
-                            .catch(err => {
-                                console.log("Error iterating through playists for data", err);
-                                res.status(400).json({message: "Error", error: err});
-                            });
                         }
                     }
 
@@ -239,7 +248,8 @@ module.exports = {
                         .then(artists => {
                             // save artists
                             artistsArr = artists;
-                            addedAtArr = artists.addedAtDates
+                            addedAtArr = artists.addedAtDates;
+                            artistTally = artists.artistTally;
                         })
                         .catch(err => {
                             console.log("Error in getting artist data for aggregate", err);
@@ -277,7 +287,7 @@ module.exports = {
                             res.status(400).json({message: "Error", error: err});
                         })
 
-                    // ==== sORGANIZE GENRE OBJECT
+                    // ==== ORGANIZE GENRE OBJECT
                     // NOTE: PLANNING TO MOVE TO GENRE HELPER FUNCTION
 
                     // function to flatten genres array and tally genres
@@ -324,6 +334,7 @@ module.exports = {
                     completeTrackData.added_at_arr = addedAtArr;
                     completeTrackData.timeline = timelineObj;
                     completeTrackData.popularity = popularityArr;
+                    completeTrackData.artistTally = artistTally
 
                     // save data object in cache
                     playlistCache['all'] = completeTrackData;
@@ -331,8 +342,6 @@ module.exports = {
                     // serve
                     res.status(200).json(completeTrackData);
                 };
-
-                
 
                 // call process function
                 await processData(playlistsArr);
