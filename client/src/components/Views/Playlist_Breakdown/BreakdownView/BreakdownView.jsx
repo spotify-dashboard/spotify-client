@@ -19,6 +19,7 @@ import GenreTreeMap from '../../../DataViz/Playlists/All/GenreTreeMap/GenreTreeM
 import GenreBarChart from '../../../DataViz/Playlists/All/GenreBarChart/GenreBarChart.jsx';
 import FeaturesRadar from '../../../DataViz/Playlists/All/FeaturesRadar/FeaturesRadar.jsx';
 import Popularity from '../../../DataViz/Playlists/All/Popularity/Popularity.jsx';
+import ArtistsTop from '../../../DataViz/Playlists/All/ArtistsTop/ArtistsTop.jsx';
 
 import { breakdownAllPlaylists } from '../../../../actions/breakdownActions.js';
 
@@ -114,6 +115,7 @@ const PlaylistsView = props => {
                                         <GenreBarChart />
                                         <div className="divider"></div>
                                         <Timeline />
+                                        <ArtistsTop />
                                         <Popularity />  
                                         <div className="divider"></div>
                                         <FeaturesRadar />
