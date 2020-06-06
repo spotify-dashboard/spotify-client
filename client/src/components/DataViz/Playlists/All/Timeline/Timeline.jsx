@@ -9,7 +9,7 @@ class Timeline extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sortValue: 'Month'
+            sortValue: 'Year'
         }
 
         this.sortChange = this.sortChange.bind(this);
