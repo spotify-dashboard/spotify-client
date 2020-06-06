@@ -1,0 +1,20 @@
+@import '../../../../variables';
+
+.allPlaylistButton {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 0px;
+}
+
+.allPlaylistButton:hover {
+    background-color: $lightGrey;
+}
+
+.icon {
+    padding: 10px;
+}
+
+.right {
+    padding: 0px 20px;
+}
