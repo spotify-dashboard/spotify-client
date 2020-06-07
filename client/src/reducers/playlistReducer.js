@@ -2,6 +2,7 @@ import { actions } from '../actions/types.js';
 
 const initialState = {
     allPlaylists: [],
+    playlist: undefined,
     currentPlaylist: undefined,
     error: null
 };
@@ -15,6 +16,12 @@ export default function(state = initialState, action) {
                 error: null
             }
         case actions.playlists.get.GET_BY_ID:
+            return {
+                ...state,
+                playlist: action.payload,
+                error: null
+            }
+        case action.playlists.current.CURRENT_PLAYLIST:
             return {
                 ...state,
                 currentPlaylist: action.payload,
