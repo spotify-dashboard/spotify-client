@@ -46,6 +46,10 @@ export const actions = {
         clear: {
             CLEAR_PLAYLIST: 'CLEAR_PLAYLIST'
         },
+        // the currently selected playlist on the breakdown playlist section
+        current: {
+            CURRENT_PLAYLIST: 'CURRENT_PLAYLIST'
+        }
     },
     //error handling
     error: {

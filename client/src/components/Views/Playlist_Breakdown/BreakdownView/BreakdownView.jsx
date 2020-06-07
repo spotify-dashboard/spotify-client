@@ -88,7 +88,23 @@ const PlaylistsView = props => {
 
                         {props.currentPage === '/breakdown-playlist' &&
                             <div>
-                                jeff
+                                {/* LOADING VIEW */}
+                                {Array.isArray(props.breakdownAll) &&
+                                    <div className={styles.loadingBlurb}>
+                                        <h3>Loading Data</h3>
+                                        <CircularProgress size={70} />
+                                    </div>
+                                }
+                                {/* DATA LOADED VIEW */}
+                                {!Array.isArray(props.breakdownAll) && 
+                                    <div>
+                                        <div>
+                                            <h1>Playlist name</h1>
+                                            <p>A breakdown of the trends found after analyzing all of your personal playlists.</p>
+                                        </div>
+                                        <div className="divider"></div>
+                                    </div>
+                                }
                             </div>
                         }
 
