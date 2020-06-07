@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './playlistlist.module.scss';
 import { connect } from 'react-redux';
 
-import { getPlaylistById } from '../../../../actions/playlistActions.js';
+import { currentPlaylist } from '../../../../actions/playlistActions.js';
 import { pageChange } from '../../../../actions/pageChangeActions.js';
 import { breakdownIndividualPlaylist } from '../../../../actions/breakdownActions.js';
 
@@ -22,7 +22,7 @@ const PlaylistListView = props => {
                         return (
                             <div
                                 key={playlist.id}
-                                onClick={() => {props.breakdownIndividualPlaylist(playlist.id); props.getPlaylistById(playlist.id); props.pageChange('/breakdown-playlist');}}
+                                onClick={() => {props.breakdownIndividualPlaylist(playlist.id); props.currentPlaylist(playlist); props.pageChange('/breakdown-playlist');}}
                                 className={styles.playlistItem}
                             >
                                 {playlist.images[0] !== undefined &&
@@ -49,13 +49,12 @@ const mapStateToProps = (state, ownProps) => {
         currentPage: state.pageChange.currentPage,
         profile: state.getProfile.profile,
         allPlaylists: state.getAllPlaylists.allPlaylists || ownProps.allPlaylists,
-        playlist: state.getAllPlaylists.playlist,
         isLoggedIn: state.loginCheck.loggedIn.isLoggedIn,
     };
 };
 
 const mapDispatchToProps = {
-    getPlaylistById,
+    currentPlaylist,
     breakdownIndividualPlaylist,
     pageChange
 };
