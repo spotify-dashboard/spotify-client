@@ -22,7 +22,7 @@ const PlaylistListView = props => {
                         return (
                             <div
                                 key={playlist.id}
-                                onClick={() => {props.breakdownIndividualPlaylist(playlist.id); props.pageChange('/breakdown-playlist');}}
+                                onClick={() => {props.breakdownIndividualPlaylist(playlist.id); props.getPlaylistById(playlist.id); props.pageChange('/breakdown-playlist');}}
                                 className={styles.playlistItem}
                             >
                                 {playlist.images[0] !== undefined &&
