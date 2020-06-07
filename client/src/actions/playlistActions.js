@@ -37,11 +37,22 @@ export function getPlaylistById(id) {
     };
 };
 
+// for clearing the current playlist
 export function clearPlaylist() {
     return function(dispatch) {
         dispatch({
             type: actions.playlists.clear.CLEAR_PLAYLIST,
             payload: undefined
+        });
+    };
+};
+
+// for keeping track of the currently selected playlist on the breakdown playlist section
+export function currentPlaylist(id, name) {
+    return function(dispatch) {
+        dispatch({
+            type: actions.playlists.current.CURRENT_PLAYLIST,
+            payload: { id: id, playlistName: name }
         });
     };
 };
