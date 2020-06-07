@@ -21,7 +21,7 @@ export default function(state = initialState, action) {
                 playlist: action.payload,
                 error: null
             }
-        case action.playlists.current.CURRENT_PLAYLIST:
+        case actions.playlists.current.CURRENT_PLAYLIST:
             return {
                 ...state,
                 currentPlaylist: action.payload,
