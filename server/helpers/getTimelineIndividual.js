@@ -34,7 +34,7 @@ let selectColor = () => {
 }
 
 
-module.exports.getTimeline = (musicArray) => {
+module.exports.getTimelineIndividual = (tracksArray) => {
     return new Promise( async (resolve, reject) => {
         
         // timeline return obj
@@ -61,19 +61,19 @@ module.exports.getTimeline = (musicArray) => {
 
 
         // === GET ALL DATE LABELS
-        await musicArray.forEach(item => {
+        await tracksArray.forEach(item => {
             
             // REF playlist name - item.playlistName
 
-            // add playlist names to obj; set equal to empty arrays
-            if (!timelineObj.playlists.hasOwnProperty(item.playlistName)) {
-                timelineObj.playlists[item.playlistName] = {};
-            }
+            // // add playlist names to obj; set equal to empty arrays
+            // if (!timelineObj.playlists.hasOwnProperty(item.playlistName)) {
+            //     timelineObj.playlists[item.playlistName] = {};
+            // }
 
-            // for formatting by year
-            if (!yearObj.hasOwnProperty(item.playlistName)) {
-                yearObj[item.playlistName] = {};
-            }
+            // // for formatting by year
+            // if (!yearObj.hasOwnProperty(item.playlistName)) {
+            //     yearObj[item.playlistName] = {};
+            // }
 
             for (let i = 0; i < item.tracks.length; i++) {
                 // format the added at date
