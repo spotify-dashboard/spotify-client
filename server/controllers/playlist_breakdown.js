@@ -5,6 +5,7 @@ const { getGenreData } = require('../helpers/getGenreData.js');
 const { getAudioFeatures } = require('../helpers/getAudioFeatures.js');
 const { getProfile } = require('../helpers/getProfile.js');
 const { getTimeline } = require('../helpers/getTimelineAll.js');
+const { getTimelineIndividual } = require('../helpers/getTimelineIndividual.js');
 const { getPopularity } = require('../helpers/getPopularity.js');
 
 // cache for playlists
@@ -125,8 +126,20 @@ module.exports = {
 
                 await createGenreObject();
 
+                // ==== GET TIMELINE DATA
+
+                await getTimelineIndividual(tracksArr)
+                    .then(timelineData => {
+                        timelineObj = timelineData;
+                    })
+                    .catch(err => {
+                        console.log('Error getting timeline data for specific playlist');
+                        res.status(400).json({ message: "Error getting playlist timeline", error: err });
+                    });
+
                 // add features to return obj
                 completeTrackData.features = featuresArr;
+                completeTrackData.timeline = timelineObj;
 
                 // push track, played_at, artist, and genres for each track
                 for (let i = 0; i < genresArr.length; i++) {
