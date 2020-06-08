@@ -88,7 +88,23 @@ const PlaylistsView = props => {
 
                         {props.currentPage === '/breakdown-playlist' &&
                             <div>
-                                jeff
+                                {/* LOADING VIEW */}
+                                {Array.isArray(props.breakdownAll) &&
+                                    <div className={styles.loadingBlurb}>
+                                        <h3>Loading Data</h3>
+                                        <CircularProgress size={70} />
+                                    </div>
+                                }
+                                {/* DATA LOADED VIEW */}
+                                {!Array.isArray(props.breakdownAll) && 
+                                    <div>
+                                        <div>
+                                            <h1>{props.currentPlaylist.name}</h1>
+                                            <p>A breakdown of the trends found after analyzing all of your personal playlists.</p>
+                                        </div>
+                                        <div className="divider"></div>
+                                    </div>
+                                }
                             </div>
                         }
 
@@ -135,7 +151,7 @@ const mapStateToProps = (state, ownProps) => {
         currentPage: state.pageChange.currentPage,
         profile: state.getProfile.profile,
         allPlaylists: state.getAllPlaylists.allPlaylists || ownProps.allPlaylists,
-        playlist: state.getAllPlaylists.playlist,
+        currentPlaylist: state.getAllPlaylists.currentPlaylist,
         breakdownAll: state.getPlaylistBreakdown.breakdownAll,
         breakdownPlaylist: state.getPlaylistBreakdown.breakdownPlaylist,
         isLoggedIn: state.loginCheck.loggedIn.isLoggedIn,

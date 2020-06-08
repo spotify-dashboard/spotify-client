@@ -4,7 +4,8 @@ const { getArtistData } = require('../helpers/getArtistData.js');
 const { getGenreData } = require('../helpers/getGenreData.js');
 const { getAudioFeatures } = require('../helpers/getAudioFeatures.js');
 const { getProfile } = require('../helpers/getProfile.js');
-const { getTimeline } = require('../helpers/getTimeline.js');
+const { getTimeline } = require('../helpers/getTimelineAll.js');
+const { getTimelineIndividual } = require('../helpers/getTimelineIndividual.js');
 const { getPopularity } = require('../helpers/getPopularity.js');
 
 // cache for playlists
@@ -24,20 +25,33 @@ module.exports = {
 
             // holds returned data
             let completeTrackData = {
-                tracks: [],
+                // tracks: [],
                 genres: [],
-                features: []
+                features: [],
+                // artists: [],
+                // artistTally: {} added at the end of file
+                timeline: [],
+                added_at_arr: []
             };
 
-            let tracksArr;
             let artistsArr;
+            let artistTally;
             let genresArr;
             let featuresArr;
+            let timelineObj;
+            let addedAtArr;
+            let popularityArr;
 
-            // if cache includes playlist, serve from cache
+            // SERVING FROM CACHE
+
             if (playlistCache.hasOwnProperty(req.params.id)) {
+                console.log('Serving playlist breakdown data from cache');
+                // serve from cache
                 res.status(304).json(playlistCache[req.params.id]);
             } else {
+
+                // NOT SERVING FROM CACHE
+
                 // get tracks; pass in url with playlist id
                 await getTrackData(`https://api.spotify.com/v1/playlists/${req.params.id}/tracks`)
                     .then(tracks => {
@@ -112,8 +126,20 @@ module.exports = {
 
                 await createGenreObject();
 
+                // ==== GET TIMELINE DATA
+
+                await getTimelineIndividual(tracksArr)
+                    .then(timelineData => {
+                        timelineObj = timelineData;
+                    })
+                    .catch(err => {
+                        console.log('Error getting timeline data for specific playlist');
+                        res.status(400).json({ message: "Error getting playlist timeline", error: err });
+                    });
+
                 // add features to return obj
                 completeTrackData.features = featuresArr;
+                completeTrackData.timeline = timelineObj;
 
                 // push track, played_at, artist, and genres for each track
                 for (let i = 0; i < genresArr.length; i++) {
