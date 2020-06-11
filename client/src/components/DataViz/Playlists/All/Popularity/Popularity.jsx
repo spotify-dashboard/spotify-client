@@ -41,7 +41,7 @@ const Popularity = props => {
                 <div className={styles.playlistsList}>
                     {Object.keys(props.popularityByPlaylist).map(playlistKey => {
                         return (
-                            <div className={styles.playlistPopularityItem}>
+                            <div key={props.popularityByPlaylist.indexOf(playlistKey)} className={styles.playlistPopularityItem}>
                                 <h4 className={styles.playlistName}>{playlistKey}</h4>
                                 <p className={styles.playlistTotal}>{Math.floor(props.popularityByPlaylist[playlistKey])} / 100</p>
                                 <PopularityBar
