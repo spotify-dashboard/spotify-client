@@ -142,16 +142,6 @@ module.exports = {
                 completeTrackData.features = featuresArr;
                 completeTrackData.timeline = timelineObj;
 
-                // push track, played_at, artist, and genres for each track
-                // for (let i = 0; i < genresArr.length; i++) {
-                //     completeTrackData.tracks.push({
-                //         track: tracksArr[i],
-                //         added_at: artistsArr.addedAtDates[i],
-                //         artist: artistsArr.artists[i],
-                //         genres: genresArr[i],
-                //     });
-                // };
-
                 // add complete data to cache
                 playlistCache[req.params.id] = completeTrackData;
 
