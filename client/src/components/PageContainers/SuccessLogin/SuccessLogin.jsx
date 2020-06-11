@@ -8,7 +8,6 @@ import { fetchProfile } from '../../../actions/profileActions.js';
 import { getRecentlyPlayed } from '../../../actions/recentlyPlayedActions.js';
 import { fetchMusicLibraryTracks } from '../../../actions/musicLibraryActions.js';
 import { pageChange } from '../../../actions/pageChangeActions.js';
-import { fetchCurrentSong } from '../../../actions/currentSongActions.js';
 import { getAllPlaylists } from '../../../actions/playlistActions.js';
 import { loginCheck } from '../../../actions/loginActions.js';
 import { setError } from '../../../actions/errorActions.js';
@@ -27,9 +26,6 @@ const SuccessLogin = props => {
             
             // get profile info
             props.fetchProfile();
-
-            // get current song that user is playing on Spotify
-            props.fetchCurrentSong();
 
             //get all user's playlists
             props.getAllPlaylists();
@@ -80,7 +76,6 @@ const mapDispatchToProps = {
     breakdownAllPlaylists,
     fetchMusicLibraryTracks,
     pageChange,
-    fetchCurrentSong,
     getAllPlaylists,
     setError
 }
