@@ -39,16 +39,9 @@ module.exports.getTimelineIndividual = (tracksArray) => {
         
         // timeline return obj
         let timelineObj = {
-            dateLabelsByMonth: [], // includes dates as array items
-            dateLabelsByYear: [],
-            formattedByMonth: [],
-            formattedByYear: [],
-            yearTally: {}
+            dataFormattedByMonth: {},
+            dataFormattedByYear: {},
         };
-
-        let yearObj = {
-
-        }
 
         const dateConverter = (rawDate) => {
             let date = new Date(rawDate); // convert to date obj
@@ -60,40 +53,35 @@ module.exports.getTimelineIndividual = (tracksArray) => {
         };
 
 
-        // === GET ALL DATE LABELS
-        await tracksArray.forEach(item => {
-            
-            // REF playlist name - item.playlistName
+        // === GET ALL DATE LABELS AND TALLY ===============================
 
-            // // add playlist names to obj; set equal to empty arrays
-            // if (!timelineObj.playlists.hasOwnProperty(item.playlistName)) {
-            //     timelineObj.playlists[item.playlistName] = {};
-            // }
 
-            // // for formatting by year
-            // if (!yearObj.hasOwnProperty(item.playlistName)) {
-            //     yearObj[item.playlistName] = {};
-            // }
+        await tracksArray.forEach(track => {
+            // date that current track was added
+            let addedAtDate = dateConverter(track.added_at);
 
-            for (let i = 0; i < item.tracks.length; i++) {
-                // format the added at date
-                let addedAtDate = dateConverter(item.tracks[i].added_at);
+            // for year formatting
+            let addedAtYear = addedAtDate.slice(0,4);
 
-                if (!timelineObj.dateLabelsByMonth.includes(addedAtDate)) {
-                    timelineObj.dateLabelsByMonth.push(addedAtDate);
-                }
-                
-                // for year formatting
-                let addedAtYear = addedAtDate.slice(0,4);
+            // formatting data by month
+            if (!timelineObj.dataFormattedByMonth.hasOwnProperty(addedAtDate)) {
+                timelineObj.dataFormattedByMonth[addedAtDate] = 1;
+            } else {
+                timelineObj.dataFormattedByMonth[addedAtDate]++;
+            }
 
-                if (!timelineObj.dateLabelsByYear.includes(addedAtYear)) {
-                    timelineObj.dateLabelsByYear.push(addedAtYear);
-                }
+            // formatting data by year
+            if (!timelineObj.dataFormattedByYear.hasOwnProperty(addedAtYear)) {
+                timelineObj.dataFormattedByYear[addedAtYear] = 1;
+            } else {
+                timelineObj.dataFormattedByYear[addedAtYear]++;
             }
         });
 
-        // ==== SORT the date labels
+
+        // ==== SORT the date labels =================================
         
+
         for (let i = 0; i < timelineObj.dateLabelsByMonth.length; i++) {
             timelineObj.dateLabelsByMonth.sort((a,b) => a - b);
         }
@@ -102,59 +90,7 @@ module.exports.getTimelineIndividual = (tracksArray) => {
             timelineObj.dateLabelsByYear.sort((a,b) => a - b);
         }
 
-        // iterate through playlists and add each date obj
-        // for each playlist
-        for (let [key, value] of Object.entries(timelineObj.playlists)) {
-            // iterate through date labels
-            timelineObj.dateLabelsByMonth.forEach(dateLabel => {
-                // save each date label as a property of the specific playlist; set initially to 0
-                timelineObj.playlists[key][dateLabel] = 0;
-
-                // for year formatting
-                let year = dateLabel.slice(0,4);
-                yearObj[key][year] = 0;
-            });
-        }
-
-        // *** incrementing the playlist object on timeline object
-        for (let z = 0; z < musicArray.length; z++) {
-            for (let j = 0; j < musicArray[z].tracks.length; j++) {
-                // references for the current date and playlist
-                let currentPlaylist = musicArray[z].playlistName;
-                let currentDate = dateConverter(musicArray[z].tracks[j].added_at);
-                
-                // increment playlist obj 
-                timelineObj.playlists[currentPlaylist][currentDate]++;
-                
-                // for year formatting
-                let currentYear = currentDate.slice(0,4);
-                yearObj[currentPlaylist][currentYear]++;
-            }
-        }
-
-        // ==== format By Month
-
-        // iterate through data object
-        for (let [key, value] of Object.entries(timelineObj.playlists)) {
-            let dataArray = Object.values(timelineObj.playlists[key]);
-            timelineObj.formattedByMonth.push({
-                label: key,
-                backgroundColor: selectColor(),
-                data: dataArray
-            });
-        }
-
-        for (let [key, value] of Object.entries(yearObj)) {
-            let dataArray = Object.values(yearObj[key]);
-            timelineObj.formattedByYear.push({
-                label: key,
-                backgroundColor: selectColor(),
-                data: dataArray
-            })
-        }
-
-        // add yearObj to return obj as tally
-        timelineObj.yearTally = yearObj;
+        // ==== RETURN THE FINISHED OBJECT =======================
 
         resolve(timelineObj);
     });

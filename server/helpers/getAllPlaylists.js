@@ -1,7 +1,10 @@
 const login = require ('../controllers/login.js'); // credentials
 const Axios = require('axios');
 
-module.exports.getAllPlaylists = (url, params) => {
+// delay function; for api call limit; takes miliseconds as argument
+const delay = interval => new Promise(resolve => setTimeout(resolve, interval));
+
+module.exports.getAllPlaylists = (url, optionalLimit) => {
     return new Promise( async (resolve, reject) => {
 
         //set number of iterations for loop; will change after first api call to the max number of tracks
@@ -14,13 +17,37 @@ module.exports.getAllPlaylists = (url, params) => {
         
         //while more tracks are available
         while (totalPlaylists >= offset) {
+
+            // ==== delay for api call limits
+            await delay(50);
+
+            // set the initial limit
+            var limit = 1;
+
+            // change limit based on the total tracks; max of 50
+            if ((totalPlaylists - offset) > 50) {
+                limit = 50;
+            } else if ((totalPlaylists - offset) <= 50 && (totalPlaylists - offset) >= 40) {
+                limit = 40;
+            } else if ((totalPlaylists - offset) < 40 && (totalPlaylists - offset) >= 30) {
+                limit = 30;
+            } else if ((totalPlaylists - offset) < 30 && (totalPlaylists - offset) >= 20) {
+                limit = 20;
+            } else if ((totalPlaylists - offset) < 20 && (totalPlaylists - offset) >= 10) {
+                limit = 10;
+            } else if ((totalPlaylists - offset) < 10 && (totalPlaylists - offset) >= 5) {
+                limit = 5;
+            } else {
+                limit = 1;
+            }
+
             const getPlaylists = await Axios.get(url, {
                 headers: {
                     "Authorization": 'Bearer ' + login.credentials._credentials.accessToken
                 },
                 params: {
                     //O(log n) optimization 
-                    limit: (totalPlaylists - offset) < 1 ? 1: 1,
+                    limit: optionalLimit ? optionalLimit : limit,
                     offset: offset
                 }
             })
@@ -37,7 +64,7 @@ module.exports.getAllPlaylists = (url, params) => {
 
             //O(log n) optimization
             //increment
-            offset += (totalPlaylists - offset) < 1 ? 1: 1;
+            offset += limit;
         }
 
         //flatten and serve
