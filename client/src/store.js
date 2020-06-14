@@ -2,6 +2,7 @@ import  { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import throttle from 'lodash.throttle';
+import {parse, stringify} from 'flatted';
 
 const initialState = {};
 
