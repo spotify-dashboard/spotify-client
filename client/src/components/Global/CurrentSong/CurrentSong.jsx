@@ -23,15 +23,21 @@ const CurrentSong = props => {
             <h2>Currently Playing</h2>
             <div className="divider"></div>
             
-            {props.currentSong.item === undefined &&
+            {/* No song playing or user is not signed in */}
+
+            {(props.currentSong.item === undefined || props.error !== null) &&
                 <p className="textGrey">No track playing or not signed in.</p>
             }
-    
+
+            {/* Advertisement is playing */}
+
             {props.currentSong.currently_playing_type === 'ad' &&
                 <p>Ad playing.</p>
             }
 
-            {props.currentSong.item !== undefined && props.currentSong.item !== null &&
+            {/* Song is playing, i.e no errors and song exists */}
+
+            {props.currentSong.item !== undefined && props.currentSong.item !== null && props.error === null &&
             <div>
                 <h4 className="textGrey remove-bottom-margin">{props.currentSong.item.name}</h4>
                 <div className="flex flex-vertical-align">
@@ -66,7 +72,10 @@ const CurrentSong = props => {
 };
 
 const mapStateToProps = state => {
-    return { currentSong: state.getCurrentSong.currentSong };
+    return { 
+        currentSong: state.getCurrentSong.currentSong,
+        error: state.getCurrentSong.error
+    };
 };
 
 export default connect(mapStateToProps)(CurrentSong);

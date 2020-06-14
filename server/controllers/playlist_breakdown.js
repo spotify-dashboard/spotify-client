@@ -7,6 +7,7 @@ const { getProfile } = require('../helpers/getProfile.js');
 const { getTimeline } = require('../helpers/getTimelineAll.js');
 const { getTimelineIndividual } = require('../helpers/getTimelineIndividual.js');
 const { getPopularity } = require('../helpers/getPopularity.js');
+const { getPopularityIndividual } = require('../helpers/getPopularityIndividual.js');
 
 // cache for playlists
 var playlistCache = {
@@ -62,7 +63,11 @@ module.exports = {
                     })
                     .then(artistsData => {
                         // set for part of return data
+                        // save artists
                         artistsArr = artistsData;
+                        addedAtArr = artistsData.addedAtDates;
+                        artistTally = artistsData.artistTally;
+
                         // pass artists into func to get genres
                         return getGenreData(artistsData);
                     })
@@ -77,6 +82,13 @@ module.exports = {
                     .then(features => {
                         // set features for return data
                         featuresArr = features;
+                    })
+                    .then(() => {
+                        // get popularity data
+                        return getPopularityIndividual(tracksArr);
+                    })
+                    .then(popularityData => {
+                        popularityArr = popularityData;
                     })
                     .catch(err => {
                         console.log("Error in individual playlist breakdown");
@@ -131,7 +143,6 @@ module.exports = {
                 await getTimelineIndividual(tracksArr)
                     .then(timelineData => {
                         timelineObj = timelineData;
-                        console.log('TIMELINE DATA', timelineData)
                     })
                     .catch(err => {
                         console.log('Error getting timeline data for specific playlist');
@@ -141,16 +152,11 @@ module.exports = {
                 // add features to return obj
                 completeTrackData.features = featuresArr;
                 completeTrackData.timeline = timelineObj;
-
-                // push track, played_at, artist, and genres for each track
-                // for (let i = 0; i < genresArr.length; i++) {
-                //     completeTrackData.tracks.push({
-                //         track: tracksArr[i],
-                //         added_at: artistsArr.addedAtDates[i],
-                //         artist: artistsArr.artists[i],
-                //         genres: genresArr[i],
-                //     });
-                // };
+                completeTrackData.artistTally = artistTally;
+                completeTrackData.added_at_arr = addedAtArr;
+                completeTrackData.features = featuresArr.featuresObj;
+                completeTrackData.popularity = popularityArr;
+                    
 
                 // add complete data to cache
                 playlistCache[req.params.id] = completeTrackData;
@@ -331,7 +337,7 @@ module.exports = {
                         
                         // flatten genres array
                         let flattenedGenres = genresArr.flat(Infinity);
-                        // console.log('+++', flattenedGenres[0])
+                        
                         //iterate through all genres and add to tally
                         await flattenedGenres.forEach(genre => {
                             if (!genreTally.hasOwnProperty(genre)) {
