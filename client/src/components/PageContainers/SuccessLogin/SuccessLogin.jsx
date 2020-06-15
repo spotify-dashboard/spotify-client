@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './successlogin.module.scss';
 import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
@@ -13,6 +13,9 @@ import { setError } from '../../../actions/errorActions.js';
 import { breakdownAllPlaylists } from '../../../actions/breakdownActions.js';
 
 const SuccessLogin = props => {
+
+    // state used for seconds in counter interval below
+    const [ seconds, decrementTimer ] = useState(4);
 
     useEffect(() => {
         // if user is not logged in (login is checked on App comp mount)
@@ -40,7 +43,7 @@ const SuccessLogin = props => {
         }
     });
 
-    // history for re-routing
+    // history for re-routing back to home page
     let history = useHistory();
 
     // reroutes user to home page after 4 seconds
@@ -48,12 +51,23 @@ const SuccessLogin = props => {
         history.push('/');
     }, 4000);
 
+    // timer func to decrement every second
+    let timer = setInterval(() => {
+        decrementTimer(seconds - 1)
+    }, 1000);
+
+    // get rid of the timer
+    if (seconds === 0) {
+        clearInterval(timer);
+    }
+
     return (
         <div className={styles.successPageContainer}>
             <div className={styles.successBlurb}>
                 <h1>Successfully logged in.</h1>
+                <p>You will be re-routed to the application in {seconds} seconds</p>
                 <Link to="/">
-                    <p>Click here if the page is not re-routed</p>
+                    <p>Click here if the page is not re-routed after the counter.</p>
                 </Link>
             </div>
         </div>
