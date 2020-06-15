@@ -130,7 +130,8 @@ module.exports = {
                     }
 
                     // add genre objects to parent obj
-                    genreObject.genre_objects = genreArrayOfObjects;
+                    // genreObject.genre_objects = genreArrayOfObjects;
+                    completeTrackData.genre_objects = genreArrayOfObjects;
 
                     // add genre object to the complete genre that will be served
                     completeTrackData.genres = genreObject;

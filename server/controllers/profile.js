@@ -1,4 +1,3 @@
-const login = require('../controllers/login.js');
 const { getProfile } = require('../helpers/getProfile.js');
 
 const profileCache = {
