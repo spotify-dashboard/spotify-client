@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import styles from './successlogin.module.scss';
 import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { debounce, throttle } from 'lodash';
 
 import { fetchProfile } from '../../../actions/profileActions.js';
 import { getRecentlyPlayed } from '../../../actions/recentlyPlayedActions.js';
@@ -44,10 +43,10 @@ const SuccessLogin = props => {
     // history for re-routing
     let history = useHistory();
 
-    // reroutes user to home page after 3 seconds
+    // reroutes user to home page after 4 seconds
     let reroute = setTimeout(() => {
         history.push('/');
-    }, 10000)
+    }, 4000);
 
     return (
         <div className={styles.successPageContainer}>
