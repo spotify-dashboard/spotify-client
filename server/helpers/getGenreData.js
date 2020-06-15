@@ -12,7 +12,13 @@ module.exports.getGenreData = artistArray => {
                     // console.log('asdfasdf', artists)
                     genresArr.push(artist.genres);
                 });
-            } else  {
+            } else if (artistsArray) {
+                await artistArray.forEach(artist => {
+                    // console.log('asdfasdf', artists)
+                    genresArr.push(artist.genres);
+                });
+            } 
+            else  {
                 await artistArray.forEach(artist => {
                     genresArr.push(artist.genres);
                 });
