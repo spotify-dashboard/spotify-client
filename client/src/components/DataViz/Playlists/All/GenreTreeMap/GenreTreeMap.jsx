@@ -67,17 +67,6 @@ class GenreTreeMap extends React.Component {
 
     render() {
 
-        function colorFromValue(value, border) {
-            var alpha = (1 + Math.log(value)) / 5;
-            var color = "purple";
-            if (border) {
-              alpha += 0.01;
-            }
-            return Color(color)
-              .alpha(alpha)
-              .rgbString();
-        };
-
         // generate sorted genres and display top 3
         let topGenres = [];
         for (var genre in this.props.genresTally) {
