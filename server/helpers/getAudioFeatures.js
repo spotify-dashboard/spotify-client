@@ -35,6 +35,9 @@ module.exports.getAudioFeatures = tracksArray => {
         var limit = 50;
         //total number of artists
         let totalTracks = trackIds.length;
+
+        // handling if total artists is less than the 50 limit
+        limit > totalArtists ? limit = totalArtists : limit = 50;
         
         // batch api calls; max 50 tracks
         while (limit <= totalTracks) {
