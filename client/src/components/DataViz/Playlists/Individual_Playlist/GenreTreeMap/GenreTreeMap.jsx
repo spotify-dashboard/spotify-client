@@ -4,9 +4,8 @@ import styles from './genretreemap.module.scss';
 import { connect } from 'react-redux';
 import { Chart } from 'chart.js';
 import 'chartjs-chart-treemap';
-import selectColor from '../../../../../helpers/selectColor.js';
 
-class GenreTreeMap extends React.Component {
+class GenreTreeMapIndividual extends React.Component {
 
     componentDidMount() {
         this.initializeTree();
@@ -21,7 +20,7 @@ class GenreTreeMap extends React.Component {
     }
 
     initializeTree() {
-        let el = ReactDOM.findDOMNode(this.refs.allPlaylistsGenreTree);
+        let el = ReactDOM.findDOMNode(this.refs.individualPlaylistGenreTree);
         let ctx = el.getContext("2d");
         let treeMap = new Chart(ctx, {
             type: "treemap",
@@ -43,7 +42,7 @@ class GenreTreeMap extends React.Component {
                 maintainAspectRatio: false,
                 title: {
                     display: true,
-                    text: "Genres in All Playlists"
+                    text: "Genres"
                 },
                 legend: {
                     display: false
@@ -84,7 +83,7 @@ class GenreTreeMap extends React.Component {
                     <div>
                         <p className="textGrey">Top Genres</p>
                         <ol className={styles.genreList}>
-                            
+
                             {/* If top artists exist, list top 3 */}
                             
                             {topGenres[topGenres.length-1] !== undefined &&
@@ -100,7 +99,7 @@ class GenreTreeMap extends React.Component {
                     </div>
                 </div>
                 <canvas
-                    ref="allPlaylistsGenreTree"
+                    ref="individualPlaylistGenreTree"
                     className={styles.graphContainer}
                 >
                 </canvas>
@@ -111,9 +110,9 @@ class GenreTreeMap extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        genresTally: state.getPlaylistBreakdown.breakdownAll.genres,
-        genreObjects: state.getPlaylistBreakdown.breakdownAll.genre_objects
+        genresTally: state.getPlaylistBreakdown.breakdownPlaylist.genres.tally,
+        genreObjects: state.getPlaylistBreakdown.breakdownPlaylist.genre_objects
     }
 };
 
-export default connect(mapStateToProps)(GenreTreeMap);
+export default connect(mapStateToProps)(GenreTreeMapIndividual);
