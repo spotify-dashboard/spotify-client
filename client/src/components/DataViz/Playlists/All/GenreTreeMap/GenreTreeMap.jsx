@@ -84,9 +84,18 @@ class GenreTreeMap extends React.Component {
                     <div>
                         <p className="textGrey">Top Genres</p>
                         <ol className={styles.genreList}>
-                            <li className={styles.genreListItem}>{topGenres[topGenres.length-1][0]}</li>
-                            <li className={styles.genreListItem}>{topGenres[topGenres.length-2][0]}</li>
-                            <li className={styles.genreListItem}>{topGenres[topGenres.length-3][0]}</li>
+                            
+                            {/* If top artists exist, list top 3 */}
+                            
+                            {topGenres[topGenres.length-1] !== undefined &&
+                                <li className={styles.genreListItem}>{topGenres[topGenres.length-1][0]}</li>
+                            }
+                            {topGenres[topGenres.length-2] !== undefined &&
+                                <li className={styles.genreListItem}>{topGenres[topGenres.length-2][0]}</li>
+                            }
+                            {topGenres[topGenres.length-3] !== undefined &&
+                                <li className={styles.genreListItem}>{topGenres[topGenres.length-3][0]}</li>
+                            }
                         </ol>
                     </div>
                 </div>
