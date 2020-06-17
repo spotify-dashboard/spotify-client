@@ -6,14 +6,17 @@ import { pageChange } from '../../../../actions/pageChangeActions.js';
 // the navigation items that are passed into the main nav are stored in this file
 import { dashboardNavItems } from '../../../../NavItems.js';
 
+// global components and playlist view
 import MainNav from '../../../Global/MainNav/MainNav.jsx';
 import Banner from '../../../Global/Banner/Banner.jsx';
 import LoginError from '../../../Global/LoginError/LoginError.jsx';
 import PlaylistListView from '../PlaylistList/PlaylistListView.jsx';
 
+// icons and spinners
 import CircularProgress from '@material-ui/core/CircularProgress';
 import DeveloperBoardIcon from '@material-ui/icons/DeveloperBoard';
 
+// For aggregate playlists visuals
 import Timeline from '../../../DataViz/Playlists/All/Timeline/Timeline.jsx';
 import GenreTreeMap from '../../../DataViz/Playlists/All/GenreTreeMap/GenreTreeMap.jsx';
 import GenreBarChart from '../../../DataViz/Playlists/All/GenreBarChart/GenreBarChart.jsx';
@@ -21,7 +24,9 @@ import FeaturesRadar from '../../../DataViz/Playlists/All/FeaturesRadar/Features
 import Popularity from '../../../DataViz/Playlists/All/Popularity/Popularity.jsx';
 import ArtistsTop from '../../../DataViz/Playlists/All/ArtistsTop/ArtistsTop.jsx';
 
-import { breakdownAllPlaylists } from '../../../../actions/breakdownActions.js';
+// For individual playlist visuals
+import GenreTreeMapIndividual from '../../../DataViz/Playlists/Individual_Playlist/GenreTreeMap/GenreTreeMap.jsx';
+import GenreBarChartIndividual from '../../../DataViz/Playlists/Individual_Playlist/GenreBarChart/GenreBarChart.jsx';
 
 
 const PlaylistsView = props => {
@@ -56,7 +61,10 @@ const PlaylistsView = props => {
 
                 {props.isLoggedIn &&
 
+                    // ===============================
                     // Displaying list of all playlists
+                    // ===============================
+
                     <div>
                         {props.currentPage === '/breakdown' &&
                             <div>
@@ -84,7 +92,9 @@ const PlaylistsView = props => {
                             </div>
                         }
 
+                        {/* ===================================== */}
                         {/* Viewing individual playlist breakdown */}
+                        {/* ===================================== */}
 
                         {props.currentPage === '/breakdown-playlist' &&
                             <div>
@@ -103,12 +113,17 @@ const PlaylistsView = props => {
                                             <p>A breakdown of the trends found after analyzing all of your personal playlists.</p>
                                         </div>
                                         <div className="divider"></div>
+                                        <GenreTreeMapIndividual />
+                                        <div className="divider"></div>
+                                        <GenreBarChartIndividual />
                                     </div>
                                 }
                             </div>
                         }
-
+                        
+                        {/* ============================== */}
                         {/* Viewing all playlist breakdown */}
+                        {/* ============================== */}
 
                         {props.currentPage === '/breakdown-all' &&
                             <div>
@@ -160,7 +175,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
     pageChange,
-    breakdownAllPlaylists
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlaylistsView);
