@@ -17,8 +17,6 @@ const LibraryItem = props => {
         }
     }
 
-    recentTracksObj.hasOwnProperty(props.track.track.name) ? console.log(props.track.track.name) : 'no'
-
     return (
         <div className={recentTracksObj.hasOwnProperty(props.track.track.name) ? `${styles.trackItemContainer} ${styles.recentPlay}` : styles.trackItemContainer}>
             <p className={styles.trackDataItem, styles.trackTitle}>{props.track.track.name}{recentTracksObj.hasOwnProperty(props.track.track.name) ? " - Recently Played" : ""}</p>
