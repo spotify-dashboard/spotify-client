@@ -1,0 +1,30 @@
+@import '../../../../../variables';
+
+.parentContainer {
+    padding: 20px 0px 0px 0px;
+    border-bottom: 1px solid $lightGrey;
+}
+
+.groupSelector {
+    background-color: transparent;
+    border: 2px solid $greenAccent;
+    border-radius: 10px;
+    font-size: 14px;
+    padding: 7px;
+}
+
+.highlight {
+    font-weight: 650;
+    color: $greenAccent;
+}
+
+.left {
+    width: 65%;
+    padding: 5px 5px;
+}
+
+.right {
+    width: 35%;
+    padding: 5px 15px;
+    border-left: 1px solid $lightGrey
+}

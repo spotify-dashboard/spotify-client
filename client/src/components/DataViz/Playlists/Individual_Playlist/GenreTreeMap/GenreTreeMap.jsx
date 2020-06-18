@@ -30,11 +30,11 @@ class GenreTreeMapIndividual extends React.Component {
                         tree: this.cleanData(this.props.genreObjects),
                         key: "listens", // what to organize by; must be a valid object property
                         groups: ['genre'], // what to organize; must be a valid object prop
-                        fontColor: 'rgb(213,116,159)',
+                        fontColor: 'rgb(207,239,185)',
                         fontSize: 14,
                         fontStyle: 'normal',
                         label: '# of tracks',
-                        backgroundColor: 'rgb(41,53,99)'
+                        backgroundColor: 'rgb(108,154,243)'
                     }
                 ]
             },
