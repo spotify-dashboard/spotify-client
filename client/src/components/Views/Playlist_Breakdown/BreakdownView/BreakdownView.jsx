@@ -111,7 +111,7 @@ const PlaylistsView = props => {
                                     <div>
                                         <div>
                                             <h1>{props.currentPlaylist.name}</h1>
-                                            <p>A breakdown of the trends found after analyzing all of your personal playlists.</p>
+                                            <p>A breakdown of the trends found in {props.currentPlaylist.name}.</p>
                                         </div>
                                         <div className="divider"></div>
                                         <GenreTreeMapIndividual />
