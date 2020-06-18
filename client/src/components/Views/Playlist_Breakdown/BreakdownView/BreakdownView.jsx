@@ -27,6 +27,7 @@ import ArtistsTop from '../../../DataViz/Playlists/All/ArtistsTop/ArtistsTop.jsx
 // For individual playlist visuals
 import GenreTreeMapIndividual from '../../../DataViz/Playlists/Individual_Playlist/GenreTreeMap/GenreTreeMap.jsx';
 import GenreBarChartIndividual from '../../../DataViz/Playlists/Individual_Playlist/GenreBarChart/GenreBarChart.jsx';
+import TimelineIndividual from '../../../DataViz/Playlists/Individual_Playlist/Timeline/Timeline.jsx';
 
 
 const PlaylistsView = props => {
@@ -116,6 +117,7 @@ const PlaylistsView = props => {
                                         <GenreTreeMapIndividual />
                                         <div className="divider"></div>
                                         <GenreBarChartIndividual />
+                                        <TimelineIndividual playlistName={props.currentPlaylist.name} />
                                     </div>
                                 }
                             </div>
