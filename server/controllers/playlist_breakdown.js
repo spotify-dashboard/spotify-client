@@ -8,6 +8,7 @@ const { getTimeline } = require('../helpers/getTimelineAll.js');
 const { getTimelineIndividual } = require('../helpers/getTimelineIndividual.js');
 const { getPopularity } = require('../helpers/getPopularity.js');
 const { getPopularityIndividual } = require('../helpers/getPopularityIndividual.js');
+const { getDuration } = require('../helpers/getDuration.js');
 
 // cache for playlists
 var playlistCache = {
@@ -32,7 +33,9 @@ module.exports = {
                 // artists: [],
                 // artistTally: {} added at the end of file
                 timeline: [],
-                added_at_arr: []
+                added_at_arr: [],
+                duration: 0,
+                totalTrackCount: 0 // total track count found in getDuration func
             };
 
             let artistsArr;
@@ -42,6 +45,8 @@ module.exports = {
             let timelineObj;
             let addedAtArr;
             let popularityArr;
+            let totalDuration;
+            let totalTracksNum;
 
             // SERVING FROM CACHE
 
@@ -89,6 +94,14 @@ module.exports = {
                     })
                     .then(popularityData => {
                         popularityArr = popularityData;
+                    })
+                    .then(() => {
+                        // get total duration of all tracks
+                        return getDuration(tracksArr);
+                    })
+                    .then(duration => {
+                        totalDuration = duration.totalDuration;
+                        totalTracksNum = duration.totalTracks;
                     })
                     .catch(err => {
                         console.log("Error in individual playlist breakdown");
@@ -157,7 +170,8 @@ module.exports = {
                 completeTrackData.added_at_arr = addedAtArr;
                 completeTrackData.features = featuresArr.featuresObj;
                 completeTrackData.popularity = popularityArr;
-                    
+                completeTrackData.totalTrackCount = totalTracksNum;
+                completeTrackData.duration = totalDuration;
 
                 // add complete data to cache
                 playlistCache[req.params.id] = completeTrackData;
@@ -184,7 +198,9 @@ module.exports = {
                 // artists: [],
                 // artistTally: {} added at the end of file
                 timeline: [],
-                added_at_arr: []
+                added_at_arr: [],
+                duration: 0,
+                totalTrackCount: 0 // total track count found in getDuration func
             };
             
             let artistsArr;
@@ -194,6 +210,8 @@ module.exports = {
             let timelineObj;
             let addedAtArr;
             let popularityArr;
+            let totalDuration;
+            let totalTracksNum;
             
             let userProfile;
 
@@ -296,7 +314,7 @@ module.exports = {
                             genresArr = genres;
                         })
                         .catch(err => {
-                            console.log("Error getting genre data in aggregate");
+                            console.log("Error getting genre data in aggregate", err);
                             res.status(400).json({meessage: "Error", error: err});
                         });
 
@@ -307,7 +325,7 @@ module.exports = {
                             featuresArr = features;
                         })
                         .catch(err => {
-                            console.log("Error in getting audio features for aggregate");
+                            console.log("Error in getting audio features for aggregate", err);
                             res.status(400).json({message: "Error", error: err});
                         });
 
@@ -317,9 +335,18 @@ module.exports = {
                             popularityArr = popularityData;
                         })
                         .catch(err => {
-                            console.log("Error in getting popularity for aggregate");
+                            console.log("Error in getting popularity for aggregate", err);
                             res.status(400).json({message: "Error", error: err});
+                        });
+
+                    await getDuration(flattenedTracks)
+                        .then(duration => {
+                            totalDuration = duration.totalDuration;
+                            totalTracksNum = duration.totalTracks;
                         })
+                        .catch(err => {
+                            console.log("Error in getting duration for aggregate", err)
+                        });
 
                     // ==== ORGANIZE GENRE OBJECT
                     // NOTE: PLANNING TO MOVE TO GENRE HELPER FUNCTION
@@ -368,7 +395,9 @@ module.exports = {
                     completeTrackData.added_at_arr = addedAtArr;
                     completeTrackData.timeline = timelineObj;
                     completeTrackData.popularity = popularityArr;
-                    completeTrackData.artistTally = artistTally
+                    completeTrackData.artistTally = artistTally;
+                    completeTrackData.duration = totalDuration;
+                    completeTrackData.totalTrackCount = totalTracksNum;
 
                     // save data object in cache
                     playlistCache['all'] = completeTrackData;
