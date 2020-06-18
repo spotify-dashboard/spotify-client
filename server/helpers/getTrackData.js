@@ -57,7 +57,6 @@ module.exports.getTrackData = (url, optionalLimit) => {
                 totalTracks = results.data.total;
                 //push to arr
                 dataArr.push(results.data.items);
-                console.log('TRACK ++++', results.data.items)
             })
             .catch(error => {
                 console.log('error getting tracks in getTrackData.js', error);
