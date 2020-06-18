@@ -33,7 +33,7 @@ class GenreBarChartIndividual extends React.Component {
                         fontColor: 'rgb(213,116,159)',
                         fontSize: 14,
                         fontStyle: 'normal',
-                        backgroundColor: selectColor()
+                        backgroundColor: 'rgb(207,239,185)'
                     }
                 ]
             },
