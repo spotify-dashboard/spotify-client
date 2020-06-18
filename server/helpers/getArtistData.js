@@ -62,7 +62,6 @@ module.exports.getArtistData = (tracksArray) => {
         // handling if total artists is less than the 50 limit
         limit > totalArtists ? limit = totalArtists : limit = 50;
         
-        console.log('limit num', limit)
 
         // batch api calls; max 50 artists
         while (limit <= totalArtists) {
@@ -108,8 +107,6 @@ module.exports.getArtistData = (tracksArray) => {
 
         //flatten and serve
         let flattenedArr = genresArr.flat(Infinity);
-
-        console.log('flattened arr ++', flattenedArr)
 
         // if there's a played_at prop for each track
         if (playedAtArr.length > 0) {

@@ -1,22 +1,11 @@
 import React from 'react';
 import styles from './libraryitem.module.scss';
 import { connect } from 'react-redux';
+import convertToMinutes from '../../../helpers/convertToMinutes.js';
 
 const LibraryItem = props => {
 
-    // console.log('library item props', props)
-
     let date_added = props.track.added_at.slice(0, props.track.added_at.indexOf('T'));
-
-    const convertToMinutes = (millis) => {
-        var minutes = Math.floor(millis / 60000);
-        var seconds = ((millis % 60000) / 1000).toFixed(0);
-        //ES6 interpolated literals/template literals 
-          //If seconds is less than 10 put a zero in front.
-        return `${minutes}:${(seconds < 10 ? "0" : "")}${seconds}`;
-    };
-
-    // For a different display if the track was played recently
 
     // hold list of recently played tracks
     let recentTracksObj = {};
@@ -27,8 +16,6 @@ const LibraryItem = props => {
             recentTracksObj[props.recentTracks[i].track.track.name] = props.recentTracks[i].track.track.name;
         }
     }
-
-    recentTracksObj.hasOwnProperty(props.track.track.name) ? console.log(props.track.track.name) : 'no'
 
     return (
         <div className={recentTracksObj.hasOwnProperty(props.track.track.name) ? `${styles.trackItemContainer} ${styles.recentPlay}` : styles.trackItemContainer}>
