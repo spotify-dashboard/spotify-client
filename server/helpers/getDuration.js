@@ -17,8 +17,7 @@ module.exports.getDuration = (tracksArray) => {
             } else if (track.tracks !== undefined) {
                 // for groups of playlists (aggregate)
                 for (let i = 0; i < track.tracks.length; i++) {
-                    let currentTrack = track.tracks[i];
-                    
+                    let currentTrack = track.tracks[i].track;
                     // add duration of track (ms) to total duration
                     totalDuration += currentTrack.duration_ms;
                     
