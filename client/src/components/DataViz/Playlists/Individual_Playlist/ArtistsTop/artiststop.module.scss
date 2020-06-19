@@ -1,0 +1,31 @@
+@import '../../../../../variables';
+
+.parentContainer {
+    padding: 20px 0px;
+    border-bottom: 1px solid $lightGrey;
+}
+
+.artistList {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.artistItem {
+    font-size: 20px;
+}
+
+.topArtistItem {
+    font-size: 40px;
+    color: white;
+}
+
+.secondArtistItem {
+    font-size: 32px;
+    color: white;
+}
+
+.left, .right {
+    margin: 0px 20px;
+}

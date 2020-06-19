@@ -1,0 +1,20 @@
+@import '../../../../../variables';
+
+.parentContainer {
+    width: 100%;
+    padding: 20px 0px;
+}
+
+.graphContainer {
+    width: 80% !important;
+    height: 80% !important;
+}
+
+.left {
+    width: 20% !important;
+}
+
+.featureTitleIndiv {
+    color: $lightGreen !important;
+    font-weight: 600 !important;
+}
