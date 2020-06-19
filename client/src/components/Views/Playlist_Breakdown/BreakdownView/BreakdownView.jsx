@@ -28,6 +28,7 @@ import ArtistsTop from '../../../DataViz/Playlists/All/ArtistsTop/ArtistsTop.jsx
 import GenreTreeMapIndividual from '../../../DataViz/Playlists/Individual_Playlist/GenreTreeMap/GenreTreeMap.jsx';
 import GenreBarChartIndividual from '../../../DataViz/Playlists/Individual_Playlist/GenreBarChart/GenreBarChart.jsx';
 import TimelineIndividual from '../../../DataViz/Playlists/Individual_Playlist/Timeline/Timeline.jsx';
+import ArtistsTopIndividual from '../../../DataViz/Playlists/Individual_Playlist/ArtistsTop/ArtistsTop.jsx';
 
 // Reusable chart components
 import DurationReusable from '../../../DataViz/Playlists/Individual_Playlist/Duration/Duration.jsx';
@@ -126,9 +127,10 @@ const PlaylistsView = props => {
                                         </div>
                                         <div className="divider"></div>
                                         <GenreTreeMapIndividual />
-                                        <div className="divider"></div>
                                         <GenreBarChartIndividual />
+                                        <div className="divider"></div>
                                         <TimelineIndividual playlistName={props.currentPlaylist.name} />
+                                        <ArtistsTopIndividual />
                                     </div>
                                 }
                             </div>
