@@ -29,6 +29,9 @@ import GenreTreeMapIndividual from '../../../DataViz/Playlists/Individual_Playli
 import GenreBarChartIndividual from '../../../DataViz/Playlists/Individual_Playlist/GenreBarChart/GenreBarChart.jsx';
 import TimelineIndividual from '../../../DataViz/Playlists/Individual_Playlist/Timeline/Timeline.jsx';
 
+// Reusable chart components
+import DurationReusable from '../../../DataViz/Playlists/Individual_Playlist/Duration/Duration.jsx';
+
 
 const PlaylistsView = props => {
     console.log('breakdown playlist view props', props)
@@ -100,18 +103,26 @@ const PlaylistsView = props => {
                         {props.currentPage === '/breakdown-playlist' &&
                             <div>
                                 {/* LOADING VIEW */}
-                                {Array.isArray(props.breakdownAll) &&
+                                {Array.isArray(props.breakdownPlaylist) &&
                                     <div className={styles.loadingBlurb}>
                                         <h3>Loading Data</h3>
                                         <CircularProgress size={70} />
                                     </div>
                                 }
                                 {/* DATA LOADED VIEW */}
-                                {!Array.isArray(props.breakdownAll) && 
+                                {!Array.isArray(props.breakdownPlaylist) && 
                                     <div>
-                                        <div>
-                                            <h1>{props.currentPlaylist.name}</h1>
-                                            <p>A breakdown of the trends found in {props.currentPlaylist.name}.</p>
+                                        <div className="flex flex-vertical-align flex-spread">
+                                            <div>
+                                                <h1>{props.currentPlaylist.name}</h1>
+                                                <p className="textGrey">A breakdown of the trends found in {props.currentPlaylist.name}.</p>
+                                            </div>
+                                            <div>
+                                                <DurationReusable 
+                                                    duration={props.durationIndividual}
+                                                    totalTracks={props.totalTracksIndividual}
+                                                />
+                                            </div>
                                         </div>
                                         <div className="divider"></div>
                                         <GenreTreeMapIndividual />
@@ -139,9 +150,17 @@ const PlaylistsView = props => {
                                 {/* DATA LOADED VIEW */}
                                 {!Array.isArray(props.breakdownAll) &&
                                     <div>
-                                        <div>
-                                            <h1>Breakdown All Playlists</h1>
-                                            <p>A breakdown of the trends found after analyzing all of your personal playlists.</p>
+                                        <div className="flex flex-vertical-align flex-spread">
+                                            <div>
+                                                <h1>Breakdown All Playlists</h1>
+                                                <p className="textGrey">A breakdown of the trends found after analyzing all of your personal playlists.</p>
+                                            </div>
+                                            <div>
+                                            <DurationReusable 
+                                                duration={props.durationAggregate}
+                                                totalTracks={props.totalTracksAggregate}
+                                            />
+                                            </div>
                                         </div>
                                         <div className="divider"></div>
                                         <GenreTreeMap />
@@ -172,6 +191,10 @@ const mapStateToProps = (state, ownProps) => {
         breakdownAll: state.getPlaylistBreakdown.breakdownAll,
         breakdownPlaylist: state.getPlaylistBreakdown.breakdownPlaylist,
         isLoggedIn: state.loginCheck.loggedIn.isLoggedIn,
+        durationIndividual: state.getPlaylistBreakdown.breakdownPlaylist.duration,
+        totalTracksIndividual: state.getPlaylistBreakdown.breakdownPlaylist.totalTrackCount,
+        durationAggregate: state.getPlaylistBreakdown.breakdownAll.duration,
+        totalTracksAggregate: state.getPlaylistBreakdown.breakdownAll.totalTrackCount,
     };
 };
 
