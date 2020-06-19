@@ -153,7 +153,7 @@ class Timeline extends React.Component {
                             <div className="divider"></div>
                             {this.analyzeOldPlaylists().map(playlist => {
                                 return (
-                                    <p key={playlist.label}>You haven't added tracks to <span className={styles.highlight}>{playlist.name}</span> since <span className={styles.highlight}>{playlist.year}</span></p>
+                                    <p key={playlist.name}>You haven't added tracks to <span className={styles.highlight}>{playlist.name}</span> since <span className={styles.highlight}>{playlist.year}</span></p>
                                 )
                             })}
                         </div>
