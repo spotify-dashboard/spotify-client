@@ -1,0 +1,15 @@
+@import '../../../../../variables';
+
+.parentContainer {
+    padding: 20px 0px;
+}
+
+.average {
+    width: 40%;
+    // margin: 5px;
+}
+
+.highest, .lowest {
+    width: 25% !important;
+    // margin: 5px;
+}
