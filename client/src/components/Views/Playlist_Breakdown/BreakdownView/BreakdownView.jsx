@@ -119,8 +119,8 @@ const PlaylistsView = props => {
                                             </div>
                                             <div>
                                                 <DurationReusable 
-                                                    duration={props.duration}
-                                                    totalTracks={props.totalTracks}
+                                                    duration={props.durationIndividual}
+                                                    totalTracks={props.totalTracksIndividual}
                                                 />
                                             </div>
                                         </div>
@@ -150,9 +150,17 @@ const PlaylistsView = props => {
                                 {/* DATA LOADED VIEW */}
                                 {!Array.isArray(props.breakdownAll) &&
                                     <div>
-                                        <div>
-                                            <h1>Breakdown All Playlists</h1>
-                                            <p className="textGrey">A breakdown of the trends found after analyzing all of your personal playlists.</p>
+                                        <div className="flex flex-vertical-align flex-spread">
+                                            <div>
+                                                <h1>Breakdown All Playlists</h1>
+                                                <p className="textGrey">A breakdown of the trends found after analyzing all of your personal playlists.</p>
+                                            </div>
+                                            <div>
+                                            <DurationReusable 
+                                                duration={props.durationAggregate}
+                                                totalTracks={props.totalTracksAggregate}
+                                            />
+                                            </div>
                                         </div>
                                         <div className="divider"></div>
                                         <GenreTreeMap />
@@ -183,8 +191,10 @@ const mapStateToProps = (state, ownProps) => {
         breakdownAll: state.getPlaylistBreakdown.breakdownAll,
         breakdownPlaylist: state.getPlaylistBreakdown.breakdownPlaylist,
         isLoggedIn: state.loginCheck.loggedIn.isLoggedIn,
-        duration: state.getPlaylistBreakdown.breakdownPlaylist.duration,
-        totalTracks: state.getPlaylistBreakdown.breakdownPlaylist.totalTrackCount
+        durationIndividual: state.getPlaylistBreakdown.breakdownPlaylist.duration,
+        totalTracksIndividual: state.getPlaylistBreakdown.breakdownPlaylist.totalTrackCount,
+        durationAggregate: state.getPlaylistBreakdown.breakdownAll.duration,
+        totalTracksAggregate: state.getPlaylistBreakdown.breakdownAll.totalTrackCount,
     };
 };
 
