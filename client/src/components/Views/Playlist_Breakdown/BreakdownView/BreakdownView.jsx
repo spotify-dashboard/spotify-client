@@ -29,6 +29,7 @@ import GenreTreeMapIndividual from '../../../DataViz/Playlists/Individual_Playli
 import GenreBarChartIndividual from '../../../DataViz/Playlists/Individual_Playlist/GenreBarChart/GenreBarChart.jsx';
 import TimelineIndividual from '../../../DataViz/Playlists/Individual_Playlist/Timeline/Timeline.jsx';
 import ArtistsTopIndividual from '../../../DataViz/Playlists/Individual_Playlist/ArtistsTop/ArtistsTop.jsx';
+import PopularityIndividual from '../../../DataViz/Playlists/Individual_Playlist/Popularity/Popularity.jsx';
 
 // Reusable chart components
 import DurationReusable from '../../../DataViz/Playlists/Individual_Playlist/Duration/Duration.jsx';
@@ -45,10 +46,11 @@ const PlaylistsView = props => {
     //     }
     // };
 
-    // useEffect(() => {
-    //     // remove stored playlist on page load
-    //     removeStoredPlaylist();
-    // })
+    useEffect(() => {
+        // remove stored playlist on page load
+        // removeStoredPlaylist();
+        console.log('mounted')
+    });
 
     return (
         <div className="mainSection">
@@ -131,6 +133,8 @@ const PlaylistsView = props => {
                                         <div className="divider"></div>
                                         <TimelineIndividual playlistName={props.currentPlaylist.name} />
                                         <ArtistsTopIndividual />
+                                        <PopularityIndividual />
+                                        <div className="divider"></div>
                                     </div>
                                 }
                             </div>
