@@ -41,7 +41,7 @@ const SuccessLogin = props => {
             // change page reference
             props.pageChange('/');
         }
-    });
+    }, []);
 
     // history for re-routing back to home page
     let history = useHistory();
