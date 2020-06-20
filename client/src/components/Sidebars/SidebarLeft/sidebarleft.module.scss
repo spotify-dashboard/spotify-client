@@ -8,4 +8,8 @@
     z-index: 1;
     background-color: $sidebarBlack;
     overflow: scroll !important;
+
+    @media (max-width: 1185px) {
+        width: 25%;
+    }
 }

@@ -15,6 +15,12 @@ html, body {
     overflow: hidden;
 }
 
+h1 {
+    @media(max-width: 1024px) {
+        font-size: 30px;
+    }
+}
+
 // ==== Helpers
 
 
@@ -137,9 +143,15 @@ html, body {
     overflow-x: hidden;
 
     @media (max-width: 1185px) {
-        width: 82%;
+        width: 75%;
+        left: 25%;
+        height: 100vh;
+        margin: 20px 0px 100px 0px;
+        overflow-y: scroll;
     }
 }
+
+// Grey faded background on banner
 
 .mainSection::before {
     content: '';
@@ -148,11 +160,21 @@ html, body {
     height: 15%;
     z-index: 2;
     background: linear-gradient(0deg, $darkGrey, $darkGrey 10%, $backgroundGrey 100%);
+
+    @media (max-width: 1185px) {
+        height: 100px;
+        width: 100%;
+        background: linear-gradient(0deg, $darkGrey, $darkGrey 10%, $backgroundGrey 100%);
+    }
 }
 
 // padding for main section
 .mainModule {
     padding: 5px 30px;
+
+    @media (max-width: 1185px) {
+        overflow-y: scroll;
+    }
 }
 
 // Error view when api calls fail / user needs to sign in again
@@ -167,6 +189,11 @@ html, body {
 ::-webkit-scrollbar {
     width: 15px;
     height: 15px;
+
+    @media (max-width: 1185px) {
+        width: 5px;
+        height: 5px;
+    }
 }
 ::-webkit-scrollbar-track-piece  {
     background-color: $htmlBlack;
@@ -175,6 +202,10 @@ html, body {
     height: 30px;
     background-color: $greenAccent;
     border-radius: 10px;
+
+    @media (max-width: 1185px) {
+        height: 10px;
+    }
 }
 ::-webkit-scrollbar-corner {
     background-color: transparent;
