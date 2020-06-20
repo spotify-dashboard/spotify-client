@@ -162,7 +162,7 @@ h4 {
     height: 92vh;
     overflow: scroll;
     z-index: 1;
-    margin: 20px 0px 150px 0px;
+    // margin: 0px 0px 150px 0px;
     background-color: $darkGrey;
     overflow-x: hidden;
 
@@ -170,7 +170,7 @@ h4 {
         width: 75%;
         left: 25%;
         height: 100vh;
-        margin: 20px 0px 100px 0px;
+        // margin: 0px 0px 100px 0px;
         overflow-y: scroll;
     }
 }
@@ -194,10 +194,15 @@ h4 {
 
 // padding for main section
 .mainModule {
-    padding: 5px 30px;
+    padding: 0px 30px 50px 30px;
+    margin: 20px 0px 0px 0px;
 
     @media (max-width: 1185px) {
         overflow-y: scroll;
+    }
+
+    @media(max-width: 1024px) {
+        padding: 0px 15px 50px 15px;
     }
 }
 
