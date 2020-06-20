@@ -31,8 +31,15 @@
     align-items: center;
     text-decoration: none;
     border-radius: 5px 5px;
+    padding: 0px 5px;
 }
 
 .websiteTitle {
     color: $greenAccent
+}
+
+.navItem h4, .websiteTitle, .githubLink {
+    @media(max-width: 1024px) {
+        font-size: 12px;
+    }
 }

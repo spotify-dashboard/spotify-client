@@ -4,6 +4,11 @@
     display: flex;
     flex-wrap: wrap !important;
     flex-direction: row;
+
+    @media (max-width: 1185px) {
+        flex-direction: column;
+        width: 100%;
+    }
 }
 
 .playlistItem {
@@ -11,6 +16,10 @@
     width: 50%;
     height: 220px;
     border-radius: 8px;
+
+    @media (max-width: 1185px) {
+        width: 100%;
+    }
 }
 
 .playlistItem:hover {
@@ -29,3 +38,7 @@
     align-items: center;
     align-content: center;
 }
+
+// .playlistItemRight h2 {
+//     font-size: 22px;
+// }

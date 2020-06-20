@@ -41,7 +41,7 @@ const SuccessLogin = props => {
             // change page reference
             props.pageChange('/');
         }
-    }, []);
+    }, [props.loginCheck, props.fetchProfile, props.getAllPlaylists, props.getRecentlyPlayed, props.breakdownAllPlaylists, props.pageChange]);
 
     // history for re-routing back to home page
     let history = useHistory();
