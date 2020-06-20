@@ -37,7 +37,7 @@ const Footer = props => {
                 </Link>
             </nav>
 
-            <h4 className="textGrey"><a href="https://github.com/spotify-dashboard/spotify-client" target="_blank">View on Github</a></h4>
+            <h4 className="textGrey githubLink"><a href="https://github.com/spotify-dashboard/spotify-client" target="_blank">View on Github</a></h4>
         </footer>
     )
 };

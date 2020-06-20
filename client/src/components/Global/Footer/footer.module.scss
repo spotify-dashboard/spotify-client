@@ -37,3 +37,9 @@
 .websiteTitle {
     color: $greenAccent
 }
+
+.navItem h4, .websiteTitle, .githubLink {
+    @media(max-width: 1024px) {
+        font-size: 12px;
+    }
+}

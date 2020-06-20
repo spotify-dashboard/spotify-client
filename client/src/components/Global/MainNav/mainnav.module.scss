@@ -20,6 +20,10 @@
     cursor: pointer;
     text-decoration: none !important;
     z-index: 9999;
+
+    @media(max-width: 1024px) {
+        font-size: 12px;
+    }
 }
 
 .navItem:hover {
