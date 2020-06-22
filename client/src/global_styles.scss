@@ -16,25 +16,25 @@ html, body {
 }
 
 h1 {
-    @media(max-width: 1024px) {
+    @media (max-width: 1024px) {
         font-size: 30px;
     }
 }
 
 h2 {
-    @media(max-width: 1024px) {
+    @media (max-width: 1024px) {
         font-size: 22px;
     }
 }
 
 h3 {
-    @media(max-width: 1024px) {
+    @media (max-width: 1024px) {
         font-size: 18px;
     }
 }
 
 h4 {
-    @media(max-width: 1024px) {
+    @media (max-width: 1024px) {
         font-size: 16px;
     }
 }
@@ -50,6 +50,7 @@ h4 {
 
     @media(max-width: 500px) {
         flex-direction: column;
+        width: 100%;
     }
 }
 
@@ -171,7 +172,7 @@ h4 {
     overflow-x: hidden;
 
     // tablet
-    @media (max-width: 1185px) {
+    @media (min-width: 501px) and (max-width: 1185px) {
         width: 75%;
         left: 25%;
         height: 100vh;
@@ -198,7 +199,7 @@ h4 {
     background: linear-gradient(0deg, $darkGrey, $darkGrey 10%, $backgroundGrey 100%);
 
     // tablet
-    @media (max-width: 1185px) {
+    @media (min-width: 501px) and (max-width: 1185px) {
         height: 100px;
         width: 100%;
         background: linear-gradient(0deg, $darkGrey, $darkGrey 10%, $backgroundGrey 100%);
@@ -215,12 +216,12 @@ h4 {
     margin: 20px 0px 0px 0px;
 
     // large tablet
-    @media (max-width: 1185px) {
+    @media (min-width: 501px) and (max-width: 1185px) {
         overflow-y: scroll;
     }
 
     // small tablet
-    @media(max-width: 1024px) {
+    @media (min-width: 501px) and (max-width: 1024px) {
         padding: 0px 15px 50px 15px;
     }
 
@@ -244,7 +245,7 @@ h4 {
     height: 15px;
 
     // tablet
-    @media (max-width: 1185px) {
+    @media (min-width: 501px) and (max-width: 1185px) {
         width: 5px;
         height: 5px;
     }
@@ -258,7 +259,7 @@ h4 {
     border-radius: 10px;
 
     // tablet
-    @media (max-width: 1185px) {
+    @media (min-width: 501px) and (max-width: 1185px) {
         height: 10px;
     }
 }
