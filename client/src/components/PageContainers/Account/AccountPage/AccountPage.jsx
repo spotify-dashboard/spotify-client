@@ -16,8 +16,11 @@ const AccountPage = props => {
     return (
         <div className={styles.accountPage}>
             <div className="flex">
-                <SidebarLeft/>
+                
+                {mobileMediaQuery && <SidebarLeft />}
+                
                 <AccountView />
+                
                 {tabletMediaQuery && <SidebarRight />}
             </div>
             {mobileMediaQuery && <Footer />}

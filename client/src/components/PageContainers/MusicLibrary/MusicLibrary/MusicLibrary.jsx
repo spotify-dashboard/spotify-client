@@ -22,7 +22,9 @@ const MusicLibraryPage = props => {
     return(
         <div className={styles.musicLibraryPage}>
             <div className="flex">
-                <SidebarLeft/>
+                
+                {mobileMediaQuery && <SidebarLeft />}
+                
                 {props.currentView === '/' &&
                     <PlaylistsView allPlaylists={props.allPlaylists} />
                 }

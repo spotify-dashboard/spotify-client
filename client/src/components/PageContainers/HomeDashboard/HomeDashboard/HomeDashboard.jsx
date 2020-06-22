@@ -21,7 +21,9 @@ const HomeDashboard = props => {
     return(
         <div className={styles.homeDashboard}>
             <div className="flex">
-                <SidebarLeft/>
+                
+                {mobileMediaQuery && <SidebarLeft />}
+                
                 {props.currentView === '/' &&
                     <OverviewView />
                 }
