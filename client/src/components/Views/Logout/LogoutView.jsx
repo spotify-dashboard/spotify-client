@@ -2,23 +2,31 @@ import React from 'react';
 import styles from './logoutview.module.scss';
 import { connect } from 'react-redux';
 import { pageChange } from '../../../actions/pageChangeActions.js';
-import { Link } from 'react-router-dom';
+
+// media queries
+import { useMediaPredicate } from "react-media-hook";
 
 import MainNav from '../../Global/MainNav/MainNav.jsx';
 import Banner from '../../Global/Banner/Banner.jsx';
+import MobileMenu from '../../Global/MobileMenu/MobileMenu.jsx';
 
 // the navigation items that are passed into the main nav are stored in this file
 import { dashboardNavItems } from '../../../NavItems.js';
 
 const LogoutView = props => {
 
-    console.log('overview comp props', props)
+    // MEDIA QUERY SIZING
+    const mobileMediaQuery = useMediaPredicate("(max-width: 500px)");
+    const desktopTabletQuery = useMediaPredicate("(min-width: 501px) and (max-width: 1500px)");
 
     return(
         <div className="mainSection">
             <div className="mainModule">
                 <Banner />
-                <MainNav navItems={dashboardNavItems} />
+                
+                {mobileMediaQuery && <MobileMenu />}
+
+                {desktopTabletQuery && <MainNav navItems={dashboardNavItems} />}
                 
                 <div>
                     <h2>Successfully logged out.</h2>

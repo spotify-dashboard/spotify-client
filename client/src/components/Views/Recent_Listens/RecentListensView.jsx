@@ -3,7 +3,11 @@ import styles from './recent.module.scss';
 import { connect } from 'react-redux';
 import MainNav from '../../Global/MainNav/MainNav.jsx';
 import Banner from '../../Global/Banner/Banner.jsx';
+import MobileMenu from '../../Global/MobileMenu/MobileMenu.jsx';
 import LoginError from '../../Global/LoginError/LoginError.jsx';
+
+// media queries
+import { useMediaPredicate } from "react-media-hook";
 
 // data visuals
 import GenreTreeMap from '../../DataViz/Recently_Played/GenreTreeMap/GenreTreeMap.jsx';
@@ -19,11 +23,18 @@ import { dashboardNavItems } from '../../../NavItems.js';
 
 const RecentListensView = props => {
 
+    // MEDIA QUERY SIZING
+    const mobileMediaQuery = useMediaPredicate("(max-width: 500px)");
+    const desktopTabletQuery = useMediaPredicate("(min-width: 501px) and (max-width: 1500px)");
+
     return(
         <div className="mainSection">
             <div className="mainModule">
                 <Banner />
-                <MainNav navItems={dashboardNavItems} />
+                
+                {mobileMediaQuery && <MobileMenu />}
+
+                {desktopTabletQuery && <MainNav navItems={dashboardNavItems} />}
                 
                 {!props.isLoggedIn &&
                     <LoginError />

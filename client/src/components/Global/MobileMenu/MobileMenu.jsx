@@ -18,15 +18,27 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    color: "red"
+    background: 'rgba(15,15,15,0.5)'
   },
   paper: {
     marginRight: theme.spacing(2),
+    width: '100%',
+    background: 'rgba(15,15,15,0.5)'
   },
+  popper: {
+    width: '100%',
+  },
+  mobileMenuBtn: {
+      
+  },
+  mobileMenuItem: {
+      color: 'rgb(164,164,164)'
+  }
 }));
 
 const MobileMenu = props => {
@@ -66,17 +78,20 @@ const MobileMenu = props => {
     return (
         <div className={classes.root}>
         <div>
-            <Button
-            ref={anchorRef}
-            aria-controls={open ? 'menu-list-grow' : undefined}
-            aria-haspopup="true"
-            onClick={handleToggle}
-            className={styles.mobileMenuBtn}
-            >
-            Menu
-            </Button>
+            <div className={styles.menuBtnModule}>
+                <MenuIcon fontSize="large" />
+                <Button
+                ref={anchorRef}
+                aria-controls={open ? 'menu-list-grow' : undefined}
+                aria-haspopup="true"
+                onClick={handleToggle}
+                className={classes.mobileMenuBtn}
+                >
+                Menu
+                </Button>
+            </div>
 
-            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+            <Popper className={classes.popper} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
             {({ TransitionProps, placement }) => (
                 <Grow
                 {...TransitionProps}
@@ -92,7 +107,7 @@ const MobileMenu = props => {
                                     return (
                                         <MenuItem 
                                             onClick={()=>{props.pageChange(navItem.navLink); handleClose();}}
-                                            className={styles.mobileMenuItem}
+                                            className={classes.mobileMenuItem}
                                             >
                                             {navItem.navItem}
                                         </MenuItem>
@@ -103,7 +118,7 @@ const MobileMenu = props => {
                                     return (
                                         <MenuItem 
                                             onClick={()=>{props.pageChange(navItem.navLink); handleClose();}}
-                                            className={styles.mobileMenuItem}
+                                            className={classes.mobileMenuItem}
                                             >
                                             {navItem.navItem}
                                         </MenuItem>

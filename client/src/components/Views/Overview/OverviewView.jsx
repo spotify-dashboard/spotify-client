@@ -3,6 +3,8 @@ import styles from './overview.module.scss';
 import { connect } from 'react-redux';
 import { pageChange } from '../../../actions/pageChangeActions.js';
 import { Link } from 'react-router-dom';
+
+// media queries
 import { useMediaPredicate } from "react-media-hook";
 
 import BarChartIcon from '@material-ui/icons/BarChart';
