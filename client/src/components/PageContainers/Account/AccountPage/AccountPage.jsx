@@ -11,6 +11,7 @@ const AccountPage = props => {
     
     // MEDIA QUERY SIZING
     const tabletMediaQuery = useMediaPredicate("(min-width: 1185px)");
+    const mobileMediaQuery = useMediaPredicate("(min-width: 500px)");
     
     return (
         <div className={styles.accountPage}>
@@ -19,7 +20,7 @@ const AccountPage = props => {
                 <AccountView />
                 {tabletMediaQuery && <SidebarRight />}
             </div>
-            <Footer />
+            {mobileMediaQuery && <Footer />}
         </div>
     )
 };

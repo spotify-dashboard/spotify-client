@@ -17,6 +17,7 @@ const MusicLibraryPage = props => {
 
     // MEDIA QUERY SIZING
     const tabletMediaQuery = useMediaPredicate("(min-width: 1185px)");
+    const mobileMediaQuery = useMediaPredicate("(min-width: 500px)");
 
     return(
         <div className={styles.musicLibraryPage}>
@@ -39,7 +40,7 @@ const MusicLibraryPage = props => {
                 }
                 {tabletMediaQuery && <SidebarRight />}
             </div>
-            <Footer />
+            {mobileMediaQuery && <Footer />}
         </div>
     )
 };
