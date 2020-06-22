@@ -7,7 +7,6 @@ import SidebarLeft from '../../../Sidebars/SidebarLeft/SidebarLeft.jsx';
 import SidebarRight from '../../../Sidebars/SidebarRight/SidebarRight.jsx';
 import Footer from '../../../Global/Footer/Footer.jsx';
 
-import FavoritedSongsView from '../../../Views/Favorited_Songs/FavoritedSongsView.jsx';
 import CleanView from '../../../Views/Clean_My_Library/CleanView.jsx';
 import PlaylistsView from '../../../Views/Playlists/PlaylistsView.jsx';
 import RecommendationView from '../../../Views/Song_Recs/RecommendationView.jsx';

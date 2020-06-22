@@ -3,6 +3,7 @@ import styles from './overview.module.scss';
 import { connect } from 'react-redux';
 import { pageChange } from '../../../actions/pageChangeActions.js';
 import { Link } from 'react-router-dom';
+import { useMediaPredicate } from "react-media-hook";
 
 import BarChartIcon from '@material-ui/icons/BarChart';
 import QueueIcon from '@material-ui/icons/Queue';
@@ -10,19 +11,26 @@ import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 
 import MainNav from '../../Global/MainNav/MainNav.jsx';
 import Banner from '../../Global/Banner/Banner.jsx';
+import MobileMenu from '../../Global/MobileMenu/MobileMenu.jsx';
 
 // the navigation items that are passed into the main nav are stored in this file
 import { dashboardNavItems } from '../../../NavItems.js';
 
 const OverviewView = props => {
 
-    console.log('overview comp props', props)
+    // MEDIA QUERY SIZING
+    const mobileMediaQuery = useMediaPredicate("(max-width: 500px)");
+    const desktopTabletQuery = useMediaPredicate("(min-width: 501px) and (max-width: 1500px)");
 
-    return(
+    return (
         <div className="mainSection">
             <div className="mainModule">
                 <Banner />
-                <MainNav navItems={dashboardNavItems} />
+            
+                {mobileMediaQuery && <MobileMenu />}
+
+                {desktopTabletQuery && <MainNav navItems={dashboardNavItems} />}
+
                 <div className={styles.summary}>
                     <p>Have you ever wondered what type of music listener you are? 
                         This application uses your personal listening data on Spotify to help you see what trends have shown up in the music that you've been listening to. 

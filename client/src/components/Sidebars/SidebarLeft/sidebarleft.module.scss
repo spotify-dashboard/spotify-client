@@ -9,7 +9,13 @@
     background-color: $sidebarBlack;
     overflow: scroll !important;
 
+    // tablet
     @media (max-width: 1185px) {
         width: 25%;
+    }
+
+    // mobile; hidden on mobile
+    @media(max-width: 500px) {
+        width: 0%;
     }
 }
