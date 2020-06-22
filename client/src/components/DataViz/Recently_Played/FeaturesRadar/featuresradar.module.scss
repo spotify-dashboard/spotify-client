@@ -18,3 +18,9 @@
     color: $pink !important;
     font-weight: 600 !important;
 }
+
+.parentContainer p {
+    @media(max-width: 1185px) {
+        font-size: 12px;
+    }
+}

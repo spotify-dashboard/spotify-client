@@ -16,11 +16,14 @@ const HomeDashboard = props => {
     
     // MEDIA QUERY SIZING
     const tabletMediaQuery = useMediaPredicate("(min-width: 1185px)");
+    const mobileMediaQuery = useMediaPredicate("(min-width: 500px)");
     
     return(
         <div className={styles.homeDashboard}>
             <div className="flex">
-                <SidebarLeft/>
+                
+                {mobileMediaQuery && <SidebarLeft />}
+                
                 {props.currentView === '/' &&
                     <OverviewView />
                 }
@@ -41,7 +44,7 @@ const HomeDashboard = props => {
                 }
                 {tabletMediaQuery && <SidebarRight />}      
             </div>
-            <Footer />
+            {mobileMediaQuery && <Footer />}
         </div>
     )
 };
