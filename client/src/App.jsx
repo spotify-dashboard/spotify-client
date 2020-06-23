@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { withRouter, BrowserHistory } from 'react-router';
-import { debounce, throttle } from 'lodash';
+import { pageChange } from './actions/pageChangeActions.js';
 import styles from './global_styles.scss';
 
 // components
@@ -35,11 +35,20 @@ class App extends React.Component {
     // TODO: Handle browser back button click
 
     // handle back button click
-    // componentDidUpdate(){    
-    //     window.onpopstate = e => {
-    //         BrowserHistory.goBack
-    //     }
-    //   }
+    componentDidUpdate(){    
+        window.onpopstate = e => {
+            // if page returning to is account
+            if (window.location.pathname === '/account') {
+                this.props.pageChange('/account');
+            } else if (window.location.pathname === '/library') {
+                // if page returning to is library
+                this.props.pageChange('/playlists');
+            } else {
+                // else return to home
+                this.props.pageChange('/');
+            }
+        }
+      }
 
     render() {
         
@@ -68,6 +77,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     loginCheck,
+    pageChange,
     fetchCurrentSong,
 };
 
