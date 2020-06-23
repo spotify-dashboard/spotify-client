@@ -179,7 +179,6 @@ h4 {
         width: 75%;
         left: 25%;
         height: 100vh;
-        // margin: 0px 0px 100px 0px;
         overflow-y: scroll;
     }
 
@@ -273,7 +272,7 @@ h4 {
 
     // mobile
     @media (max-width: 500px) {
-        
+        height: 10px;
     }
 }
 ::-webkit-scrollbar-corner {
