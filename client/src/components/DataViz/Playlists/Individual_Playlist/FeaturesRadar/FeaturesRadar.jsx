@@ -8,6 +8,7 @@ class FeaturesRadarIndividual extends React.Component {
 
     componentDidMount() {
         this.initializeRadar();
+        console.log(window.screen.width)
     }
 
     initializeRadar() {
@@ -21,7 +22,7 @@ class FeaturesRadarIndividual extends React.Component {
                     {
                         data: Object.values(this.props.audioFeaturesTally),
                         fontColor: 'rgb(213,116,159)',
-                        fontSize: 14,
+                        fontSize: window.screen.width <= 500 ? 3 : 14,
                         pointBorderColor: "#fff",
                         pointBackgroundColor: "rgb(207,239,185)",
                         borderColor: "rgba(179,181,198,1)",
@@ -51,7 +52,7 @@ class FeaturesRadarIndividual extends React.Component {
                        stepSize: 0.2
                     },
                     pointLabels: {
-                        fontSize: 20
+                        fontSize: window.screen.width <= 500 ? 10 : 20
                     },
                 },
                 tooltips: {
