@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
+import { withRouter, BrowserHistory } from 'react-router';
 import { debounce, throttle } from 'lodash';
 import styles from './global_styles.scss';
 
@@ -31,6 +31,15 @@ class App extends React.Component {
 
         // NOTE: all API calls moved to SuccessLogin Page
     }
+
+    // TODO: Handle browser back button click
+
+    // handle back button click
+    // componentDidUpdate(){    
+    //     window.onpopstate = e => {
+    //         BrowserHistory.goBack
+    //     }
+    //   }
 
     render() {
         
