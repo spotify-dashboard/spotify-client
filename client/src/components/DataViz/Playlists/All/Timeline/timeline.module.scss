@@ -2,7 +2,13 @@
 
 .parentContainer {
     padding: 20px 0px 0px 0px;
-    // border-bottom: 1px solid $lightGrey;
+}
+
+.graphContainer {
+    @media(max-width: 500px) {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .groupSelector {
@@ -18,10 +24,21 @@
     color: $pink;
 }
 
-// .left {
-//     width: 65%;
-//     padding: 5px 5px;
-// }
+.timelineDetailsSection {
+    display: flex;
+    flex-direction: row;
+
+    @media(max-width: 500px) {
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+}
+
+.left {
+    @media(max-width: 500px) {
+        border-bottom: 2px solid $lightGrey;
+    }
+}
 
 // .right {
 //     width: 35%;

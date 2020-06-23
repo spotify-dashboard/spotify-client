@@ -6,15 +6,32 @@
 }
 
 .graphContainer {
-    width: 80% !important;
-    height: 80% !important;
+    width: 80%;
+    height: 80%;
+
+    @media(max-width: 500px) {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .left {
-    width: 20% !important;
+    width: 20%;
+
+    @media(max-width: 500px) {
+        width: 100%;
+    }
 }
 
 .featureTitleIndiv {
     color: $lightGreen !important;
     font-weight: 600 !important;
+}
+
+// fonts
+
+.parentContainer div p, .featureTitleIndiv {
+    @media(max-width: 500px) {
+        font-size: 14px;
+    }
 }

@@ -5,33 +5,67 @@
     // justify-content: center;
     flex-wrap: nowrap;
     overflow: hidden;
-    border-bottom: 1px solid $lightGrey
+    border-bottom: 1px solid $lightGrey;
+
+    @media (max-width: 500px) {
+        justify-content: space-between;
+    }
+}
+
+.columnHeaders p {
+    @media(max-width: 500px) {
+        font-size: 10.5px;
+    }
 }
 
 .columnItem {
     font-size: 10px;
     color: $textGrey;
+
+    @media(max-width: 500px) {
+        font-size: 10px;
+    }
 }
 
 .columnTitle {
     width: 45%;
+    
+    @media(max-width: 500px) {
+        width: auto;
+    }
 }
 
 .columnArtist {
     width: 15%;
+
+    @media(max-width: 500px) {
+        width: auto;
+    }
 }
 
 .columnAlbum {
     width: 20%;
     overflow: hidden;
+
+    @media (max-width: 500px) {
+        display: none;
+    }
 }
 
 .columnDate {
     width: 15%;
+
+    @media(max-width: 500px) {
+        width: auto;
+    }
 }
 
 .columnTime {
     width: 5%;
+
+    @media (max-width: 500px) {
+        display: none;
+    }
 }
 
 .loadingBlurb {

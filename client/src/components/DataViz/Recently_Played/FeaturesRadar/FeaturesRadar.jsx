@@ -21,7 +21,7 @@ class FeaturesRadar extends React.Component {
                     {
                         data: Object.values(this.props.audioFeaturesTally),
                         fontColor: 'rgb(213,116,159)',
-                        fontSize: 14,
+                        fontSize: window.screen.width <= 500 ? 9 : 14,
                         pointBorderColor: "#fff",
                         pointBackgroundColor: "rgba(255,99,132,1)",
                         borderColor: "rgba(179,181,198,1)",
@@ -55,7 +55,7 @@ class FeaturesRadar extends React.Component {
                        stepSize: 0.2
                     },
                     pointLabels: {
-                        fontSize: 20
+                        fontSize: window.screen.width <= 500 ? 10 : 20
                     },
                 },
                 tooltips: {
