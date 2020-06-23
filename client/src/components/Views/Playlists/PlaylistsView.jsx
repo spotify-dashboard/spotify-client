@@ -18,6 +18,10 @@ import LibraryList from '../../UserLibrary/LibraryList/LibraryList.jsx';
 
 const PlaylistsView = props => {
 
+    // MEDIA QUERY SIZING
+    const mobileMediaQuery = useMediaPredicate("(max-width: 500px)");
+    const desktopTabletQuery = useMediaPredicate("(min-width: 501px) and (max-width: 1500px)");
+
     return (
         <div className="mainSection">
             <div className="mainModule">
