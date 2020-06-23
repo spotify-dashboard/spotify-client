@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './mobilemenu.module.scss';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 // the navigation items that are passed into the main nav are stored in this file
 import { dashboardNavItems, musicLibraryNavItems } from '../../../NavItems.js';
@@ -18,15 +19,37 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    color: "red"
+    marginTop: '10px',
+    backgroundColor: 'rgba(15,15,15,0.5)',
+    zIndex: '9999'
+
   },
   paper: {
     marginRight: theme.spacing(2),
+    width: '100%',
+    zIndex: '9999'
   },
+  popper: {
+    width: '100%',
+    opacity: '95%',
+    zIndex: '9999'
+  },
+  mobileMenuBtn: {
+    zIndex: '9999'
+  },
+  mobileMenuList: {
+    backgroundColor: 'rgb(15,15,15)',
+    zIndex: '9999'
+  },
+  mobileMenuItem: {
+      color: 'rgb(164,164,164)',
+      zIndex: '9999'
+  }
 }));
 
 const MobileMenu = props => {
@@ -66,17 +89,18 @@ const MobileMenu = props => {
     return (
         <div className={classes.root}>
         <div>
-            <Button
-            ref={anchorRef}
-            aria-controls={open ? 'menu-list-grow' : undefined}
-            aria-haspopup="true"
-            onClick={handleToggle}
-            className={styles.mobileMenuBtn}
+            <div 
+                className={styles.menuBtnModule}
+                ref={anchorRef}
+                aria-controls={open ? 'menu-list-grow' : undefined}
+                aria-haspopup="true"
+                onClick={handleToggle}
             >
-            Menu
-            </Button>
+                <MenuIcon fontSize="large" />
+                <Button>Menu</Button>
+            </div>
 
-            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+            <Popper className={classes.popper} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
             {({ TransitionProps, placement }) => (
                 <Grow
                 {...TransitionProps}
@@ -84,31 +108,50 @@ const MobileMenu = props => {
                 >
                     <Paper>
                         <ClickAwayListener onClickAway={handleClose}>
-                            <MenuList className={styles.mobileMenuList} autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                            <MenuList className={classes.mobileMenuList} autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                 
                                 {/* Nav Items mapped from file */}
 
+                                {/* Dashboard pages */}
+
                                 {dashboardNavItems.map(navItem => {
                                     return (
-                                        <MenuItem 
-                                            onClick={()=>{props.pageChange(navItem.navLink); handleClose();}}
-                                            className={styles.mobileMenuItem}
-                                            >
-                                            {navItem.navItem}
-                                        </MenuItem>
+                                        <Link to="/">
+                                            <MenuItem 
+                                                onClick={()=>{props.pageChange(navItem.navLink); props.clearPlaylist(); handleClose();}}
+                                                className={classes.mobileMenuItem}
+                                                >
+                                                {navItem.navItem}
+                                            </MenuItem>
+                                        </Link>
                                     )
                                 })}
 
+                                {/* Music Playlists Pages */}
+
                                 {musicLibraryNavItems.map(navItem => {
                                     return (
-                                        <MenuItem 
-                                            onClick={()=>{props.pageChange(navItem.navLink); handleClose();}}
-                                            className={styles.mobileMenuItem}
-                                            >
-                                            {navItem.navItem}
-                                        </MenuItem>
+                                        <Link to="/library">
+                                            <MenuItem 
+                                                onClick={()=>{props.pageChange(navItem.navLink); props.clearPlaylist(); handleClose();}}
+                                                className={classes.mobileMenuItem}
+                                                >
+                                                {navItem.navItem}
+                                            </MenuItem>
+                                        </Link>
                                     )
                                 })}
+                                
+                                {/* Account Page */}
+                                
+                                <Link to="/account">
+                                    <MenuItem 
+                                        onClick={()=>{props.pageChange('/account'); props.clearPlaylist(); handleClose();}}
+                                        className={classes.mobileMenuItem}
+                                        >
+                                        Account Info
+                                    </MenuItem>
+                                </Link>
 
                             </MenuList>
                         </ClickAwayListener>
@@ -121,9 +164,15 @@ const MobileMenu = props => {
     );
 };
 
+const mapStateToProps = (state, ownProps) => {
+    return {
+
+    }
+};
+
 const mapDispatchToProps = {
     pageChange,
     clearPlaylist
 }
 
-export default MobileMenu;
+export default connect(mapStateToProps, mapDispatchToProps)(MobileMenu);

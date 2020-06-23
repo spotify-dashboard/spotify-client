@@ -3,12 +3,16 @@ import styles from './breakdown.module.scss';
 import { connect } from 'react-redux';
 import { pageChange } from '../../../../actions/pageChangeActions.js';
 
+// media queries
+import { useMediaPredicate } from "react-media-hook";
+
 // the navigation items that are passed into the main nav are stored in this file
 import { dashboardNavItems } from '../../../../NavItems.js';
 
 // global components and playlist view
 import MainNav from '../../../Global/MainNav/MainNav.jsx';
 import Banner from '../../../Global/Banner/Banner.jsx';
+import MobileMenu from '../../../Global/MobileMenu/MobileMenu.jsx';
 import LoginError from '../../../Global/LoginError/LoginError.jsx';
 import PlaylistListView from '../PlaylistList/PlaylistListView.jsx';
 
@@ -39,6 +43,11 @@ import DurationReusable from '../../../DataViz/Playlists/Individual_Playlist/Dur
 const PlaylistsView = props => {
     console.log('breakdown playlist view props', props)
 
+    // MEDIA QUERY SIZING
+    const mobileMediaQuery = useMediaPredicate("(max-width: 500px)");
+    const desktopTabletQuery = useMediaPredicate("(min-width: 501px) and (max-width: 1500px)");
+    
+    
     // function to remove stored playlist from local storage;
     // const removeStoredPlaylist = () => {
     //     if (JSON.parse(localStorage.state).getPlaylistBreakdown.breakdownPlaylist) {
@@ -57,7 +66,10 @@ const PlaylistsView = props => {
         <div className="mainSection">
             <div className="mainModule">
                 <Banner />
-                <MainNav navItems={dashboardNavItems} />
+                
+                {mobileMediaQuery && <MobileMenu />}
+
+                {desktopTabletQuery && <MainNav navItems={dashboardNavItems} />}
 
                 {/* User is not logged in, no data to render */}
                 

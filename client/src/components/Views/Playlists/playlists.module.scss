@@ -9,6 +9,11 @@
     width: 100%;
     height: auto;
     border-radius: 8px;
+
+    @media (max-width: 500px) {
+        padding: 7px 0px;
+        border-bottom: 2px solid $lightGrey;
+    }
 }
 
 .playlistItem:hover {
@@ -18,6 +23,11 @@
 .playlistImg {
     width: 30%;
     height: auto;
+
+    @media (max-width: 500px) {
+        width: 25%;
+        height: 25%;
+    }
 }
 
 .playlistItemRight {
@@ -26,4 +36,22 @@
     margin: 0px 25px;
     align-items: center;
     align-content: center;
+    
+    @media (max-width: 500px) {
+        width: 75%;
+    }
+}
+
+.playlistItemRight div h2 {
+    @media (max-width: 500px) {
+        font-size: 16px;
+        margin-top: 0px;
+    }
+}
+
+.playlistItemRight div p, .playlistItemRight div h4 {
+    @media (max-width: 500px) {
+        font-size: 14px;
+        margin: 0px;
+    }
 }

@@ -3,6 +3,10 @@ import styles from './playlists.module.scss';
 import { connect } from 'react-redux';
 import { getPlaylistById } from '../../../actions/playlistActions.js';
 import { pageChange } from '../../../actions/pageChangeActions.js';
+import MobileMenu from '../../Global/MobileMenu/MobileMenu.jsx';
+
+// media queries
+import { useMediaPredicate } from "react-media-hook";
 
 // the navigation items that are passed into the main nav are stored in this file
 import { musicLibraryNavItems } from '../../../NavItems.js';
@@ -13,13 +17,19 @@ import LoginError from '../../Global/LoginError/LoginError.jsx';
 import LibraryList from '../../UserLibrary/LibraryList/LibraryList.jsx';
 
 const PlaylistsView = props => {
-    console.log('playlist view props', props)
+
+    // MEDIA QUERY SIZING
+    const mobileMediaQuery = useMediaPredicate("(max-width: 500px)");
+    const desktopTabletQuery = useMediaPredicate("(min-width: 501px) and (max-width: 1500px)");
 
     return (
         <div className="mainSection">
             <div className="mainModule">
                 <Banner />
-                <MainNav navItems={musicLibraryNavItems} />
+                
+                {mobileMediaQuery && <MobileMenu />}
+
+                {desktopTabletQuery && <MainNav navItems={musicLibraryNavItems} />}
 
                 {/* User is not logged in, no data to render */}
                 

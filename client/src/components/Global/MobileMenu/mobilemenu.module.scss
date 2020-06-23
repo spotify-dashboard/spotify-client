@@ -1,7 +1,6 @@
-.mobileMenuBtn {
-    color: yellow;
-}
-
-.mobileMenuItem {
-    color: black;
+.menuBtnModule {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    z-index: 9999;
 }
