@@ -23,18 +23,24 @@ import MenuIcon from '@material-ui/icons/Menu';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    background: 'rgba(15,15,15,0.5)'
+    marginTop: '10px',
+    backgroundColor: 'rgba(15,15,15,0.5)',
+
   },
   paper: {
     marginRight: theme.spacing(2),
     width: '100%',
-    background: 'rgba(15,15,15,0.5)'
+    backgroundColor: 'rgba(15,15,15,0.5)'
   },
   popper: {
     width: '100%',
+    backgroundColor: 'rgba(15,15,15,0.5)'
   },
   mobileMenuBtn: {
       
+  },
+  mobileMenuList: {
+    backgroundColor: 'rgba(15,15,15,0.0)'
   },
   mobileMenuItem: {
       color: 'rgb(164,164,164)'
@@ -78,17 +84,16 @@ const MobileMenu = props => {
     return (
         <div className={classes.root}>
         <div>
-            <div className={styles.menuBtnModule}>
-                <MenuIcon fontSize="large" />
-                <Button
+            <div 
+                className={styles.menuBtnModule}
                 ref={anchorRef}
                 aria-controls={open ? 'menu-list-grow' : undefined}
                 aria-haspopup="true"
                 onClick={handleToggle}
-                className={classes.mobileMenuBtn}
-                >
-                Menu
-                </Button>
+            // className={classes.mobileMenuBtn}
+            >
+                <MenuIcon fontSize="large" />
+                <Button>Menu</Button>
             </div>
 
             <Popper className={classes.popper} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
@@ -99,7 +104,7 @@ const MobileMenu = props => {
                 >
                     <Paper>
                         <ClickAwayListener onClickAway={handleClose}>
-                            <MenuList className={styles.mobileMenuList} autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                            <MenuList className={classes.mobileMenuList} autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                 
                                 {/* Nav Items mapped from file */}
 
