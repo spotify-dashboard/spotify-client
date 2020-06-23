@@ -43,7 +43,10 @@ class Timeline extends React.Component {
                         stacked: true
                     }]
                 },
-                
+                legend: {
+                    // don't display legend on mobile; takes up too much space
+                    display: window.screen.width <= 500 ? false : true
+                }
             }
         })
     }
@@ -126,6 +129,13 @@ class Timeline extends React.Component {
                     <div>
                         <h3>Timeline</h3>
                         <p>Dates when tracks were added, grouped by each of your personal playlists</p>
+                        
+                        {/* Note for mobile Devices only */}
+
+                        {window.screen.width <= 500 &&
+                            <p className="textGrey">Note: Labels not included on mobile devices. Click on each item in the chart to see more.</p>
+                        }
+
                     </div>
                     <div>
                         <p>Sort Options</p>
@@ -143,7 +153,7 @@ class Timeline extends React.Component {
                 
                 <div className="divider"></div>
                 
-                <div className="flex">
+                <div className={styles.timelineDetailsSection}>
 
                     {/* if user has playlists that haven't been added to in 2+ years */}
 
