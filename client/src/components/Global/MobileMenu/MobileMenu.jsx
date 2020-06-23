@@ -116,8 +116,8 @@ const MobileMenu = props => {
 
                                 {dashboardNavItems.map(navItem => {
                                     return (
-                                        <Link to="/">
-                                            <MenuItem 
+                                        <Link to="/" key={navItem.navLink}>
+                                            <MenuItem
                                                 onClick={()=>{props.pageChange(navItem.navLink); props.clearPlaylist(); handleClose();}}
                                                 className={classes.mobileMenuItem}
                                                 >
@@ -131,8 +131,8 @@ const MobileMenu = props => {
 
                                 {musicLibraryNavItems.map(navItem => {
                                     return (
-                                        <Link to="/library">
-                                            <MenuItem 
+                                        <Link to="/library" key={navItem.navLink}>
+                                            <MenuItem
                                                 onClick={()=>{props.pageChange(navItem.navLink); props.clearPlaylist(); handleClose();}}
                                                 className={classes.mobileMenuItem}
                                                 >
