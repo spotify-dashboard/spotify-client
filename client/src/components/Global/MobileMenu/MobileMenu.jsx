@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './mobilemenu.module.scss';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 // the navigation items that are passed into the main nav are stored in this file
 import { dashboardNavItems, musicLibraryNavItems } from '../../../NavItems.js';
@@ -25,25 +26,29 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     marginTop: '10px',
     backgroundColor: 'rgba(15,15,15,0.5)',
+    zIndex: '9999'
 
   },
   paper: {
     marginRight: theme.spacing(2),
     width: '100%',
-    backgroundColor: 'rgba(15,15,15,0.5)'
+    zIndex: '9999'
   },
   popper: {
     width: '100%',
-    backgroundColor: 'rgba(15,15,15,0.5)'
+    opacity: '95%',
+    zIndex: '9999'
   },
   mobileMenuBtn: {
-      
+    zIndex: '9999'
   },
   mobileMenuList: {
-    backgroundColor: 'rgba(15,15,15,0.0)'
+    backgroundColor: 'rgb(15,15,15)',
+    zIndex: '9999'
   },
   mobileMenuItem: {
-      color: 'rgb(164,164,164)'
+      color: 'rgb(164,164,164)',
+      zIndex: '9999'
   }
 }));
 
@@ -90,7 +95,6 @@ const MobileMenu = props => {
                 aria-controls={open ? 'menu-list-grow' : undefined}
                 aria-haspopup="true"
                 onClick={handleToggle}
-            // className={classes.mobileMenuBtn}
             >
                 <MenuIcon fontSize="large" />
                 <Button>Menu</Button>
@@ -108,27 +112,46 @@ const MobileMenu = props => {
                                 
                                 {/* Nav Items mapped from file */}
 
+                                {/* Dashboard pages */}
+
                                 {dashboardNavItems.map(navItem => {
                                     return (
-                                        <MenuItem 
-                                            onClick={()=>{props.pageChange(navItem.navLink); handleClose();}}
-                                            className={classes.mobileMenuItem}
-                                            >
-                                            {navItem.navItem}
-                                        </MenuItem>
+                                        <Link to="/">
+                                            <MenuItem 
+                                                onClick={()=>{props.pageChange(navItem.navLink); props.clearPlaylist(); handleClose();}}
+                                                className={classes.mobileMenuItem}
+                                                >
+                                                {navItem.navItem}
+                                            </MenuItem>
+                                        </Link>
                                     )
                                 })}
 
+                                {/* Music Playlists Pages */}
+
                                 {musicLibraryNavItems.map(navItem => {
                                     return (
-                                        <MenuItem 
-                                            onClick={()=>{props.pageChange(navItem.navLink); handleClose();}}
-                                            className={classes.mobileMenuItem}
-                                            >
-                                            {navItem.navItem}
-                                        </MenuItem>
+                                        <Link to="/library">
+                                            <MenuItem 
+                                                onClick={()=>{props.pageChange(navItem.navLink); props.clearPlaylist(); handleClose();}}
+                                                className={classes.mobileMenuItem}
+                                                >
+                                                {navItem.navItem}
+                                            </MenuItem>
+                                        </Link>
                                     )
                                 })}
+                                
+                                {/* Account Page */}
+                                
+                                <Link to="/account">
+                                    <MenuItem 
+                                        onClick={()=>{props.pageChange('/account'); props.clearPlaylist(); handleClose();}}
+                                        className={classes.mobileMenuItem}
+                                        >
+                                        Account Info
+                                    </MenuItem>
+                                </Link>
 
                             </MenuList>
                         </ClickAwayListener>
@@ -141,9 +164,15 @@ const MobileMenu = props => {
     );
 };
 
+const mapStateToProps = (state, ownProps) => {
+    return {
+
+    }
+};
+
 const mapDispatchToProps = {
     pageChange,
     clearPlaylist
 }
 
-export default MobileMenu;
+export default connect(mapStateToProps, mapDispatchToProps)(MobileMenu);
