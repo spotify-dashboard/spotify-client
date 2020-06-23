@@ -48,7 +48,9 @@ const useStyles = makeStyles((theme) => ({
   },
   mobileMenuItem: {
       color: 'rgb(164,164,164)',
-      zIndex: '9999'
+      zIndex: '9999',
+      borderBottom: '1px solid rgb(44,44,44)',
+      textTransform: 'uppercase'
   }
 }));
 
@@ -116,7 +118,7 @@ const MobileMenu = props => {
 
                                 {dashboardNavItems.map(navItem => {
                                     return (
-                                        <Link to="/" key={navItem.navLink}>
+                                        <Link to="/" key={navItem.navLink} className="link">
                                             <MenuItem
                                                 onClick={()=>{props.pageChange(navItem.navLink); props.clearPlaylist(); handleClose();}}
                                                 className={classes.mobileMenuItem}
@@ -131,7 +133,7 @@ const MobileMenu = props => {
 
                                 {musicLibraryNavItems.map(navItem => {
                                     return (
-                                        <Link to="/library" key={navItem.navLink}>
+                                        <Link to="/library" key={navItem.navLink} className="link">
                                             <MenuItem
                                                 onClick={()=>{props.pageChange(navItem.navLink); props.clearPlaylist(); handleClose();}}
                                                 className={classes.mobileMenuItem}
@@ -144,7 +146,7 @@ const MobileMenu = props => {
                                 
                                 {/* Account Page */}
                                 
-                                <Link to="/account">
+                                <Link to="/account" className="link">
                                     <MenuItem 
                                         onClick={()=>{props.pageChange('/account'); props.clearPlaylist(); handleClose();}}
                                         className={classes.mobileMenuItem}
