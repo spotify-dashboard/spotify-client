@@ -3,6 +3,11 @@
 .parentContainer {
     padding: 20px 0px;
     border-bottom: 1px solid $lightGrey;
+
+    @media(max-width: 500px) {
+        width: 100%;
+        padding: 20px 0px;
+    }
 }
 
 .artistList {
@@ -10,22 +15,50 @@
     text-decoration: none;
     align-items: center;
     justify-content: flex-start;
+
+    @media(max-width: 500px) {
+        display: block;
+        padding: 0px 20px;
+        width: 100%;
+    }
 }
 
 .artistItem {
     font-size: 20px;
+
+    @media(max-width: 500px) {
+        padding: 5px 0px;
+    }
 }
 
 .topArtistItem {
     font-size: 40px;
     color: white;
+
+    @media(max-width: 500px) {
+        font-size: 20px;
+    }
 }
 
 .secondArtistItem {
     font-size: 32px;
     color: white;
+
+    @media(max-width: 500px) {
+        font-size: 18px;
+    }
 }
 
 .left, .right {
     margin: 0px 20px;
+
+    @media(max-width: 500px) {
+        margin: 0px 0px;
+    }
+}
+
+.right li {
+    @media(max-width: 500px) {
+        font-size: 14px;
+    }
 }
